@@ -11,7 +11,7 @@ import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illn
 
 export class PatientAddComponent implements OnInit {
 
-  patient: Patient[]; services: Service[];
+  patient : Patient[]; services: Service[];
 
   statuses: Status[]; regimens: Regimen[];
 
@@ -42,24 +42,31 @@ export class PatientAddComponent implements OnInit {
   // 
   status: string; service: string; regimen: string; source: number;
 
-  whoStage: string; dateEnrolled : string;
+  whoStage: string; dateEnrolled : string; prophylaxis : number;
 
+  startRegimenDate : Date;
   constructor(private patientsService: PatientsService) {
 
   }
+  // calc_bsa(){
+  //   var w = 0, h = 0;
+    
+  //   w = this.weight; h = this.height;
+  //   this.bsa = (w + h);
 
-  // ngOnInit() {
-  //   this.getServices();
-  //   this.getStatus(); this.getRegimen();
-  //   this.getProphylaxis(); this.getWho_stage();
-  //   this.getScource(); this.getIllness();
   // }
+  ngOnInit() {
+    this.getServices();
+    this.getStatus(); this.getRegimen();
+    this.getProphylaxis(); this.getWho_stage();
+    this.getScource(); this.getIllness();
+  }
   getServices() {
     this.patientsService.getService().subscribe(services => { this.services = services; });
   }
 
   getStatus() {
-    this.patientsService.getStatus().subscribe(statuses => { this.statuses = statuses; })
+    this.patientsService.getStatus().subscribe(statuses => { this.statuses = statuses; });
   }
 
   getRegimen() {
@@ -93,6 +100,7 @@ export class PatientAddComponent implements OnInit {
       gender: this.gender,
       phone_number: this.contact,
       physical_address: this.address,
+      birth_date : this.dob,
       support_group: this.supportGroup,
       is_tb: this.tb,
       is_tb_tested: this.tbTested,
