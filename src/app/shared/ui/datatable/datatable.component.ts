@@ -1,5 +1,6 @@
 import { Component, Input, ElementRef, AfterContentInit, OnInit } from '@angular/core';
 
+
 declare var $: any;
 
 @Component({

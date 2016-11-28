@@ -44,8 +44,14 @@ export class PatientsService {
                    .map(res => res.json());
     }
 
+
     getPatients() {
         return this.http.get(this.urlRoute+'patients')
+            .map(res => res.json());
+    }
+
+    getPatient(){
+        return this.http.get(this.urlRoute+"patients/2")
             .map(res => res.json());
     }
 

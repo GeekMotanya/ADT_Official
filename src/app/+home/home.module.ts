@@ -5,6 +5,7 @@ import { SmartadminModule } from "../shared/smartadmin.module";
 import { HomeComponent } from "./home.component";
 import { ChartJsModule } from "../shared/graphs/chart-js/chart-js.module";
 import {SmartadminDatatableModule} from "../shared/ui/datatable/smartadmin-datatable.module";
+import {HighchartsModule} from "../shared/graphs/highcharts/highcharts.module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {SmartadminDatatableModule} from "../shared/ui/datatable/smartadmin-datat
     homeRouting,
     ChartJsModule,
     SmartadminDatatableModule,
+    HighchartsModule,
     SmartadminModule
   ],
   declarations: [HomeComponent]
