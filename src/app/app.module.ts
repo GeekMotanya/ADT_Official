@@ -1,12 +1,16 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import {SmartadminModule} from './shared/smartadmin.module'
-import {AppComponent} from './app.component';
+import { SmartadminModule } from './shared/smartadmin.module'
+import { AppComponent } from './app.component';
 
-import {routing} from './app.routing';
-import {BrowserModule} from "@angular/platform-browser";
-import {UserModule} from "./shared/user/user.module";
-import {UserService} from "./shared/user/user.service";
+import { routing } from './app.routing';
+import { BrowserModule } from "@angular/platform-browser";
+import { UserModule } from "./shared/user/user.module";
+import { UserService } from "./shared/user/user.service";
+
+import { HttpModule, JsonpModule } from '@angular/http';
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,18 @@ import {UserService} from "./shared/user/user.service";
 
     routing,
 
+    HttpModule,
+    JsonpModule,
+
     SmartadminModule.forRoot(),
-    UserModule.forRoot()
+    UserModule.forRoot(),
+
+    FormsModule
   ],
   providers: [UserService],
   // entryComponents: [AppComponent],
   bootstrap: [AppComponent],
-   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 

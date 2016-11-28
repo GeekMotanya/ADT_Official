@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {JsonApiService} from "../shared/api/json-api.service";
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public chartjsData: any;
+
+  constructor(private jsonApiService: JsonApiService) { 
+    this.jsonApiService.fetch( '/graphs/chartjs.json').subscribe((data)=>{
+      this.chartjsData = data;
+    })
+  }
 
   ngOnInit() {
   }

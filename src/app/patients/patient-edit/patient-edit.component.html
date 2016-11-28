@@ -1,0 +1,276 @@
+<div id="content">
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <sa-widget>
+          <header>
+            <h2><strong>Patients</strong> <i>Edit Patient Details</i></h2>
+          </header>
+          <div role="content">
+            <div class="jarviswidget-editbox">
+            </div>
+            <div class="widget-body">
+              <form>
+                <!-- Patients Information and Demographics -->
+                <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <legend>Patient Information and Demographics</legend>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Medical Record No.</label>
+                    <input class="form-control" placeholder="Medical Record No." type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Patient Number CCC</label>
+                    <input class="form-control" placeholder="Patient Number" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Last Name</label>
+                    <input class="form-control" placeholder="Last name" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>First Name</label>
+                    <input class="form-control" placeholder="First Name" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Other Name</label>
+                    <input class="form-control" placeholder="Other Name" type="text">
+                  </div>
+                  <!-- Date picker -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Date of Birth:</label>
+                      <div class="input-group">
+                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End of date picker -->
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Place of birth</label>
+                    <input class="form-control" placeholder="Patient Number" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Age (Years)</label>
+                    <input class="form-control" placeholder="Age (Years)" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Age (Months)</label>
+                    <input class="form-control" placeholder="Age (Months)" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Gender</label>
+                    <select class="form-control" id="select-1">
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Weight</label>
+                    <input class="form-control" placeholder="Weight" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Height</label>
+                    <input class="form-control" placeholder="Height" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Body Surface Area (MSQ)</label>
+                    <input class="form-control" placeholder="<<auto generate>>" type="text">
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5">
+										<label>Phone Contact</label>
+										<input class="form-control" placeholder="e.g 0712345678" type="text" [(ngModel)]="contact" name="contact">
+									</div>
+									<div class=" form-group col-xs-12 col-sm-7 col-md-7 col-lg-7">
+										<div class="row">
+											<div class="col-sm-12 col-md-12">
+												<label class="control-label">Receive SMS Reminders</label>
+											</div>
+											<div class="col-sm-12 col-md-10">
+												<label class="radio radio-inline no-margin">
+            									<input type="radio" name="rating" value="" class="radiobox style-2"/>
+												<span>Yes</span> 
+												</label>
+												<label class="radio radio-inline">
+												<input type="radio" name="rating" value="" class="radiobox style-2"/>
+												<span>No</span> 
+												</label>
+											</div>
+										</div>
+									</div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Patients Physical Contact(s)</label>
+                    <textarea class="form-control" placeholder="Textarea" rows="3"></textarea>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Does patient belong to any support group?</label>
+                    <div class="col-sm-12">
+                      <label class="checkbox-inline"><input type="checkbox">Yes</label>
+                    </div>
+                    <textarea class="form-control" placeholder="Textarea" rows="3"></textarea>
+                  </div>
+                </fieldset>
+                <!-- Patient History -->
+                <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <legend>Patient History</legend>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Does Patient have other Chronic Illnesses</label>
+                    <select class="form-control" id="select-1" placeholder="--Select Options--">
+                      <option>--Select--</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>If other Illnesses</label>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="checkbox-inline"><input type="checkbox">Click Here</label>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>List Them Below (Use Commas to Separate)</label>
+                    <textarea class="form-control" rows="2"></textarea>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Is Patient Taking any Other Drugs?</label>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="checkbox-inline"><input type="checkbox">Yes</label>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>List Them</label>
+                    <textarea class="form-control" rows="2"></textarea>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Drug Allergies/ADR</label>
+                    <select class="form-control" id="select-1" placeholder="--Select Options--">
+                      <option>--Select--</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Does Patient have any Other Drugs/ADR not Listed?</label>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label class="checkbox-inline"><input type="checkbox">Yes</label>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>List Them</label>
+                    <textarea class="form-control" rows="2"></textarea>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Does Patient Smoke?</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Does Patient Drink Alcohol?</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Has Patient been TB tested?</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Does Patient have TB?</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Date of Next Appointment</label>
+                      <div class="input-group">
+                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label>Days to Next Appointment</label>
+                    <input class="form-control" placeholder="autogenerated" type="text">
+                  </div>                  
+                </fieldset>
+
+                <!-- Patient Information -->
+                <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <legend>Patient Information</legend>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Date Patient Enrolled</label>
+                    <div class="input-group">
+                      <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Current Status</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Source of Patient</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Type of Service</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Start Regimen</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Start Regimen Date</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>WHO Stage</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+										</select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label>Drug Prophylaxis</label>
+                    <select class="form-control" id="select-1" placeholder="No">
+                      <option>No</option>
+                      <option>Yes</option>
+										</select>
+                  </div>
+                  <div class="col-sm-12" align="right">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-edit"></i> Update Patient Info </button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </sa-widget>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>

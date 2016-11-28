@@ -1,3 +1,457 @@
-<p>
-  patient-view works!
-</p>
+<div id="content">
+	<sa-widgets-grid>
+		<div class="row">
+			<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<sa-widget>
+					<header>
+						<h2><strong>Patients</strong> <i>View Patient</i></h2>
+					</header>
+					<div role="content">
+						<div class="jarviswidget-editbox">
+						</div>
+						<div class="widget-body">
+							<form>
+								<!-- Patients Information and Demographics -->
+								<fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+									<legend>Patient Information and Demographics</legend>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Medical Record No.</label>
+										<input class="form-control" placeholder="Medical Record No." type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Patient Number CCC</label>
+										<input class="form-control" placeholder="Patient Number" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Last Name</label>
+										<input class="form-control" placeholder="Last name" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>First Name</label>
+										<input class="form-control" placeholder="First Name" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Other Name</label>
+										<input class="form-control" placeholder="Other Name" type="text" disabled="disabled">
+									</div>
+									<!-- Date picker -->
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label>Date of Birth:</label>
+											<div class="input-group">
+												<input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }"
+													disabled="disabled">
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+									<!-- End of date picker -->
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Place of birth</label>
+										<input class="form-control" placeholder="Patient Number" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Age (Years)</label>
+										<input class="form-control" placeholder="Age (Years)" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Age (Months)</label>
+										<input class="form-control" placeholder="Age (Months)" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Gender</label>
+										<select class="form-control" id="select-1" disabled="disabled">
+											<option>Male</option>
+											<option>Female</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Weight</label>
+										<input class="form-control" placeholder="Weight" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Height</label>
+										<input class="form-control" placeholder="Height" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Body Surface Area (MSQ)</label>
+										<input class="form-control" placeholder="<<auto generate>>" type="text" disabled="disabled">
+									</div>
+									<div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5">
+										<label>Phone Contact</label>
+										<input class="form-control" placeholder="e.g 0712345678" type="text" [(ngModel)]="contact" name="contact">
+									</div>
+									<div class=" form-group col-xs-12 col-sm-7 col-md-7 col-lg-7">
+										<div class="row">
+											<div class="col-sm-12 col-md-12">
+												<label class="control-label">Receive SMS Reminders</label>
+											</div>
+											<div class="col-sm-12 col-md-10">
+												<label class="radio radio-inline no-margin">
+            									<input type="radio" name="rating" value="" class="radiobox style-2"/>
+												<span>Yes</span> 
+												</label>
+												<label class="radio radio-inline">
+												<input type="radio" name="rating" value="" class="radiobox style-2"/>
+												<span>No</span> 
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Patients Physical Contact(s)</label>
+										<textarea class="form-control" placeholder="Textarea" rows="3" disabled="disabled"></textarea>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Does patient belong to any support group?</label>
+										<div class="col-sm-12">
+											<label class="checkbox-inline"><input type="checkbox">If Yes, List them</label>
+										</div>
+										<textarea class="form-control" placeholder="Textarea" rows="3" disabled="disabled"></textarea>
+									</div>
+								</fieldset>
+								<!-- Patient History -->
+								<fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+									<legend>Patient History</legend>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Does Patient have other Chronic Illnesses</label>
+										<select class="form-control" id="select-1" placeholder="--Select Options--" disabled="disabled">
+											<option>--Select--</option>
+											<option>Male</option>
+											<option>Female</option>
+											<option>Other</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>If other Illnesses</label>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label class="checkbox-inline"><input type="checkbox">Click Here</label>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>List Them Below (Use Commas to Separate)</label>
+										<textarea class="form-control" rows="2" disabled="disabled"></textarea>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Is Patient Taking any Other Drugs?</label>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label class="checkbox-inline"><input type="checkbox">Yes</label>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>List Them</label>
+										<textarea class="form-control" rows="2" disabled="disabled"></textarea>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Drug Allergies/ADR</label>
+										<select class="form-control" id="select-1" placeholder="--Select Options--" disabled="disabled">
+											<option>--Select--</option>
+											<option>Male</option>
+											<option>Female</option>
+											<option>Other</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Does Patient have any Other Drugs/ADR not Listed?</label>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label class="checkbox-inline"><input type="checkbox">Yes</label>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>List Them</label>
+										<textarea class="form-control" rows="2" disabled="disabled"></textarea>
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Does Patient Smoke?</label>
+										<select class="form-control" id="select-1" placeholder="No" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Does Patient Drink Alcohol?</label>
+										<select class="form-control" id="select-1" placeholder="No" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+                    					</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Has Patient been tested for TB?</label>
+										<select class="form-control" id="select-1" placeholder="No" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Does Patient have TB?</label>
+										<select class="form-control" id="select-1" placeholder="No" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+								</fieldset>
+
+								<!-- Patient Information -->
+								<fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+									<legend>Patient Information</legend>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Date Patient Enrolled</label>
+										<div class="input-group">
+											<input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }"
+												disabled="disabled">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Current Status</label>
+										<select class="form-control" id="select-1" placeholder="Active" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="col-sm-12">
+										<label>Source of Patient</label>
+										<select class="form-control" id="select-1" placeholder="VCT" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Type of Service</label>
+										<select class="form-control" id="select-1" placeholder="ART" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Start Regimen</label>
+										<select class="form-control" id="select-1" placeholder="--Select One--" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Start Regimen Date</label>
+										<div class="input-group">
+											<input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }"
+												disabled="disabled">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>WHO Stage</label>
+										<select class="form-control" id="select-1" placeholder="Stage 1" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Drug Prophylaxis</label>
+										<select class="form-control" id="select-1" placeholder="Dapsone" disabled="disabled">
+											<option>No</option>
+											<option>Yes</option>
+										</select>
+									</div>
+								</fieldset>
+								<fieldset class="col-xs-48 col-sm-12 col-md-12 col-lg-12">
+									<div>
+										<!-- widget content -->
+										<div class="widget-body">
+											<hr class="simple">
+											<ul id="myTab3" class="nav nav-tabs tabs-pull-right bordered">
+												<li class="pull-right">
+													<a data-toggle="modal" data-target="#viralLoadModal">Viral Load Data</a>
+												</li>
+												<li class="pull-right">
+													<a data-toggle="modal" data-target="#patientSummaryModal">Patient Info Report</a>
+												</li>
+												<li class="pull-right">
+													<a class="mdl-navigation__link" [routerLink]="['/patients/edit']">Edit Patient Record</a>
+												</li>
+												<li class="pull-right">
+													<a class="mdl-navigation__link" [routerLink]="['/patients/dispense']">Dispense to Patient</a>
+												</li>
+											</ul>
+											<tabset class="padding-10">
+												<sa-widget [editbutton]="false" color="darken">
+													<header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+														<h2>Dispensing History</h2>
+													</header>
+													<div>
+														<div class="widget-body no-padding">
+															<sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+																<thead>
+																	<tr>
+																		<th data-hide="phone">Date</th>
+																		<th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Purpose of Visit
+																		</th>
+																		<th data-hide="phone"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Dose
+																		</th>
+																		<th>Company</th>
+																		<th data-hide="phone,tablet"><i class=" txt-color-blue hidden-md hidden-sm hidden-xs"></i> Duration
+																		</th>
+																		<th data-hide="phone,tablet">Action</th>
+																		<th><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i> Drug</th>
+																		<th>Quantity</th>
+																		<th>Weight</th>
+																		<th>Current Regimen</th>
+																		<th>Batch No</th>
+																		<th>Pill Count</th>
+																		<th>Adherance</th>
+																		<th>Operator</th>
+																		<th>Reasons for Change</th>
+																	</tr>
+																</thead>
+															</sa-datatable>
+														</div>
+													</div>
+												</sa-widget>
+												<!--Viral load data Modal-->
+												<div id="viralLoadModal" class="modal fade" role="dialog">
+													<div class="modal-dialog modal-lg">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button aria-label="Close" class="close" type="button">
+																	<span aria-hidden="true">×</span>
+																</button>
+																<h4 class="modal-title">Viral Load Summary</h4>
+															</div>
+															<div class="modal-body">
+
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="form-group">
+																			<div class="table-responsive">
+																				<table class="table table-bordered">
+																					<thead>
+																						<tr>
+																							<th [ngStyle]="{width:'60%'}">Date Tested</th>
+																							<th>Result</th>
+																						</tr>
+																					</thead>
+																					<tbody>
+																						<tr>
+																							<td>This and That Day</td>
+																							<td>Ebola!!!!!</td>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--End of viralLoadModal-->
+												<!--Patient Summary Modal-->
+												<div id="patientSummaryModal" class="modal fade" role="dialog">
+													<div class="modal-dialog modal-lg">
+														<div class="modal-content">
+															<div class="modal-header">
+																<button aria-label="Close" class="close" type="button">
+																	<span aria-hidden="true">×</span>
+																</button>
+																<h4 class="modal-title">Patient Information Summary</h4>
+															</div>
+															<div class="modal-body">
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="form-group">																			
+																			<table class="table table-hover table-bordered table-striped table-condensed" style="zoom:90%;">
+																				<thead>
+																					<tr>
+																						<th>Art Number</th>
+																						<th>First Name</th>
+																						<th>Surname</th>
+																						<th>Sex</th>
+																						<th>Age</th>
+																						<th>Date Therapy Started</th>
+																						<th>Current Status</th>
+																						<th>Last Viral Load Date</th>
+																						<th>Last Viral Load Result</th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					<tr>
+																						<td>10101900189</td>
+																						<td>first_name</td>
+																						<td>last_name</td>
+																						<td>Female</td>
+																						<td>56</td>
+																						<td>2005-08-10</td>
+																						<td>Active</td>
+																						<td>N/A</td>
+																						<td>N/A</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																			<table class="table table-hover table-bordered table-striped table-condensed" style="zoom:90%;">
+																				<thead>
+																				<tr>
+																					<th rowspan="2">Date of Visit</th>
+																					<th rowspan="2">Drug Name</th>
+																					<th rowspan="2">Qty. Dispensed</th>
+																					<th rowspan="2">Pill Count</th>
+																					<th rowspan="2">Missed Pills</th>
+																					<th colspan="4" style="text-align:center;">Adherence Rates</th>
+																				</tr>
+																				<tr>
+																					<th>Pill Count(%)</th>
+																					<th>Missed Pills(%)</th>
+																					<th>Appointment(%)</th>
+																					<th>Average(%)</th>
+																				</tr>
+																				</thead>
+																				<tbody></tbody>																				
+																		</table>
+																		<table class="table table-hover table-bordered table-striped table-condensed" style="zoom:90%;">
+																			<thead>
+																			<tr>
+																				<th>Date of Visit</th>
+																				<th>Last Regimen Dispensed</th>
+																				<th>Current Regimen</th>
+																				<th>Reason for Change</th> 
+																			</tr>
+																			</thead>
+																			<tbody>
+																				<td></td>
+																				<td></td>
+																				<td></td>
+																				<td></td>																				
+																			</tbody>																			
+																		</table>
+																		<table class="table table-hover table-bordered table-striped table-condensed" style="zoom:90%;">
+																			<thead>
+																			<tr>
+																				<th>Date of Next Appointment</th>
+																				<th>Days to Appointment</th>
+																			</tr>
+																			</thead>
+																			<tbody>
+																				<td>2016-08-10</td>
+																				<td>15</td>
+																			</tbody>
+																		</table>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--End Patient Summary Modal-->
+											</tabset>
+										</div>
+										<!-- end widget content -->
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</sa-widget>
+			</article>
+		</div>
+	</sa-widgets-grid>
+</div>

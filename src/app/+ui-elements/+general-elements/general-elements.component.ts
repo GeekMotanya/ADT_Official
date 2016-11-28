@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ModalDirective} from "ng2-bootstrap";
-import {ViewChild} from "@angular/core/src/metadata/di";
+import { Component, OnInit } from '@angular/core';
+import { ModalDirective } from "ng2-bootstrap";
+import { ViewChild } from "@angular/core/src/metadata/di";
 
 
 declare var $: any;
@@ -80,13 +80,13 @@ export class GeneralElementsComponent implements OnInit {
   }
 
 
-  @ViewChild('lgModal') public lgModal:ModalDirective;
+  @ViewChild('lgModal') public lgModal: ModalDirective;
 
-  public showChildModal():void {
+  public showChildModal(): void {
     this.lgModal.show();
   }
 
-  public hideChildModal():void {
+  public hideChildModal(): void {
     this.lgModal.hide();
   }
 
@@ -139,7 +139,7 @@ export class GeneralElementsComponent implements OnInit {
       //timeout: 8000,
       icon: "fa fa-check",
       number: "4"
-    }, ()=> {
+    }, () => {
       this._closedthis();
     });
 

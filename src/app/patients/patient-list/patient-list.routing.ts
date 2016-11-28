@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import {PatientListComponent} from "./patient-list.component";
+import { PatientListComponent } from "./patient-list.component";
 
 export const patientlistRoutes: Routes = [{
   path: '',

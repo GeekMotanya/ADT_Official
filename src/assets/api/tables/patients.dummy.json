@@ -1,0 +1,40 @@
+{
+    "data": [
+        {
+            "ccc_no": "1566",
+            "patient_name": "Brian Mwathi",
+            "next_appointment": "2014/12/12",
+            "contact": "0700000000",
+            "current_regimen": "Xoxo",
+            "status": "Almost happy",
+            "action": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Dispense</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Details</a>"
+        },
+        {
+            "ccc_no": "1566",
+            "patient_name": "Brian Mwathi",
+            "next_appointment": "2014/12/12",
+            "contact": "8888888899",
+            "current_regimen": "Xoxo",
+            "status": "Almost happy",
+            "action": "Dispense | Details | Edit | Disable"
+        },
+        {
+            "ccc_no": "1566",
+            "patient_name": "Brian Mwathi",
+            "next_appointment": "2014/12/12",
+            "contact": "9999999999",
+            "current_regimen": "Xoxo",
+            "status": "Almost happy",
+            "action": "Dispense | Details | Edit | Disable"
+        },
+        {
+            "ccc_no": "1566",
+            "patient_name": "Brian Mwathi",
+            "next_appointment": "2014/12/12",
+            "contact": "0700000000",
+            "current_regimen": "Xoxo",
+            "status": "Almost happy",
+            "action": "Dispense | Details | Edit | Disable"
+        }
+    ]
+}

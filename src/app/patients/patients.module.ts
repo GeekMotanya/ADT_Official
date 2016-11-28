@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {routing} from "./patients.routing";
 import {SmartadminModule} from "../shared/smartadmin.module";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import {SmartadminModule} from "../shared/smartadmin.module";
   imports: [
     CommonModule,
     routing,
-    SmartadminModule
+    SmartadminModule,
+    FormsModule
   ],
   providers: [],
   entryComponents: []

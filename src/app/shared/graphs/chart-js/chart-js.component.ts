@@ -19,7 +19,7 @@ export class ChartJsComponent implements AfterContentInit {
   @Input() public data:any;
   @Input() public type:string;
   @Input() width:string = '100%';
-
+  @Input() public typeface: string;
 
 
   constructor(private el:ElementRef) {
@@ -35,9 +35,17 @@ export class ChartJsComponent implements AfterContentInit {
     let ctx = this.getCtx();
     let data = this.data;
 
-    let chart = new Chart(ctx, {type: this.type, data: data, options: presets[this.type] || {}});
-    chart.update();
+    let typeface = this.typeface;
 
+    // Checks whether the bar graph to be plotted is 'stacked'
+    if (typeface === "stacked") { 
+      let chart = new Chart(ctx, {type: this.type, data: data, options: presets['stacked'] || {}});
+      chart.update();
+    }
+    else {
+      let chart = new Chart(ctx, {type: this.type, data: data, options: presets[this.type] || {}});
+      chart.update();
+    }
   }
 
   private getCtx() {
