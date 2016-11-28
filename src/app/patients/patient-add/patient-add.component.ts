@@ -47,13 +47,19 @@ export class PatientAddComponent implements OnInit {
   constructor(private patientsService: PatientsService) {
 
   }
+  calc_bsa(){
+    var w = 0, h = 0;
+    
+    w = this.weight; h = this.height;
+    this.bsa = (w + h);
 
-  // ngOnInit() {
-  //   this.getServices();
-  //   this.getStatus(); this.getRegimen();
-  //   this.getProphylaxis(); this.getWho_stage();
-  //   this.getScource(); this.getIllness();
-  // }
+  }
+  ngOnInit() {
+    this.getServices();
+    this.getStatus(); this.getRegimen();
+    this.getProphylaxis(); this.getWho_stage();
+    this.getScource(); this.getIllness();
+  }
   getServices() {
     this.patientsService.getService().subscribe(services => { this.services = services; });
   }
