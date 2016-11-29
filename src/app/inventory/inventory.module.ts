@@ -5,6 +5,7 @@ import { SmartadminModule } from "../shared/smartadmin.module";
 
 @NgModule({
     declarations: [
+        
     ],
     imports: [
         CommonModule,
