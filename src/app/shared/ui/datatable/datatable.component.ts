@@ -89,7 +89,7 @@ export class DatatableComponent implements OnInit {
             return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['id'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['id'] + '">Detail</a>'
           },
           // NOTE: Targeting the [actions] column.
-          "targets": 6
+          "targets": 7
         },
         { "visible": false, "targets": [3] }
       ],

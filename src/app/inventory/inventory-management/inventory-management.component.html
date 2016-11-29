@@ -11,7 +11,7 @@
                 [options]="{
                 colReorder: true,
               ajax: 'assets/api/tables/datatable_inventory.json',
-              columns: [ {data: 'commodity'}, {data: 'generic_name'}, {data: 'qty'}, {data: 'company'}, {data: 'unit'}, {data: 'size'}, {data: 'supplier'}, {date: 'dose'} ] }"
+              columns: [ {data: 'commodity'}, {data: 'generic_name'}, {data: 'qty'}, {data: 'unit'}, {data: 'size'}, {data: 'supplier'}, {data: 'dose'} ] }"
                 paginationLength="true" tableClass="table table-striped table-bordered table-hover"
                 width="100%">
                 <thead>
@@ -31,12 +31,15 @@
                   </th>
                   <th data-hide="phone,tablet">City</th>
                   <th data-hide="phone,tablet"><i
-                    class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>
+                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>
                     Pack Size
                   </th>
-                  <th data-hide="phone,tablet">Supplier</th>
-                  <th data-hide="phone,tablet">Dose</th>
-                  <th data-hide="phone,tablet">Action</th>
+                  <th data-hide="phone,tablet"><i
+                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Supplier</th>
+                  <th data-hide="phone,tablet"><i
+                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Dose</th>
+                  <th data-hide="phone,tablet"><i
+                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Action</th>
                 </tr>
                 </thead>
               </sa-datatable>
