@@ -1,0 +1,22 @@
+{
+  "aaData": [
+    {
+      "commodity": "ZIDOVUDINE (AZT) 300MG TABS",
+      "generic_name": "ZIDOVUDINE",
+      "qty": "1",
+      "unit": "Tablet",
+      "size": "60",
+      "supplier": "Kenya Pharma",
+      "dose": "1BD"
+    },
+    {
+      "commodity": "ZIDOVUDINE (AZT) 300MG TABS",
+      "generic_name": "ZIDOVUDINE",
+      "qty": "1",
+      "unit": "Tablet",
+      "size": "60",
+      "supplier": "Kemsa",
+      "dose": "1BD"
+    }
+  ]
+}
