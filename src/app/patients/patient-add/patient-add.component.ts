@@ -56,10 +56,10 @@ export class PatientAddComponent implements OnInit {
 
   // }
   ngOnInit() {
-    this.getServices();
-    this.getStatus(); this.getRegimen();
-    this.getProphylaxis(); this.getWho_stage();
-    this.getScource(); this.getIllness();
+    // this.getServices();
+    // this.getStatus(); this.getRegimen();
+    // this.getProphylaxis(); this.getWho_stage();
+    // this.getScource(); this.getIllness();
   }
   getServices() {
     this.patientsService.getService().subscribe(services => { this.services = services; });

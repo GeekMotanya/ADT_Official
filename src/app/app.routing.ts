@@ -3,11 +3,11 @@
  */
 
 
-import {Routes, RouterModule} from '@angular/router';
-import {MainLayoutComponent} from "./shared/layout/app-layouts/main-layout.component";
-import {AuthLayoutComponent} from "./shared/layout/app-layouts/auth-layout.component";
+import { Routes, RouterModule } from '@angular/router';
+import { MainLayoutComponent } from "./shared/layout/app-layouts/main-layout.component";
+import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
 
-export const routes:Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
@@ -17,8 +17,10 @@ export const routes:Routes = [
 
 
       },
-      {path: 'home', loadChildren: 'app/+home/home.module#HomeModule',data:{pageTitle: 'Dashboard'}},
-      {path: 'patients', loadChildren: 'app/patients/patients.module#PatientsModule', data:{pageTitle: 'Patients'}},
+      { path: 'home', loadChildren: 'app/+home/home.module#HomeModule', data: { pageTitle: 'Dashboard' } },
+      { path: 'patients', loadChildren: 'app/patients/patients.module#PatientsModule', data: { pageTitle: 'Patients' } },
+      { path: 'inventory', loadChildren: 'app/inventory/inventory.module#InventoryModule', data: { pageTitle: 'Inventory' } },
+      { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', data: { pageTitle: 'Profile'}}
       // {path: 'dashboard', loadChildren: 'app/+dashboard/dashboard.module#DashboardModule',data:{pageTitle: 'Dashboard'}},
       // {path: 'smartadmin', loadChildren: 'app/+smartadmin-intel/smartadmin-intel.module#SmartadminIntelModule',data:{pageTitle: 'Smartadmin'}},
       // {path: 'app-views', loadChildren: 'app/+app-views/app-views.module#AppViewsModule',data:{pageTitle: 'App Views'}},
@@ -37,8 +39,8 @@ export const routes:Routes = [
 
   // { path: 'auth', component: AuthLayoutComponent, loadChildren: 'app/+auth/auth.module#AuthModule'},
 
-  {path: '**', redirectTo: 'home'}
-//
+  { path: '**', redirectTo: 'home' }
+  //
 ];
 
 export const routing = RouterModule.forRoot(routes);
