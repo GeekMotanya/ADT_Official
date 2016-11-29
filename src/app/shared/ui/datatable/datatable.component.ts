@@ -26,6 +26,8 @@ export class DatatableComponent implements OnInit {
   @Input() public tableClass: string;
   @Input() public width: string = '100%';
 
+  @Input() public tableType: string;
+
   constructor(private el: ElementRef) {
   }
 
@@ -78,22 +80,30 @@ export class DatatableComponent implements OnInit {
       responsive: true,
       initComplete: (settings, json) => {
         element.parent().find('.input-sm', ).removeClass("input-sm").addClass('input-md');
-      },
-      "columnDefs": [
-        {
-          // The `data` parameter refers to the data for the cell (defined by the
-          // `data` option, which defaults to the column being worked with, in
-          // this case `data: 0`.
-          "render": function (data, type, row) {
-            // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['ccc_no'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['ccc_no'] + '">Detail</a>'
-            return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['id'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['id'] + '">Detail</a>'
-          },
-          // NOTE: Targeting the [actions] column.
-          "targets": 7
-        },
-        { "visible": false, "targets": [3] }
-      ],
+      }
     });
+
+    if (this.tableType === "add-patient") {
+      options = $.extend(options, {
+        "columnDefs": [
+          {
+            // The `data` parameter refers to the data for the cell (defined by the
+            // `data` option, which defaults to the column being worked with, in
+            // this case `data: 0`.
+            "render": function (data, type, row) {
+              // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['ccc_no'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['ccc_no'] + '">Detail</a>'
+              return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['id'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['id'] + '">Detail</a>'
+            },
+            // NOTE: Targeting the [actions] column.
+            "targets": 6
+          },
+          { "visible": false, "targets": [3] }
+        ]
+      });
+    }
+    else {
+      console.log('I did not find it!');
+    }
 
     const _dataTable = element.DataTable(options);
 
