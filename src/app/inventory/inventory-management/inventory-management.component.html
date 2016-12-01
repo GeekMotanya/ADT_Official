@@ -4,42 +4,30 @@
       <article class="col-sm-12">
         <sa-widget [editbutton]="false" color="darken">
           <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
-            <h2>Inventory</h2></header>
+            <h2>Inventory</h2>
+          </header>
           <div>
             <div class="widget-body no-padding">
-              <sa-datatable
-                [options]="{
+              <sa-datatable [options]="{
                 colReorder: true,
               ajax: 'assets/api/tables/datatable_inventory.json',
               columns: [ {data: 'commodity'}, {data: 'generic_name'}, {data: 'qty'}, {data: 'unit'}, {data: 'size'}, {data: 'supplier'}, {data: 'dose'}] }"
-                paginationLength="true" tableClass="table table-striped table-bordered table-hover"
-                width="100%" tableType="list-inventory" >
+                paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%" tableType="list-inventory">
                 <thead>
-                <tr>
-                  <th data-class="expand"><i
-                    class="text-muted hidden-md hidden-sm hidden-xs"></i>
-                    Commodity
-                  </th>
-                  <th data-hide="phone"><i
-                    class="text-muted hidden-md hidden-sm hidden-xs"></i>
-                    Generic Name
-                  </th>
-                  <th>QTY/SOH</th>
-                  <th data-hide="phone,tablet"><i
-                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>
-                    Unit
-                  </th>
-                  <th data-hide="phone,tablet"><i
-                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>
-                    Pack Size
-                  </th>
-                  <th data-hide="phone,tablet"><i
-                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Supplier</th>
-                  <th data-hide="phone,tablet"><i
-                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Dose</th>
-                  <th data-hide="phone,tablet"><i
-                    class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Action</th>
-                </tr>
+                  <tr>
+                    <th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Commodity
+                    </th>
+                    <th data-hide="phone"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Generic Name
+                    </th>
+                    <th>QTY/SOH</th>
+                    <th data-hide="phone,tablet"><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i> Unit
+                    </th>
+                    <th data-hide="phone,tablet"><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i> Pack Size
+                    </th>
+                    <th data-hide="phone,tablet"><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Supplier</th>
+                    <th data-hide="phone,tablet"><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Dose</th>
+                    <th data-hide="phone,tablet"><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i>Action</th>
+                  </tr>
                 </thead>
               </sa-datatable>
             </div>

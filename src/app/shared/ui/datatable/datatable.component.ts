@@ -109,7 +109,7 @@ export class DatatableComponent implements OnInit {
             // this case `data: 0`.
             "render": function (data, type, row) {
               // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['ccc_no'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['ccc_no'] + '">Detail</a>'
-              return '<a class="" href="inventory/bin-card/' + row['id'] + '">Bin card</a>'
+              return '<a class="btn btn-primary" href="inventory/bin-card/' + row['id'] + '">Bin card</a>'
             },
             // NOTE: Targeting the [actions] column.
             "targets": 7
