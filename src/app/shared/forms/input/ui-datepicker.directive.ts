@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit, Input} from '@angular/core';
+import {Directive, ElementRef, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 declare var $:any;
 
@@ -8,6 +8,7 @@ declare var $:any;
 export class UiDatepickerDirective implements OnInit {
 
   @Input() saUiDatepicker:any;
+  @Output() selectDate: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private el:ElementRef) {
   }
@@ -49,14 +50,13 @@ export class UiDatepickerDirective implements OnInit {
       onSelect: (selectedDate) =>{
         onSelectCallbacks.forEach((callback) =>{
           callback.call(callback, selectedDate)
+          // Exposes the value of the selected date to respective component
+          this.selectDate.emit(selectedDate);
         })
       }
     });
 
     element.datepicker(options);
-
-
   }
-
 
 }
