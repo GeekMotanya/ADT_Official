@@ -62,9 +62,11 @@
 										<div class="form-group">
 											<label>Date of Birth:</label>
 											<div class="input-group">
+												 <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" 
+												 [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0'}" 
+												 (selectDate) = 'getDate($event)'>
 												<!--name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }"-->
-												<input type="date" class="form-control datepicker" [(ngModel)]="dob" name="dob">
-												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												<!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
 											</div>
 										</div>
 									</div>
@@ -75,11 +77,11 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Age (Years)</label>
-										<input class="form-control" placeholder="Age (Years)" type="text" [(ngModel)]="ageYears" name="ageYears">
+										<input class="form-control" placeholder="Age (Years)" type="text" [(ngModel)]="age_in_years" name="ageYears" disabled="disabled">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Age (Months)</label>
-										<input class="form-control" placeholder="Age (Months)" type="text" [(ngModel)]="ageMonths" name="ageMonths">
+										<input class="form-control" placeholder="Age (Months)" type="text" [(ngModel)]="age_in_months" name="ageMonths" disabled="disabled">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Gender</label>
@@ -128,8 +130,8 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does patient belong to any support group?</label>
-										<div class="col-sm-12">
-											<label class="checkbox-inline"><input type="checkbox">Yes</label>
+										<div class=" form-group col-sm-12">
+											<label class="checkbox-inline"><input class="form" type="checkbox">Yes</label>
 										</div>
 										<textarea class="form-control" placeholder="Textarea" rows="3" [(ngModel)]="supportGroup" name="supportGroup"></textarea>
 									</div>
@@ -213,11 +215,16 @@
 								<fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 									<legend>Patient Information</legend>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label>Date Patient Enrolled</label>
-										<div class="input-group">
-											<input type="date" class="form-control datepicker" [(ngModel)]="dateEnrolled" name="dateEnrolled">
-											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-										</div>
+										<div class="form-group">
+                        <label>Select a date (single):</label>
+                        <div class="input-group">
+                          <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker"
+                                 [saUiDatepicker]="{
+                                    dateFormat: 'dd/mm/yy'
+                                 }" >
+                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                      </div>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Current Status</label>
