@@ -258,21 +258,21 @@
 										<!-- widget content -->
 										<div class="widget-body">
 											<hr class="simple">
-											<ul id="myTab3" class="nav nav-tabs tabs-pull-right bordered">
-												<li class="pull-right">
+											<ul id="myTab3" class="nav nav-tabs">
+												<li class="active pull-right">
 													<a data-toggle="modal" data-target="#viralLoadModal">Viral Load Data</a>
 												</li>
-												<li class="pull-right">
+												<li class="active pull-right">
 													<a data-toggle="modal" data-target="#patientSummaryModal">Patient Info Report</a>
 												</li>
-												<li class="pull-right">
+												<li class="active pull-right">
 													<a class="mdl-navigation__link" [routerLink]="['/patients/edit']">Edit Patient Record</a>
 												</li>
-												<li class="pull-right">
+												<li class="active pull-right">
 													<a class="mdl-navigation__link" [routerLink]="['/patients/dispense']">Dispense to Patient</a>
 												</li>
 											</ul>
-											<tabset class="padding-10">
+											<tabset class="padding-5">
 												<sa-widget [editbutton]="false" color="darken">
 													<header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
 														<h2>Dispensing History</h2>
@@ -281,7 +281,7 @@
 														<div class="widget-body no-padding">
 															<sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
 																<thead>
-																	<tr>
+																	<tr style="text-align:center;">
 																		<th data-hide="phone">Date</th>
 																		<th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Purpose of Visit
 																		</th>
