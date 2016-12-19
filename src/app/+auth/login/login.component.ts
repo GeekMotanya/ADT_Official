@@ -3,9 +3,12 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  // year property gets the current year
+  year: any  = new Date().getUTCFullYear();
 
   constructor(private router: Router) { }
 
@@ -14,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   login(event){
     event.preventDefault();
-    this.router.navigate(['/dashboard/analytics'])
+    this.router.navigate(['/views'])
   }
 
 }

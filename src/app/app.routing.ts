@@ -8,14 +8,13 @@ import { MainLayoutComponent } from "./shared/layout/app-layouts/main-layout.com
 import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
-    path: '',
+    path: 'views',
     component: MainLayoutComponent,
     children: [
       {
-        path: '', redirectTo: 'home', pathMatch: 'full',
-
-
+        path: '', redirectTo: 'home', pathMatch: 'full'
       },
       { path: 'home', loadChildren: 'app/+home/home.module#HomeModule', data: { pageTitle: 'Dashboard' } },
       { path: 'patients', loadChildren: 'app/patients/patients.module#PatientsModule', data: { pageTitle: 'Patients' } },
@@ -37,7 +36,7 @@ export const routes: Routes = [
     ]
   },
 
-  // { path: 'auth', component: AuthLayoutComponent, loadChildren: 'app/+auth/auth.module#AuthModule'},
+  { path: 'auth', component: AuthLayoutComponent, loadChildren: 'app/+auth/auth.module#AuthModule'},
 
   { path: '**', redirectTo: 'home' }
   //
