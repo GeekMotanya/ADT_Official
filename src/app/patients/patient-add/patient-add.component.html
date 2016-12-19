@@ -83,24 +83,38 @@
 										<label>Age (Months)</label>
 										<input class="form-control" placeholder="Age (Months)" type="text" [(ngModel)]="age_in_months" name="ageMonths" disabled="disabled">
 									</div>
-									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div *ngIf="gender !== 'Female'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Gender</label>
-										<select class="form-control" id="select-1" [(ngModel)]="gender" name="gender">
-											<option value="male">Male</option>
-											<option value="female">Female</option>
+										<select class="form-control" id="select-1" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+										</select>
+									</div>
+									<div *ngIf="gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Gender</label>
+										<select class="form-control" id="select-1" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+										</select>
+									</div>
+									<div *ngIf="gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Pregnant?</label>
+										<select class="form-control" id="select-1" name="pregnant">
+											<option value="yes">Yes</option>
+											<option value="no">No</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Weight</label>
-										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="weight" (change)="calc_bsa()" name="weight">
+										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="weight" name="weight">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Height</label>
-										<input class="form-control" placeholder="Height" type="text" [(ngModel)]="height" (change)="calc_bsa()" name="height">
+										<input class="form-control" placeholder="Height" type="text" [(ngModel)]="height" name="height">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Body Surface Area (MSQ)</label>
-										<input class="form-control" placeholder="<<auto generate>>" value="{{bsa}}" [(ngModel)]="bsa" name="bsa" type="text">
+										<input class="form-control" placeholder="<<auto generate>>" value="{{bsa}}" [(ngModel)]="bsa" name="bsa" type="text" disabled="disabled" />
 									</div>
 									<div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5">
 										<label>Phone Contact</label>
@@ -131,7 +145,7 @@
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does patient belong to any support group?</label>
 										<div class=" form-group col-sm-12">
-											<label class="checkbox-inline"><input class="form" type="checkbox">Yes</label>
+											<label class="checkbox-inline"><input class="form" type="checkbox" [(ngModel)]="ctrl" [ngModelOptions]="{standalone: true}">Yes</label>
 										</div>
 										<textarea class="form-control" placeholder="Textarea" rows="3" [(ngModel)]="supportGroup" name="supportGroup"></textarea>
 									</div>
