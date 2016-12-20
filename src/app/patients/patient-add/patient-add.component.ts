@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 // import { PatientsService } from '../patients.service';
-// import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
+import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
 
 @Component({
   selector: 'app-patient-add',
@@ -10,6 +10,7 @@ import { Component, OnInit, Input, DoCheck } from '@angular/core';
 })
 
 export class PatientAddComponent implements OnInit, DoCheck {
+
   // Define properties first.
   date_of_birth: any;
   age_in_years: any;
@@ -19,12 +20,19 @@ export class PatientAddComponent implements OnInit, DoCheck {
   height: any;
   bsa: any;
   ctrl: any;
+  model = new Patient;
+  source = new Source;
+  service = new Service
+  regimen = new Regimen;
+  who_stage = new Who_stage;
+  prophylaxis = new Prophylaxis;
+
   // Methods section: The constructor comes first!
   ngOnInit(): void {
     console.log('Patient add module intialized ...');
   }
 
-  ngDoCheck():void {
+  ngDoCheck(): void {
     let bsa = Math.sqrt((this.weight * this.height) / 3600);
     this.bsa = bsa;
     console.log(this.ctrl);
@@ -40,10 +48,13 @@ export class PatientAddComponent implements OnInit, DoCheck {
     this.age_in_months = (today.getMonth() + y1 * 12) - (dob.getMonth() + y2 * 12);
   }
 
-  // getSelectedValue(value: string) {
-  //   if (value == 'Female') {
-  //     alert(value);
-  //     this.gender = 1;
-  //   }
-  // }
+  // TODO: Remove this when we're done
+
+  get diagnostic() {
+    return JSON.stringify(this.model);
+  }
+
+  onSubmit(): void {
+    
+  }
 }

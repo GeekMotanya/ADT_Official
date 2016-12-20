@@ -1,3 +1,5 @@
+{{diagnostic}}
+TODO: Remove the above
 <div id="content">
 	<sa-widgets-grid>
 		<!-- row -->
@@ -33,38 +35,37 @@
 						<!-- widget content -->
 						<div class="widget-body">
 
-							<form>
+							<form (ngSubmit)="onSubmit()" #patientAddForm="ngForm">
 								<!-- Patients Information and Demographics -->
 								<fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 									<legend>Patient Information and Demographics</legend>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Medical Record No.</label>
-										<input class="form-control" placeholder="Medical Record No." type="text" [(ngModel)]="medicalRecordNumber" name="medicalRecordNumber">
+										<input class="form-control" placeholder="Medical Record No." type="text" [(ngModel)]="model.record_number" name="medicalRecordNumber">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Patient Number CCC</label>
-										<input class="form-control" placeholder="Patient Number" type="text" [(ngModel)]="patientcccNumber" name="patientcccNumber">
+										<input class="form-control" placeholder="Patient Number" type="text" [(ngModel)]="model.ccc_number" name="ccc_number">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Last Name</label>
-										<input class="form-control" placeholder="Last name" type="text" [(ngModel)]="lastname" name="lastname">
+										<input class="form-control" placeholder="Last name" type="text" [(ngModel)]="model.last_name" name="last_name">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>First Name</label>
-										<input class="form-control" placeholder="First Name" type="text" [(ngModel)]="firstname" name="firstname">
+										<input class="form-control" placeholder="First Name" type="text" [(ngModel)]="model.first_name" name="first_name">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Other Name</label>
-										<input class="form-control" placeholder="Other Name" type="text" [(ngModel)]="othername" name="othername">
+										<input class="form-control" placeholder="Other Name" type="text" [(ngModel)]="model.other_name" name="other_name">
 									</div>
 									<!-- Date picker -->
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label>Date of Birth:</label>
 											<div class="input-group">
-												 <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" 
-												 [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0'}" 
-												 (selectDate) = 'getDate($event)'>
+												<input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0'}"
+													(selectDate)='getDate($event)'>
 												<!--name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }"-->
 												<!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
 											</div>
@@ -73,7 +74,11 @@
 									<!-- End of date picker -->
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Place of birth</label>
-										<input class="form-control" placeholder="Patient Number" type="text" [(ngModel)]="pob" name="pob">
+										<select class="form-control" [(ngModel)]="model.place_of_birth" name="place_of_birth">
+											<option selected>--Select--</option>
+											<option value="Nairobi">Nairobi</option>
+											<option value="Mombasa">Mombasa</option>											
+										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Age (Years)</label>
@@ -85,40 +90,40 @@
 									</div>
 									<div *ngIf="gender !== 'Female'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Gender</label>
-										<select class="form-control" id="select-1" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+										<select class="form-control" id="select-1" [(ngModel)]="model.gender" [ngModelOptions]="{standalone: true}" name="gender">
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>
 										</select>
 									</div>
 									<div *ngIf="gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Gender</label>
-										<select class="form-control" id="select-1" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}">
+										<select class="form-control" id="select-1" [(ngModel)]="model.gender" [ngModelOptions]="{standalone: true}" name="gender">
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>
 										</select>
 									</div>
 									<div *ngIf="gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Pregnant?</label>
-										<select class="form-control" id="select-1" name="pregnant">
-											<option value="yes">Yes</option>
-											<option value="no">No</option>
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_pregnant" name="is_pregnant">
+											<option value="1">Yes</option>
+											<option value="0">No</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-										<label>Weight</label>
-										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="weight" name="weight">
+										<label>Weight (KG)</label>
+										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="model.weight" name="weight">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-										<label>Height</label>
-										<input class="form-control" placeholder="Height" type="text" [(ngModel)]="height" name="height">
+										<label>Height (CM)</label>
+										<input class="form-control" placeholder="Height" type="text" [(ngModel)]="model.height" name="height">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Body Surface Area (MSQ)</label>
-										<input class="form-control" placeholder="<<auto generate>>" value="{{bsa}}" [(ngModel)]="bsa" name="bsa" type="text" disabled="disabled" />
+										<input class="form-control" placeholder="<<auto generate>>" [(ngModel)]="model.bsa" type="text" disabled="disabled " name="bsa" />
 									</div>
 									<div class="form-group col-xs-12 col-sm-5 col-md-5 col-lg-5">
 										<label>Phone Contact</label>
-										<input class="form-control" placeholder="e.g 0712345678" type="text" [(ngModel)]="contact" name="contact">
+										<input class="form-control" placeholder="e.g 0712345678" type="text" [(ngModel)]="model.contact" name="contact">
 									</div>
 									<div class=" form-group col-xs-12 col-sm-7 col-md-7 col-lg-7">
 										<div class="row">
@@ -127,11 +132,11 @@
 											</div>
 											<div class="col-sm-12 col-md-10">
 												<label class="radio radio-inline no-margin">
-            									<input type="radio" name="rating" value="" class="radiobox style-2"/>
+            									<input type="radio" value="1" class="radiobox style-2" [(ngModel)]="model.get_sms" name="is_sms"/>
 												<span>Yes</span> 
 												</label>
 												<label class="radio radio-inline">
-												<input type="radio" name="rating" value="" class="radiobox style-2"/>
+												<input type="radio" value="0" class="radiobox style-2" name="sms"/>
 												<span>No</span> 
 												</label>
 											</div>
@@ -140,14 +145,14 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Patients Physical Contact(s)</label>
-										<textarea class="form-control" placeholder="Textarea" rows="3" [(ngModel)]="address" name="address"></textarea>
+										<textarea class="form-control" placeholder="Textarea" rows="3" [(ngModel)]="model.physical_address" name="physical_address"></textarea>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does patient belong to any support group?</label>
 										<div class=" form-group col-sm-12">
 											<label class="checkbox-inline"><input class="form" type="checkbox" [(ngModel)]="ctrl" [ngModelOptions]="{standalone: true}">Yes</label>
 										</div>
-										<textarea class="form-control" placeholder="Textarea" rows="3" [(ngModel)]="supportGroup" name="supportGroup"></textarea>
+										<textarea class="form-control" placeholder="Textarea" rows="3" [(ngModel)]="model.support_group" name="supportGroup"></textarea>
 									</div>
 								</fieldset>
 								<!-- Patient History -->
@@ -155,8 +160,10 @@
 									<legend>Patient History</legend>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does Patient have other Chronic Illnesses</label>
-										<select class="form-control" id="select-1" [(ngModel)]="chronicIllnesses" name="chronicIllnesses">
-											<option *ngFor="let illness of illnesses" value="{{illness.id}}">{{illness.name}}</option>
+										<select class="form-control" id="select-1" [(ngModel)]="model.chronic_illnesses" name="chronicIllnesses">
+											<option value="Cancer">Cancer</option>
+											<option value="Athritis">Athritis</option>
+											<option value="Asthma">Asthma</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -166,8 +173,9 @@
 										<label class="checkbox-inline"><input type="checkbox">Click Here</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label>List Them Below (Use Commas to Separate)</label>
-										<textarea class="form-control" rows="2" [(ngModel)]="otherIllness" name="otherIllness"></textarea>
+										<label>List Them Below (Type and enter to add tag)</label>
+										<!--<textarea class="form-control" rows="2" [(ngModel)]="otherIllness" name="otherIllness"></textarea>-->
+										<input smartTags class="form-control tagsinput" data-role="tagsinput">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Is Patient Taking any Other Drugs?</label>
@@ -181,8 +189,11 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Drug Allergies/ADR</label>
-										<select class="form-control" id="select-1" [(ngModel)]="drugAllergies" name="drugAllergies">
-											<option>--Select--</option>
+										<select class="form-control" id="select-1" [(ngModel)]="model.drug_allergies" name="drugAllergies">
+											<option selected>--Select--</option>
+											<option value="Drug A">Drug A</option>
+											<option value="Drug B">Drug B</option>
+											<option value="Drug C">Drug C</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -193,32 +204,32 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>List Them</label>
-										<textarea class="form-control" rows="2" [(ngModel)]="otherDrugs" name="otherDrugs"></textarea>
+										<textarea class="form-control" rows="2" [(ngModel)]="model.other_drugs" name="otherDrugs"></textarea>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient Smoke?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="smoke" name="smoke">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_smoke" name="smoke">
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient Drink Alcohol?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="alcohol" name="alcohol">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_alcohol" name="alcohol">
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Has Patient been tested for TB?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="tbTested" name="tbTested">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_tb_tested" name="tbTested">
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient have TB?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="tb" name="tb">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_tb" name="tb">
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
@@ -230,61 +241,81 @@
 									<legend>Patient Information</legend>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<div class="form-group">
-                        <label>Select a date (single):</label>
-                        <div class="input-group">
-                          <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker"
-                                 [saUiDatepicker]="{
+											<label>Enrolment date:</label>
+											<div class="input-group">
+												<input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{
                                     dateFormat: 'dd/mm/yy'
-                                 }" >
-                          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        </div>
-                      </div>
+                                 }">
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>
+										</div>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Current Status</label>
-										<select class="form-control" id="select-1" [(ngModel)]="status" name="status">
-											<option *ngFor="let status of statuses" value="{{status.name}}">{{status.name}}</option>
+										<select class="form-control" id="select-1" [(ngModel)]="model.status" name="status">
+											<option selected>--Select--</option>
+											<option value="Active">Active</option>
+											<option value="Inactive">Inactive</option>
 										</select>
 									</div>
 									<div class="col-sm-12">
 										<label>Source of Patient</label>
 										<select class="form-control" id="select-1" [(ngModel)]="source" name="source">
-											<option *ngFor="let source of sources" value="{{source.id}}">{{source.name}}</option>
+											<option selected>--Select--</option>
+											<option value="In-patient">In-patient</option>
+											<option value="Out-patient">Out-patient</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Type of Service</label>
 										<select class="form-control" id="select-1" [(ngModel)]="service" name="service">
-											<option *ngFor="let service of services" value="{{service.id}}">{{service 	.name}}</option>
+											<option selected>--Select--</option>
+											<option value="1">PEP</option>
+											<option value="2">PREP</option>
+											<!--<option *ngFor="let service of services" value="{{service.id}}">{{service.name}}</option>-->
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen</label>
-										<select class="form-control" id="select-1" [(ngModel)]="regimen" name="regimen">
-											<option *ngFor="let regimen of regimens" value="{{regimen.id}}">{{regimen.name}}</option>
+										<select class="form-control" id="select-1" [(ngModel)]="regimen.id" name="regimen">
+											<option selected>--Select--</option>
+											<!--<option *ngFor="let regimen of regimens" value="{{regimen.id}}">{{regimen.name}}</option>-->
+											<option value="1">Regimen A</option>
+											<option value="2">Regimen B</option>
+											<option value="3">Regimen C</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen Date</label>
-										<input type="date" class="form-control datepicker" [(ngModel)]="startRegimenDate" name="startRegimenDate">
+										<input type="text" name="mydate" placeholder="Regimen start date" class="form-control datepicker" [saUiDatepicker]="{
+                                    dateFormat: 'dd/mm/yy'
+                                 }">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>WHO Stage</label>
-										<select class="form-control" id="select-1" [(ngModel)]="whoStage" name="whoStage">
-											<option *ngFor="let who_stage of who_stages" value="{{who_stage.id}}">{{who_stage.name}}</option>
+										<select class="form-control" id="select-1" [(ngModel)]="who_stage.id" name="who_stage">
+											<option selected>--Select--</option>
+											<!--<option value="{{who_stage.id}}">{{who_stage.name}}</option>-->
+											<option value="1">Stage 1</option>
+											<option value="2">Stage 2</option>
+											<option value="3">Stage 3</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Drug Prophylaxis</label>
 										<select class="form-control" id="select-1" [(ngModel)]="prophylaxis" name="prophylaxis">
-											<option *ngFor="let prophylaxis of prophylaxiss" value="{{prophylaxis.id}}">{{prophylaxis.name}}</option>
+											<option selected>--Select--</option>
+											<!--<option *ngFor="let prophylaxis of prophylaxiss" value="{{prophylaxis.id}}">{{prophylaxis.name}}</option>-->
+											<option value="1">Prophylaxis A</option>
+											<option value="2">Prophylaxis B</option>
+											<option value="3">Prophylaxis C</option>
 										</select>
 									</div>
 									<div class="col-sm-12" align="right">
-										<button class="btn btn-primary" type="submit" (click)="addPatient()">
+										<button class="btn btn-primary" type="submit">
 													<i class="fa fa-save"></i> Save
 												</button>
-										<button class="btn btn-primary" type="submit">
+										<button class="btn btn-primary" type="button">
 													<i class="fa fa-save"></i> Dispense
 												</button>
 										<input type="reset" class="btn btn-danger button_size" value="Reset">
