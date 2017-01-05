@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientsService } from '../patients.service';
-import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
+import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source } from '../patients';
 
 @Component({
   selector: 'app-patient-view',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
-// import { PatientsService } from '../patients.service';
+import { PatientsService } from '../patients.service';
 import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 
@@ -29,12 +29,11 @@ export class PatientAddComponent implements OnInit, DoCheck {
   regimen = new Regimen;
   who_stage = new Who_stage;
   prophylaxis = new Prophylaxis;
+  illness: Illness[];
+  errorMessage: string;
 
   private selectedOptions: string[]; // Default selection
-  private myOptions: IMultiSelectOption[] = [
-    { id: 'Awesome', name: 'Option 1' },
-    { id: 2, name: 'Option 2' },
-  ];
+  private myOptions: IMultiSelectOption[];
 
   private allergiesList: IMultiSelectOption[]=[
     
@@ -63,13 +62,17 @@ export class PatientAddComponent implements OnInit, DoCheck {
   };
 
   // Methods section: The constructor comes first!
+  constructor(private _patientService: PatientsService) { }
+
   ngOnInit(): void {
-    console.log('Patient add module intialized ...');
+    this._patientService.getIllness()
+      .subscribe(illness => this.myOptions = illness,
+      error => this.errorMessage = <any>error);
   }
 
   ngDoCheck(): void {
     let bsa: number = Math.sqrt((this.model.current_weight * this.model.current_height) / 3600);
-    console.log(this.model.bsa = bsa);
+    // console.log(this.illness.data);
   }
 
   getDate(value: any) {
