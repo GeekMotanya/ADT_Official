@@ -22,14 +22,6 @@ export class Patient {
     other_drugs: string;
     chronic_illnesses: any;
     drug_allergies: any;
-    service: any = {};
-    // service: any[] = [{id: '',name: ''}];
-    // status: any[] = [{id: '',name: ''}];
-    // regimen: any[] = [{id: '',name: ''}];
-    // prophylaxis: any[] = [{id: '',name: ''}];
-    // who_stage: any[] = [{id: '',name: ''}];
-    // source: any[] = [{id: '',name: ''}];
-    // illness: any[] = [{id: '',name: ''}];
 }
 
 export class Service { id: number; name: string; }

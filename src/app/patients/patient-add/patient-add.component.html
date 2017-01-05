@@ -88,21 +88,21 @@ TODO: Remove the above
 										<label>Age (Months)</label>
 										<input class="form-control" placeholder="Age (Months)" type="text" [(ngModel)]="age_in_months" name="ageMonths" disabled="disabled">
 									</div>
-									<div *ngIf="gender !== 'Female'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div *ngIf="model.gender !== 'Female'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Gender</label>
 										<select class="form-control" id="select-1" [(ngModel)]="model.gender" [ngModelOptions]="{standalone: true}" name="gender">
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>
 										</select>
 									</div>
-									<div *ngIf="gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div *ngIf="model.gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Gender</label>
 										<select class="form-control" id="select-1" [(ngModel)]="model.gender" [ngModelOptions]="{standalone: true}" name="gender">
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>
 										</select>
 									</div>
-									<div *ngIf="gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+									<div *ngIf="model.gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Pregnant?</label>
 										<select class="form-control" id="select-1" [(ngModel)]="model.is_pregnant" name="is_pregnant">
 											<option value="1">Yes</option>
@@ -111,11 +111,11 @@ TODO: Remove the above
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Weight (KG)</label>
-										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="model.weight" name="weight">
+										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="model.current_weight" name="weight">
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Height (CM)</label>
-										<input class="form-control" placeholder="Height" type="text" [(ngModel)]="model.height" name="height">
+										<input class="form-control" placeholder="Height" type="text" [(ngModel)]="model.current_height" name="height">
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Body Surface Area (MSQ)</label>
@@ -160,11 +160,12 @@ TODO: Remove the above
 									<legend>Patient History</legend>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does Patient have other Chronic Illnesses</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.chronic_illnesses" name="chronicIllnesses">
+										<!--<select select2 multiple style="width:100%" class="select2 form-group" [(ngModel)]="model.chronic_illnesses" name="chronicIllnesses">
 											<option value="Cancer">Cancer</option>
 											<option value="Athritis">Athritis</option>
 											<option value="Asthma">Asthma</option>
-										</select>
+										</select>-->
+										<ss-multiselect-dropdown [options]="myOptions" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.chronic_illnesses" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>If other Illnesses</label>

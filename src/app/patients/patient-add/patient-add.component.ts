@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 // import { PatientsService } from '../patients.service';
 import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 
 @Component({
   selector: 'app-patient-add',
@@ -27,15 +28,42 @@ export class PatientAddComponent implements OnInit, DoCheck {
   who_stage = new Who_stage;
   prophylaxis = new Prophylaxis;
 
+  private selectedOptions: string[]; // Default selection
+  private myOptions: IMultiSelectOption[] = [
+    { id: 'Awesome', name: 'Option 1' },
+    { id: 2, name: 'Option 2' },
+  ];
+
+  private mySettings: IMultiSelectSettings = {
+    pullRight: false,
+    enableSearch: true,
+    checkedStyle: 'checkboxes',
+    buttonClasses: 'btn btn-default',
+    selectionLimit: 0,
+    closeOnSelect: false,
+    showCheckAll: false,
+    showUncheckAll: false,
+    dynamicTitleMaxItems: 3,
+    maxHeight: '300px',
+  };
+
+  private myTexts: IMultiSelectTexts = {
+    checkAll: 'Check all',
+    uncheckAll: 'Uncheck all',
+    checked: 'checked',
+    checkedPlural: 'checked',
+    searchPlaceholder: 'Search...',
+    defaultTitle: 'Select',
+  };
+
   // Methods section: The constructor comes first!
   ngOnInit(): void {
     console.log('Patient add module intialized ...');
   }
 
   ngDoCheck(): void {
-    let bsa = Math.sqrt((this.weight * this.height) / 3600);
-    this.bsa = bsa;
-    console.log(this.ctrl);
+    let bsa: number = Math.sqrt((this.model.current_weight * this.model.current_height) / 3600);
+    console.log(this.model.bsa = bsa);
   }
 
   getDate(value: any) {
@@ -55,6 +83,9 @@ export class PatientAddComponent implements OnInit, DoCheck {
   }
 
   onSubmit(): void {
-    
+
+  }
+  onChange(value: any): void {
+    console.log(value);
   }
 }
