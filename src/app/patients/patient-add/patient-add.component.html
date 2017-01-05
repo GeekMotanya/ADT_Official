@@ -190,12 +190,13 @@ TODO: Remove the above
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Drug Allergies/ADR</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.drug_allergies" name="drugAllergies">
+										<!--<select class="form-control" id="select-1" [(ngModel)]="model.drug_allergies" name="drugAllergies">
 											<option selected>--Select--</option>
 											<option value="Drug A">Drug A</option>
 											<option value="Drug B">Drug B</option>
 											<option value="Drug C">Drug C</option>
-										</select>
+										</select>-->
+										<ss-multiselect-dropdown [options]="allergiesList" [texts]="myTexts" [settings]="mySettings"></ss-multiselect-dropdown>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does Patient have any Other Drugs/ADR not Listed?</label>

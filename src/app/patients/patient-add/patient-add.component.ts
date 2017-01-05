@@ -3,6 +3,8 @@ import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 
+// import {}
+
 @Component({
   selector: 'app-patient-add',
   templateUrl: './patient-add.component.html',
@@ -32,6 +34,10 @@ export class PatientAddComponent implements OnInit, DoCheck {
   private myOptions: IMultiSelectOption[] = [
     { id: 'Awesome', name: 'Option 1' },
     { id: 2, name: 'Option 2' },
+  ];
+
+  private allergiesList: IMultiSelectOption[]=[
+    
   ];
 
   private mySettings: IMultiSelectSettings = {
