@@ -3,6 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Illness } from './patients';
+import { Allergies } from './patients';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -13,6 +14,7 @@ export class PatientsService {
 
     urlRoute = 'http://192.168.33.10/adt_api/public/api/v1/';
     private _illnessApi = '../../assets/api/patients/illnesses.json';
+    private _allergiesApi = '../../assets/api/patients/list.allergies.json';
     constructor(private _http: Http) {
 
     }
@@ -75,6 +77,14 @@ export class PatientsService {
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
+
+    getAllergies(): Observable<Allergies[]> {
+        return this._http.get(this._allergiesApi)
+            .map((response: Response) => <Allergies[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
 
     private handleError(error: Response) {
         // in a real world app, we may send the server to some remote logging infrastructure
