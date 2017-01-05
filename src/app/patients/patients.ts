@@ -36,4 +36,8 @@ export class Who_stage { id: number; name: string; }
 
 export class Source { id: number; name: string; }
 
-export class Illness { id: number; name: string; }
+
+export interface Illness {
+    id: number; 
+    name: string;
+}

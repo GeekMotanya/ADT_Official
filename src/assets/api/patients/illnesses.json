@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Cancer"
+    },
+    {
+        "id": 2,
+        "name": "Athritis"
+    },
+    {
+        "id": 3,
+        "name": "Asthma"
+    },
+    {
+        "id": 4,
+        "name": "Diabetes"
+    },
+    {
+        "id": 5,
+        "name": "Gout"
+    },
+    {
+        "id": 6,
+        "name": "Hypertension"
+    }
+]
