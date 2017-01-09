@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "VCT"
+    },
+    {
+        "id": 2,
+        "name": "PITC"
+    },
+    {
+        "id": 3,
+        "name": "Transfer In"
+    },
+    {
+        "id": 4,
+        "name": "STI"
+    },
+    {
+        "id": 5,
+        "name": "TRANSIT"
+    },
+    {
+        "id": 6,
+        "name": "HTC"
+    },
+    {
+        "id": 7,
+        "name": "PMTCT"
+    },
+    {
+        "id": 8,
+        "name": "TB"
+    },
+    {
+        "id": 9,
+        "name": "OUTPATIENT"
+    },
+    {
+        "id": 10,
+        "name": "INPATIENT"
+    }
+]
