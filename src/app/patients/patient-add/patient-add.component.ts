@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { PatientsService } from '../patients.service';
-import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness } from '../patients';
+import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
+
+// import {}
 
 @Component({
   selector: 'app-patient-add',
@@ -28,10 +30,13 @@ export class PatientAddComponent implements OnInit, DoCheck {
   who_stage = new Who_stage;
   prophylaxis = new Prophylaxis;
   illness: Illness[];
+  allergies: Allergies[];
   errorMessage: string;
 
   private selectedOptions: string[]; // Default selection
   private myOptions: IMultiSelectOption[];
+
+  private allergiesList: IMultiSelectOption[];
 
   private mySettings: IMultiSelectSettings = {
     pullRight: false,
@@ -62,6 +67,9 @@ export class PatientAddComponent implements OnInit, DoCheck {
     this._patientService.getIllness()
       .subscribe(illness => this.myOptions = illness,
       error => this.errorMessage = <any>error);
+    this._patientService.getAllergies()
+      .subscribe(allergies => this.allergiesList = allergies,
+      error => this.errorMessage = <any>error);      
   }
 
   ngDoCheck(): void {

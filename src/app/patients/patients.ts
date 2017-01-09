@@ -41,3 +41,8 @@ export interface Illness {
     id: number; 
     name: string;
 }
+
+export interface Allergies {
+    id: number;
+    name: string;
+}
