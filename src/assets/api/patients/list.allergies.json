@@ -1,38 +1,38 @@
 [
         {
-            "id": "1",
+            "id": 1,
             "name": "ABACAVIR (ABC) Liquid 20MG/ML (240ml)"
         },
         {
-            "id": "2",
+            "id": 2,
             "name": "ABACAVIR (ABC)300MG TABS"
         },
         {
-            "id": "3",
+            "id": 3,
             "name": "ABACAVIR 60/LAMIVUDINE 30MG TABS"
         },
         {
-            "id": "4",
+            "id": 4,
             "name": "ABC/3TC 60/30 FDC Tabs"
         },
         {
-            "id": "5",
+            "id": 5,
             "name": "ACYCLOVIR 400 MG TABS (30s)"
         },
         {
-            "id": "6",
+            "id": 6,
             "name": "ACYCLOVIR 400MG (10s)"
         },
         {
-            "id": "7",
+            "id": 7,
             "name": "AMPHOTERICIN B 50MG INJ"
         },
         {
-            "id": "8",
+            "id": 8,
             "name": "Atazanavir 300/100 mg"
         },
         {
-            "id": "9",
+            "id": 9,
             "name": "AZT/3TC FDC (300MG/150MG)TABS"
         }
 ]
