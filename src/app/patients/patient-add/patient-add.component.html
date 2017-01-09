@@ -264,9 +264,10 @@ TODO: Remove the above
 									<div class="col-sm-12">
 										<label>Source of Patient</label>
 										<select class="form-control" id="select-1" [(ngModel)]="source" name="source">
-											<option selected>--Select--</option>
-											<option value="In-patient">In-patient</option>
-											<option value="Out-patient">Out-patient</option>
+											<option *ngFor="let source of patientSources">{{source.name}}</option>
+											<!--<option selected>--Select--</option>-->
+											<!--<option value="In-patient">In-patient</option>
+											<option value="Out-patient">Out-patient</option>-->
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
