@@ -4,6 +4,8 @@ import {routing} from "./patients.routing";
 import {SmartadminModule} from "../shared/smartadmin.module";
 import {FormsModule} from '@angular/forms';
 
+import { PatientsService } from './patients.service';
+
 @NgModule({
   declarations: [
   ],
@@ -13,7 +15,7 @@ import {FormsModule} from '@angular/forms';
     SmartadminModule,
     FormsModule
   ],
-  providers: [],
+  providers: [PatientsService],
   entryComponents: []
 })
 export class PatientsModule {}
