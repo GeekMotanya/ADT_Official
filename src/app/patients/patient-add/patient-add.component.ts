@@ -30,8 +30,9 @@ export class PatientAddComponent implements OnInit, DoCheck {
   who_stage = new Who_stage;
   prophylaxis = new Prophylaxis;
   illness: Illness[];
-  allergies: Allergies[];  
+  allergies: Allergies[];
   errorMessage: string;
+  patientServices: Service[];
 
   private selectedOptions: string[]; // Default selection
   private myOptions: IMultiSelectOption[];
@@ -74,6 +75,9 @@ export class PatientAddComponent implements OnInit, DoCheck {
       error => this.errorMessage = <any>error);
     this._patientService.getSource()
       .subscribe(sources => this.patientSources = sources,
+      error => this.errorMessage = <any>error);
+    this._patientService.getService()
+      .subscribe(services => this.patientServices = services,
       error => this.errorMessage = <any>error);
   }
 

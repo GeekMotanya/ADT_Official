@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Illness } from './patients';
-import { Allergies } from './patients';
-import { Source } from './patients';
+import { Illness, Allergies, Source, Service } from './patients';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -17,13 +15,15 @@ export class PatientsService {
     private _illnessApi = '../../assets/api/patients/illnesses.json';
     private _allergiesApi = '../../assets/api/patients/list.allergies.json';
     private _sourcesApi = '../../assets/api/patients/patient.source.json';
-    constructor(private _http: Http) {
+    private _servicesApi = '../../assets/api/patients/patient.services.json';
 
-    }
+    constructor(private _http: Http) { }
 
     getService() {
-        return this._http.get(this.urlRoute + 'get_service')
-            .map(res => res.json());
+        return this._http.get(this._servicesApi)
+            .map((response: Response) => <Service[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
     }
 
     getStatus() {

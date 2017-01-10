@@ -265,18 +265,15 @@ TODO: Remove the above
 										<label>Source of Patient</label>
 										<select class="form-control" id="select-1" [(ngModel)]="source" name="source">
 											<option *ngFor="let source of patientSources">{{source.name}}</option>
-											<!--<option selected>--Select--</option>-->
+											<!--<option selected>Select</option>-->
 											<!--<option value="In-patient">In-patient</option>
 											<option value="Out-patient">Out-patient</option>-->
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Type of Service</label>
-										<select class="form-control" id="select-1" [(ngModel)]="service" name="service">
-											<option selected>--Select--</option>
-											<option value="1">PEP</option>
-											<option value="2">PREP</option>
-											<!--<option *ngFor="let service of services" value="{{service.id}}">{{service.name}}</option>-->
+										<select class="form-control" id="select-1" [(ngModel)]="service" name="service" aria-placeholder="Select One">
+											<option *ngFor="let service of patientServices" value="{{service.id}}">{{service.type}}</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -24,7 +24,15 @@ export class Patient {
     drug_allergies: any;
 }
 
-export class Service { id: number; name: string; }
+export class Service { 
+    id: number; 
+    type: string; 
+    start_regimen: Regimen[];
+    start_regimen_date: string;
+    WHO_stage: Who_stage[];
+    drug_prophylaxis: Prophylaxis[];
+    pep_reason: Pep_reason[];
+}
 
 export class Regimen { id: number; name: string; }
 
@@ -33,6 +41,8 @@ export class Prophylaxis { id: number; name: string; }
 export class Who_stage { id: number; name: string; }
 
 export class Status { id: number; name: string; }
+
+export class Pep_reason { id: number; name: string }
 
 
 export class Source {
