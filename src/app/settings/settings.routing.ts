@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from "@angular/router";
 import {FacilityModule} from './facility/facility.module';
+import {RegimensModule} from './regimens/regimens.module';
 
 
 export const routes: Routes = [
@@ -12,6 +13,11 @@ export const routes: Routes = [
         path: 'drugs',
         loadChildren: 'app/settings/drugs/drugs.module#DrugsModule',
         data: { pageTitle: 'Drugs' }
+    },
+    {
+        path: 'regimens',
+        loadChildren: 'app/settings/regimens/regimens.module#RegimensModule',
+        data: { pageTitle: 'Regimens' }
     }
 ];
 

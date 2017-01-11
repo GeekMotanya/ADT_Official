@@ -1,8 +1,8 @@
-import {NgModule} from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import {routing} from "./facility.routing";
-import {SmartadminModule} from "../../shared/smartadmin.module";
-import {FormsModule} from '@angular/forms';
+import { routing } from "./facility.routing";
+import { SmartadminModule } from "../../shared/smartadmin.module";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,4 +15,4 @@ import {FormsModule} from '@angular/forms';
   ]
 })
 
-export class FacilityModule {}
+export class FacilityModule { }
