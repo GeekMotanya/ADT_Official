@@ -50,7 +50,7 @@ export const routes: Routes = [
     },
     {
         path: 'drug-instructions',
-        loadChildren: 'app/settings/drugs/drug-instructions/drug-instructions.module#DrugInstructions',
+        loadChildren: 'app/settings/drugs/drug-instructions/drug-instructions.module#DrugInstructionsModule',
         data: { pageTitle: 'Drug Instruction Management' }
     },
     {
