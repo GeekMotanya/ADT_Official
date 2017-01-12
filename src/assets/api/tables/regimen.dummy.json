@@ -1,0 +1,31 @@
+{
+    "data":[
+        {
+            "regimen":"<input type='checkbox'> AF1A | AZT + 3TC + NVP",
+            "line":"1",
+            "regimen_category":"Adult First Line",
+            "type_of_service":"ART",
+            "options":"<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>"
+        },
+        {"regimen":"<input type='checkbox'> AF1A | AZT + 3TC + NVP",
+            "line":"1",
+            "regimen_category":"Adult First Line",
+            "type_of_service":"ART",
+            "options":"<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>"
+        },
+        {
+            "regimen":"<input type='checkbox'> AF1A | AZT + 3TC + NVP",
+            "line":"1",
+            "regimen_category":"Adult First Line",
+            "type_of_service":"ART",
+            "options":"<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>"
+        },
+        {
+            "regimen":"<input type='checkbox'> AF1A | AZT + 3TC + NVP",
+            "line":"1",
+            "regimen_category":"Adult First Line",
+            "type_of_service":"ART",
+            "options":"<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>"
+        }          
+    ]
+}
