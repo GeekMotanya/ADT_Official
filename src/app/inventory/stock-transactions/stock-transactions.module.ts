@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { stocktransactionsRouting } from './stock-transactions.routing';
 import { StockTransactionsComponent } from './stock-transactions.component';
 import { SmartadminModule } from "../../shared/smartadmin.module";
+import { SmartadminInputModule } from "../../shared/forms/input/smartadmin-input.module";
 import { SmartadminDatatableModule } from "../../shared/ui/datatable/smartadmin-datatable.module";
 
 @NgModule({
@@ -10,7 +11,8 @@ import { SmartadminDatatableModule } from "../../shared/ui/datatable/smartadmin-
         CommonModule,
         stocktransactionsRouting,
         SmartadminModule,
-        SmartadminDatatableModule
+        SmartadminDatatableModule,
+        SmartadminInputModule
     ],
     exports: [],
     declarations: [StockTransactionsComponent],

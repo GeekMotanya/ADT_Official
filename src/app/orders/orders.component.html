@@ -1,0 +1,88 @@
+<div class="col-sm-12" style="padding: 12px">
+<sa-widget [editbutton]="false" [fullscreenbutton]="false" [custombutton]="false" [sortable]="false">
+  <header>
+    <ul class="nav nav-tabs pull-left in">
+      <li [class.active]="state.tabs.demo3=='hr1'">
+        <a (click)="state.tabs.demo3 = 'hr1'"><span class="hidden-mobile hidden-tablet"> My CDRRs </span> </a>
+      </li>
+      <li [class.active]="state.tabs.demo3=='hr2'">
+        <a (click)="state.tabs.demo3 = 'hr2'"><span class="hidden-mobile hidden-tablet">My MAPs </span>
+        </a>
+      </li>
+      <li [class.active]="state.tabs.demo3=='hr3'">
+        <a (click)="state.tabs.demo3 = 'hr3'"><span class="hidden-mobile hidden-tablet"> My Templates</span> </a>
+      </li>
+    </ul>
+  </header>
+
+  <!-- widget div-->
+  <div>
+    <!-- widget content -->
+    <div class="widget-body">
+      <tabset>
+        <!--CDRR Tab Content-->
+        <tab [active]="state.tabs.demo3 == 'hr1'">
+          <div>
+            <div class="widget-body">
+              <a class="btn btn-primary">New Satellite CDRRs</a>
+              <label><b>Filter Period:</b></label>
+              <select>
+                <option selected>All</option>
+                <option>Bang Bang</option>
+                <option>Smash Smash</option>											
+              </select>
+              <sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th data-hide="phone">ID</th>
+                    <th data-hide="phone">Period Beginning</th>
+                    <th data-hide="phone">Status</th>
+                    <th data-hide="phone">Facility Name</th>
+                    <th data-hide="phone">Options</th>
+                  </tr>
+                </thead>
+              </sa-datatable>
+            </div>
+          </div>
+        </tab>
+        <!--MAPs Tab Content-->
+        <tab [active]="state.tabs.demo3 == 'hr2'">
+          <div>
+            <div class="widget-body">
+              <a class="btn btn-primary">New Satellite MAPs</a>
+              <label>Filter Period: </label>
+              <select>
+                <option selected>All</option>
+                <option>Bang Bang</option>
+                <option>Smash Smash</option>											
+              </select>
+              <sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+                <thead>
+                  <tr>
+                    <th data-hide="phone">ID</th>
+                    <th data-hide="phone">Period Beginning</th>
+                    <th data-hide="phone">Status</th>
+                    <th data-hide="phone">Facility Name</th>
+                    <th data-hide="phone">Options</th>
+                  </tr>
+                </thead>
+              </sa-datatable>
+            </div>
+          </div>
+        </tab>
+        <!--Templates Tab Content-->
+        <tab [active]="state.tabs.demo3 == 'hr3'">
+          <div>
+
+          </div>
+        </tab>
+      </tabset>
+
+    </div>
+    <!-- end widget content -->
+
+  </div>
+  <!-- end widget div -->
+
+</sa-widget>
+</div>
