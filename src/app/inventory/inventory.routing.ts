@@ -10,6 +10,11 @@ export const routes: Routes = [
         path: 'bin-card',
         loadChildren: 'app/inventory/bin-card/bin-card.module#BinCardModule',
         data: { pageTitle: 'Drug Bin Card' }
+    },
+    {
+        path: 'stock-transactions',
+        loadChildren: 'app/inventory/stock-transactions/stock-transactions.module#StockTransactionsModule',
+        data: { pageTitle: 'Stock Transactions' }
     }
 ];
 
