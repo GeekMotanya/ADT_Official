@@ -11,13 +11,21 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PatientsService {
 
-    urlRoute = 'http://192.168.33.10/adt_api/public/api/v1/';
-    private _illnessApi = '../../assets/api/patients/illnesses.json';
-    private _allergiesApi = '../../assets/api/patients/list.allergies.json';
-    private _sourcesApi = '../../assets/api/patients/patient.source.json';
-    private _servicesApi = '../../assets/api/patients/patient.services.json';
+    private _addPatientRoute = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/patients';
+    private _illnessApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/illnesses';
+    private _allergiesApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/allergies';
+    private _sourcesApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/patientsources';
+    private _servicesApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/services';
+    private _regimenApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/regimen';
+    private _prophylaxisApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/prophylaxis';
+    private _whoStageApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/whostage';
+    private _pepReasonApi = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/lists/pep';
 
     constructor(private _http: Http) { }
+
+    /**
+     * GET Section
+     */
 
     getService() {
         return this._http.get(this._servicesApi)
@@ -26,23 +34,18 @@ export class PatientsService {
             .catch(this.handleError);
     }
 
-    getStatus() {
-        return this._http.get(this.urlRoute + 'get_status')
-            .map(res => res.json());
-    }
-
     getRegimen() {
-        return this._http.get(this.urlRoute + 'get_regimen')
+        return this._http.get(this._regimenApi)
             .map(res => res.json());
     }
 
     getProphylaxis() {
-        return this._http.get(this.urlRoute + 'get_prophylaxis')
+        return this._http.get(this._prophylaxisApi)
             .map(res => res.json());
     }
 
     getWho_stage() {
-        return this._http.get(this.urlRoute + 'get_who_stage')
+        return this._http.get(this._whoStageApi)
             .map(res => res.json());
     }
     getSource() {
@@ -52,28 +55,7 @@ export class PatientsService {
             .catch(this.handleError);
     }
 
-    // getIllness() {
-    //     return this._http.get(this.urlRoute + 'get_illness')
-    //         .map(res => res.json());
-    // }
 
-
-    getPatients() {
-        return this._http.get(this.urlRoute + 'patients')
-            .map(res => res.json());
-    }
-
-    getPatient() {
-        return this._http.get(this.urlRoute + "patients/2")
-            .map(res => res.json());
-    }
-
-    addPatient(newPatient) {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this._http.post(this.urlRoute + 'patients', JSON.stringify(newPatient), { headers: headers })
-            .map(res => res.json());
-    }
 
     getIllness(): Observable<Illness[]> {
         return this._http.get(this._illnessApi)
@@ -89,6 +71,20 @@ export class PatientsService {
             .catch(this.handleError);
     }
 
+    /**
+     * POST Section
+     */
+    addPatient(newPatient: any) {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+        console.log(newPatient);
+        return this._http.post(this._addPatientRoute, JSON.stringify(newPatient), { headers: headers })
+            .map((res: Response) => res.json())
+            .subscribe(
+                () => {},
+                err => console.error(err)
+            )
+    }
 
     private handleError(error: Response) {
         // in a real world app, we may send the server to some remote logging infrastructure
