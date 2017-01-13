@@ -1,8 +1,8 @@
-import {NgModule} from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import {routing} from "./patients.routing";
-import {SmartadminModule} from "../shared/smartadmin.module";
-import {FormsModule} from '@angular/forms';
+import { routing } from "./patients.routing";
+import { SmartadminModule } from "../shared/smartadmin.module";
+import { FormsModule } from '@angular/forms';
 
 import { PatientsService } from './patients.service';
 
@@ -18,4 +18,4 @@ import { PatientsService } from './patients.service';
   providers: [PatientsService],
   entryComponents: []
 })
-export class PatientsModule {}
+export class PatientsModule { }

@@ -1,3 +1,30 @@
-<p>
-  regimen-management works!
-</p>
+<div id="content">
+  <div class="row">
+    <article class="col-sm-12">
+      <sa-widget [editbutton]="false" color="darken">
+        <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+          <h2>Regimens</h2>
+        </header>
+        <div>
+          <div class="widget-body no-padding">
+            <sa-datatable [options]="{
+                colReorder: true,
+              ajax: 'assets/api/tables/regimen.dummy.json',
+              columns: [ {data: 'regimen'}, {data: 'line'}, {data: 'regimen_category'}, {data: 'type_of_service'}, {data: 'options'} ] }"
+              paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+              <thead>
+                <tr>
+                  <th data-hide="phone">Regimen</th>
+                  <th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Line </th>
+                  <th data-hide="phone"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Regimen Category </th>
+                  <th data-hide="phone,tablet"><i class="xt-color-blue hidden-md hidden-sm hidden-xs"></i> Type of Service </th>
+                  <th data-hide="phone,tablet">Options</th>                  
+                </tr>
+              </thead>
+            </sa-datatable>
+          </div>
+        </div>
+      </sa-widget>
+    </article>
+  </div>
+</div>

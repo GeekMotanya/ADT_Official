@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
-import {FacilityModule} from './facility/facility.module';
-import {RegimensModule} from './regimens/regimens.module';
+import { FacilityModule } from './facility/facility.module';
+import { RegimensModule } from './regimens/regimens.module';
+import { DrugsModule } from './drugs/drugs.module';
 
 
 export const routes: Routes = [

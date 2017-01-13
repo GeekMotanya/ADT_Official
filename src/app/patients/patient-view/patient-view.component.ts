@@ -21,7 +21,7 @@ export class PatientViewComponent implements OnInit {
   }
 
   getPatient(){
-    this.patientsService.getPatient().subscribe( patient => { this.patient = patient; });
+    // this.patientsService.getPatient().subscribe( patient => { this.patient = patient; });
   }
 
 }
