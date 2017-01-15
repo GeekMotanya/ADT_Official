@@ -85,3 +85,8 @@ export class Illness {
     id: number;
     name: string;
 }
+
+export class date {
+    months: number;
+    years: number;
+}

@@ -8,9 +8,8 @@ import { MainLayoutComponent } from "./shared/layout/app-layouts/main-layout.com
 import { AuthLayoutComponent } from "./shared/layout/app-layouts/auth-layout.component";
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
-    path: 'views',
+    path: '',
     component: MainLayoutComponent,
     children: [
       {
