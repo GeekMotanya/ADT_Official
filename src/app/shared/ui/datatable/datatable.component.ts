@@ -97,8 +97,9 @@ export class DatatableComponent implements OnInit {
             // NOTE: Targeting the [actions] column.
             "targets": 6
           },
-          { "visible": false, "targets": [3] }
-        ]
+          { "width": "10%", "targets": 0 }
+        ],       
+    responsive: true
       });
     } else if (this.tableType === "list-inventory") {
       options = $.extend(options, {
@@ -113,8 +114,7 @@ export class DatatableComponent implements OnInit {
             },
             // NOTE: Targeting the [actions] column.
             "targets": 7
-          },
-          { "visible": false, "targets": [3] }
+          }
         ]
       });
     }

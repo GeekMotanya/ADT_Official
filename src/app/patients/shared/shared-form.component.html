@@ -19,7 +19,7 @@
                         [sortable]="false"
                     -->
 					<header>
-						<h2><strong>Patients</strong> <i>Add Patient</i></h2>
+						<h2><strong>Patients</strong></h2>
 						<h6 style="text-align:right">(Fields Marked with <span style="color:red; font-weight:bold">*</span>  Asterisks are required)</h6>
 					</header>
 					<!-- widget div-->
@@ -215,12 +215,12 @@
 												<option value="IA">Iowa</option>
 											</optgroup>
 										</select>-->
-										<ss-multiselect-dropdown [options]="familyPlanning | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.family_planning" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+										<ss-multiselect-dropdown [options]="familyPlanning | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.family_planning"  [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
 									</div>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Does Patient have other Chronic Illnesses</label>
-										<ss-multiselect-dropdown [options]="chronicIllness | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.chronic_illnesses" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+										<ss-multiselect-dropdown [options]="chronicIllness | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.chronic_illnesses"  [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>If other Illnesses</label>
@@ -386,7 +386,7 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Drug Prophylaxis</label>
-										<ss-multiselect-dropdown [options]="patientProphylaxis | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.prophylaxis" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+										<ss-multiselect-dropdown [options]="patientProphylaxis | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.prophylaxis"  [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<div class="form-group">
