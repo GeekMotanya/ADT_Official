@@ -19,7 +19,8 @@ export const routes: Routes = [
       { path: 'patients', loadChildren: 'app/patients/patients.module#PatientsModule', data: { pageTitle: 'Patients' } },
       { path: 'inventory', loadChildren: 'app/inventory/inventory.module#InventoryModule', data: { pageTitle: 'Inventory' } },
       { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', data: { pageTitle: 'Profile' } },
-      { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule', data: { pageTitle: 'Settings' } }
+      { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule', data: { pageTitle: 'Settings' } },
+      { path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule', data: { pageTitle: 'Orders' } }
       // {path: 'dashboard', loadChildren: 'app/+dashboard/dashboard.module#DashboardModule',data:{pageTitle: 'Dashboard'}},
       // {path: 'smartadmin', loadChildren: 'app/+smartadmin-intel/smartadmin-intel.module#SmartadminIntelModule',data:{pageTitle: 'Smartadmin'}},
       // {path: 'app-views', loadChildren: 'app/+app-views/app-views.module#AppViewsModule',data:{pageTitle: 'App Views'}},
