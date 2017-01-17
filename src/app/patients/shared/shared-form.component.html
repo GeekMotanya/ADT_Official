@@ -1,4 +1,4 @@
-{{diagnostic}}
+<!--{{diagnostic}}-->
 <div id="content">
 	<sa-widgets-grid>
 		<!-- row -->
@@ -372,9 +372,9 @@
 										<label>Start Regimen</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.regimen" name="regimen">
 											<option selected>--Select--</option>
-											<option value="A">Apple</option>
-											<option value="B">Banana</option>
-											<option value="C">Carrot</option>
+											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
+											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
+											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
 										</select>
 									</div>
 									<div *ngIf="model.service_type == 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -396,23 +396,25 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Drug Prophylaxis</label>
-										<ss-multiselect-dropdown [options]="patientProphylaxis | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.prophylaxis"  [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+										<ss-multiselect-dropdown [options]="patientProphylaxis | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.prophylaxis"  [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
 									</div>
-									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-										<div class="form-group">
-											<label>Isoniazid start date:</label>
-											<div class="input-group">
-												<input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'> 
-												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<div *ngIf="model.prophylaxis == 3">
+										<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+											<div class="form-group">
+												<label>Isoniazid start date:</label>
+												<div class="input-group">
+													<input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'> 
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
-										<label>Isoniazid end date:</label>
-											<div class="input-group">
-												<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
-												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-											</div>	
+										<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
+											<label>Isoniazid end date:</label>
+												<div class="input-group">
+													<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>	
+										</div>
 									</div>
 									<div class="col-sm-12" align="right">
 										<button class="btn btn-primary" type="submit" [disabled]="!patientAddForm.form.valid">

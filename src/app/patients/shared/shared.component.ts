@@ -192,6 +192,10 @@ export class SharedComponent implements OnInit {
         this._patientService.addPatient(this.model);
     }
 
+    onChange(value: any): void {
+        console.log(value);
+    }
+
     // TODO: Remove this when done
     get diagnostic () {
         return JSON.stringify(this.model);
