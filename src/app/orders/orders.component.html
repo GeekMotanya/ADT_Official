@@ -10,7 +10,7 @@
         </a>
       </li>
       <li [class.active]="state.tabs.demo3=='hr3'">
-        <a (click)="state.tabs.demo3 = 'hr3'"><span class="hidden-mobile hidden-tablet"> My Templates</span> </a>
+        <a (click)="state.tabs.demo3 = 'hr3'"><span class="hidden-mobile hidden-tablet">My Templates</span> </a>
       </li>
     </ul>
   </header>
@@ -26,7 +26,7 @@
             <div class="widget-body">
               <a class="btn btn-primary">New Satellite CDRRs</a>
               <label><b>Filter Period:</b></label>
-              <select>
+              <select id="select-1">
                 <option selected>All</option>
                 <option>Bang Bang</option>
                 <option>Smash Smash</option>											
@@ -50,8 +50,8 @@
           <div>
             <div class="widget-body">
               <a class="btn btn-primary">New Satellite MAPs</a>
-              <label>Filter Period: </label>
-              <select>
+              <label><b>Filter Period:</b></label>
+              <select id="select-1">
                 <option selected>All</option>
                 <option>Bang Bang</option>
                 <option>Smash Smash</option>											
