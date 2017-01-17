@@ -359,18 +359,22 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Type of Service</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type">
-											<option *ngFor="let service of patientServices | async" value="{{service.id}}">{{service.name}}</option>
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type" (click)="setService(model.service_type)">
+											<option *ngFor="let service of patientServices" value=""></option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label><span style="color:red; font-weight:bold">*</span> Start Regimen</label>
+										<label>Start Regimen</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.regimen" name="regimen">
 											<option selected>--Select--</option>
-											<!--<option *ngFor="let regimen of regimens" value="{{regimen.id}}">{{regimen.name}}</option>-->
-											<option value="1">Regimen A</option>
-											<option value="2">Regimen B</option>
-											<option value="3">Regimen C</option>
+											<option *ngFor="let service of patientServices" value=""></option>
+										</select>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Pep reason</label>
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.pep_reason" name="regimen">
+											<option selected>--Select--</option>
+											<option *ngFor="let service of patientServices" value=""></option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">

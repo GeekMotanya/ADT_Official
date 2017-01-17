@@ -19,7 +19,7 @@ export class SharedComponent implements OnInit {
     who_stage = new Who_stage;
     prophylaxis = new Prophylaxis;
     errorMessage: string;
-    patientServices: Observable<Service[]>;
+    patientServices: Service[];
     patientRegimen: Observable<Regimen[]>;
     patientWhostage: Observable<Who_stage[]>;
     patientProphylaxis: Observable<IMultiSelectOption[]>;
@@ -65,7 +65,7 @@ export class SharedComponent implements OnInit {
         this.chronicIllness = this._patientService.getIllness();
         this.allergiesList = this._patientService.getAllergies();
         this.patientSources = this._patientService.getSource();
-        this.patientServices = this._patientService.getService();
+        this._patientService.getService().subscribe( service => this.patientServices = service);
         this.patientRegimen = this._patientService.getRegimen();
         this.patientWhostage = this._patientService.getWho_stage();
         this.patientProphylaxis = this._patientService.getProphylaxis();
@@ -179,6 +179,10 @@ export class SharedComponent implements OnInit {
 
     setregimenDate(value: any) {
         this.model.regimen_start_date = value;
+    }
+
+    setService(value) {
+        console.log(this.patientServices.indexOf(value));
     }
 
     /**

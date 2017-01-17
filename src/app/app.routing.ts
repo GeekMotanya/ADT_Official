@@ -17,6 +17,7 @@ export const routes: Routes = [
       },
       { path: 'home', loadChildren: 'app/+home/home.module#HomeModule', data: { pageTitle: 'Dashboard' } },
       { path: 'patients', loadChildren: 'app/patients/patients.module#PatientsModule', data: { pageTitle: 'Patients' } },
+      { path: 'dispense', loadChildren: 'app/dispense/dispense.module#DispenseModule', data: {pageTitle: 'Dispense'} },
       { path: 'inventory', loadChildren: 'app/inventory/inventory.module#InventoryModule', data: { pageTitle: 'Inventory' } },
       { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', data: { pageTitle: 'Profile' } },
       { path: 'settings', loadChildren: 'app/settings/settings.module#SettingsModule', data: { pageTitle: 'Settings' } },

@@ -18,7 +18,7 @@ export class PatientsService {
     private _illnessApi = this._apiUrl+'lists/illnesses';
     private _allergiesApi = this._apiUrl+'lists/allergies';
     private _sourcesApi = this._apiUrl+'lists/patientsources';
-    private _servicesApi = this._apiUrl+'services';
+    private _servicesApi = this._apiUrl+'lists/services';
     private _regimenApi = this._apiUrl+'lists/regimen';
     private _prophylaxisApi = this._apiUrl+'lists/prophylaxis';
     private _whoStageApi = this._apiUrl+'lists/whostage';
