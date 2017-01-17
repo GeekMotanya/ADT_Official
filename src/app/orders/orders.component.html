@@ -31,7 +31,11 @@
                 <option>Bang Bang</option>
                 <option>Smash Smash</option>											
               </select>
-              <sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+              <sa-datatable [options]="{
+                colReorder: true,
+              ajax: 'assets/api/tables/orders.dummy.json',
+              columns: [ {data: 'id'}, {data: 'period_beginning'}, {data: 'status'}, {data: 'facility_name'}, {data: 'options'} ] }"
+              paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
                 <thead>
                   <tr>
                     <th data-hide="phone">ID</th>
@@ -73,7 +77,16 @@
         <!--Templates Tab Content-->
         <tab [active]="state.tabs.demo3 == 'hr3'">
           <div>
-
+            <sa-widget>
+              <h3>CDRR Templates</h3>
+              <hr class="simple">
+              <p><i class="fa fa-download"></i><a href=""> F-CDRR for Satellite/Standalone Sites.xlsx</a></p>
+              <p><i class="fa fa-download"></i><a href=""> D-CDRR for Central Sites.xlsx</a></p>
+              <h3>MAPs Templates</h3>
+              <hr class="simple">
+              <p><i class="fa fa-download"></i><a href=""> F-MAPs for Satellite/Standalone Sites.xlsx</a></p>
+              <p><i class="fa fa-download"></i><a href=""> D-MAPs for Central Sites.xlsx</a></p>
+            </sa-widget>
           </div>
         </tab>
       </tabset>
