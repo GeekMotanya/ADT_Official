@@ -360,28 +360,35 @@
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Type of Service</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type" (click)="setService(model.service_type)">
-											<option *ngFor="let service of patientServices" value=""></option>
+											<!--<option *ngFor="let service of patientServices" value=""></option>-->
+											<option value="">ART</option>
+											<option value="">PMTCT</option>
+											<option value="PEP">PEP</option>
+											<option value="">PreP</option>
+											<option value="">OI Only</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.regimen" name="regimen">
 											<option selected>--Select--</option>
-											<option *ngFor="let service of patientServices" value=""></option>
+											<option value="A">Apple</option>
+											<option value="B">Banana</option>
+											<option value="C">Carrot</option>
 										</select>
 									</div>
-									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div *ngIf="model.service_type == 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Pep reason</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.pep_reason" name="regimen">
 											<option selected>--Select--</option>
-											<option *ngFor="let service of patientServices" value=""></option>
+											<option value="****">*** Pepreason A ****</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen Date</label>
 										<input type="text" name="regimen_date" placeholder="Regimen start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"regimen")' >
 									</div>
-									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div *ngIf="model.service_type != 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>WHO Stage</label>
 										<select class="form-control" id="select-1" [(ngModel)]="model.who_stage" name="who_stage">
 											<option *ngFor="let who_stage of patientWhostage | async" value="{{who_stage.id}}">{{who_stage.name}}</option>
