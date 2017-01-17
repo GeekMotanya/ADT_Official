@@ -7,10 +7,21 @@
         <sa-widget [editbutton]="false" color="blueDark">
           <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
             <h2>Patients</h2>
+            <div class="widget-toolbar">
+              Filter Patients based on status:
+              <div class="btn-group" dropdown>
+                <button id="single-button" type="button" class="btn btn-xs btn-default" dropdownToggle>
+                  Choose Status <span class="caret"></span>
+                </button>
+                <ul dropdownMenu role="menu" aria-labelledby="single-button">
+                  <li role="menuitem"><a class="dropdown-item">Active</a></li>
+                  <li role="menuitem"><a class="dropdown-item">Inactive</a></li>
+                </ul>
+              </div>
+            </div>
           </header>
           <div>
             <div class="widget-body no-padding">
-
               <!--<sa-datatable
                 [options]="{
             ajax: 'http://192.168.33.10/ADT_api/public/api/v1/patients',
@@ -21,37 +32,32 @@
                 filter="true" tableClass="table table-condenced table-striped table-bordered" tableType="add-patient">-->
 
               <!-- This is where the configuration of the datatable takes place. -->
-              <sa-datatable [options]="
-        {
-          colReorder: false,
-          ajax: 'assets/api/tables/patients.dummy.json',
-          columns: [{data: 'ccc_no'}, {data: 'patient_name'}, {data: 'next_appointment'} , {data: 'phone'}, {data: 'current_regimen'}, {data: 'status'}]
-        }" filter="true" tableClass="table table-condenced table-striped table-bordered" width="80%" tableType="add-patient">
+              <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-condenced table-striped table-bordered" width="100%" tableType="add-patient">
 
                 <thead>
                   <tr>
                     <th class="hasinput"><input type="text" class="form-control" placeholder="Filter ccc">
                     </th>
                     <th class="hasinput">
-                      <input class="form-control" placeholder="Filter Patient Name" type="text">       
-                      </th>
-                      <th></th>
-                      <th class="hasinput"><input type="text" class="form-control" placeholder="Filter Contact">
-                      </th>
-                      <th class="hasinput"><input type="text" class="form-control" placeholder="Filter Current Regimen">
-                      </th>
-                      <th></th>
-                      <th></th>
+                      <input class="form-control" placeholder="Filter Patient Name" type="text">
+                    </th>
+                    <th></th>
+                    <th class="hasinput"><input type="text" class="form-control" placeholder="Filter Contact">
+                    </th>
+                    <th class="hasinput"><input type="text" class="form-control" placeholder="Filter Current Regimen">
+                    </th>
+                    <th></th>
+                    <th></th>
                   </tr>
-                    <tr>
-                      <th data-class="expand">CCC No</th>
-                      <th>Patient Name</th>
-                      <th data-hide="phone">Next Appointment</th>
-                      <th data-hide="phone">Contact</th>
-                      <th data-hide="phone,tablet">Current Regimen</th>
-                      <th data-hide="phone,tablet">Status</th>
-                      <th>Action</th>
-                    </tr>
+                  <tr>
+                    <th data-class="expand">CCC No</th>
+                    <th data-hide="phone">Patient Name</th>
+                    <th data-hide="phone">Next Appointment</th>
+                    <th data-hide="phone">Contact</th>
+                    <th data-hide="phone">Current Regimen</th>
+                    <th data-hide="phone">Status</th>
+                    <th data-hide="phone">Action</th>
+                  </tr>
                 </thead>
               </sa-datatable>
             </div>

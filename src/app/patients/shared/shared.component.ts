@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PatientsService } from '../patients.service';
-import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies } from '../patients';
+import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies, FamilyPlanning, Locations } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs'
 
@@ -23,6 +23,8 @@ export class SharedComponent implements OnInit {
     patientRegimen: Observable<Regimen[]>;
     patientWhostage: Observable<Who_stage[]>;
     patientProphylaxis: Observable<IMultiSelectOption[]>;
+    familyPlanning: Observable<FamilyPlanning[]>;
+    locations: Observable<Locations[]>;
 
     private selectedOptions: string[]; // Default selection
 
@@ -58,6 +60,8 @@ export class SharedComponent implements OnInit {
     constructor(private _patientService: PatientsService) { }
 
     ngOnInit(): void {
+        this.locations = this._patientService.getLocation();
+        this.familyPlanning = this._patientService.getFamilyPlan();
         this.chronicIllness = this._patientService.getIllness();
         this.allergiesList = this._patientService.getAllergies();
         this.patientSources = this._patientService.getSource();

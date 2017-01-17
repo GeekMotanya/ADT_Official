@@ -13,7 +13,10 @@ export class Select2Directive implements OnInit{
 
   ngOnInit(){
     System.import('script!select2/dist/js/select2.min.js').then(()=>{
-      $(this.el.nativeElement).select2()
+      $(this.el.nativeElement).select2({
+        tags: false,
+        placeholder: "Select an option"
+      })
     })
   }
 
