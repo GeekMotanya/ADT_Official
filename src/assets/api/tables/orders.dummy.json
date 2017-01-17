@@ -5,7 +5,7 @@
             "period_beginning":"",
             "status":"",
             "facility_name":"",
-            "options":"<a style='' class='btn btn-primary btn-xs' (click)='(null)'>View</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Update</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>"
+            "options":"<a style='' class='btn btn-primary btn-xs' (click)='(null)'>View</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Update</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Download</a>"
         }
     ]
 }
