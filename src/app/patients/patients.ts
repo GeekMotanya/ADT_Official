@@ -27,6 +27,7 @@ export class Patient {
     service_type: number;
     who_stage: number;
     prophylaxis: number[];
+    source: number;
     // optional properties
     status?: string;
     disclosure?: number;
@@ -89,4 +90,14 @@ export class Illness {
 export class date {
     months: number;
     years: number;
+}
+
+export class FamilyPlanning {
+    id: number;
+    name: string;
+}
+
+export class Locations {
+    id: number;
+    name: string;
 }

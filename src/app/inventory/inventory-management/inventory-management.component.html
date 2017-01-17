@@ -8,11 +8,7 @@
           </header>
           <div>
             <div class="widget-body no-padding">
-              <sa-datatable [options]="{
-                colReorder: true,
-              ajax: 'assets/api/tables/datatable_inventory.json',
-              columns: [ {data: 'commodity'}, {data: 'generic_name'}, {data: 'qty'}, {data: 'unit'}, {data: 'size'}, {data: 'supplier'}, {data: 'dose'}] }"
-                paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%" tableType="list-inventory">
+              <sa-datatable [options]="tableOptions" paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%" tableType="list-inventory">
                 <thead>
                   <tr>
                     <th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Commodity

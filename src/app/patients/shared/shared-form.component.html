@@ -1,4 +1,4 @@
-{{diagnostic}}
+<!--{{diagnostic}}-->
 <div id="content">
 	<sa-widgets-grid>
 		<!-- row -->
@@ -45,7 +45,7 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label><span style="color:red; font-weight:bold">*</span>  Patient Number CCC</label>
-										<input class="form-control" required placeholder="Patient Number" type="number" [(ngModel)]="model.ccc_number" name="ccc_number">
+										<input class="form-control" required placeholder="Patient Number" type="text" [(ngModel)]="model.ccc_number" name="ccc_number">
 									</div>
 									<div *ngIf="formErrors.ccc_number" class="form-control col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-right alert alert-danger">
 										{{formErrors.ccc_number}}
@@ -81,8 +81,7 @@
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Place of birth</label>
 										<select class="form-control" [(ngModel)]="model.place_of_birth" name="place_of_birth">
-											<option selected>--Select--</option>
-											<option value="Nairobi">Nairobi</option>
+											<option *ngFor="let location of locations | async " value="{{location.id}}">{{location.name}}</option>
 											<option value="Mombasa">Mombasa</option>											
 										</select>
 									</div>
@@ -354,31 +353,42 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Source of Patient</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="source" name="source">
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.source" name="source">
 											<option *ngFor="let source of patientSources | async">{{source.name}}</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Type of Service</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type">
-											<option *ngFor="let service of patientServices | async" value="{{service.id}}">{{service.name}}</option>
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type" (click)="setService(model.service_type)">
+											<!--<option *ngFor="let service of patientServices" value=""></option>-->
+											<option value="">ART</option>
+											<option value="">PMTCT</option>
+											<option value="PEP">PEP</option>
+											<option value="">PreP</option>
+											<option value="">OI Only</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label><span style="color:red; font-weight:bold">*</span> Start Regimen</label>
+										<label>Start Regimen</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.regimen" name="regimen">
 											<option selected>--Select--</option>
-											<!--<option *ngFor="let regimen of regimens" value="{{regimen.id}}">{{regimen.name}}</option>-->
-											<option value="1">Regimen A</option>
-											<option value="2">Regimen B</option>
-											<option value="3">Regimen C</option>
+											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
+											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
+											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
+										</select>
+									</div>
+									<div *ngIf="model.service_type == 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Pep reason</label>
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.pep_reason" name="regimen">
+											<option selected>--Select--</option>
+											<option value="****">*** Pepreason A ****</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen Date</label>
 										<input type="text" name="regimen_date" placeholder="Regimen start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"regimen")' >
 									</div>
-									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div *ngIf="model.service_type != 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>WHO Stage</label>
 										<select class="form-control" id="select-1" [(ngModel)]="model.who_stage" name="who_stage">
 											<option *ngFor="let who_stage of patientWhostage | async" value="{{who_stage.id}}">{{who_stage.name}}</option>
@@ -386,23 +396,25 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Drug Prophylaxis</label>
-										<ss-multiselect-dropdown [options]="patientProphylaxis | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.prophylaxis"  [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+										<ss-multiselect-dropdown [options]="patientProphylaxis | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.prophylaxis"  [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
 									</div>
-									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-										<div class="form-group">
-											<label>Isoniazid start date:</label>
-											<div class="input-group">
-												<input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'> 
-												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<div *ngIf="model.prophylaxis == 3">
+										<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+											<div class="form-group">
+												<label>Isoniazid start date:</label>
+												<div class="input-group">
+													<input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'> 
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
-										<label>Isoniazid end date:</label>
-											<div class="input-group">
-												<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
-												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-											</div>	
+										<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
+											<label>Isoniazid end date:</label>
+												<div class="input-group">
+													<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
+													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+												</div>	
+										</div>
 									</div>
 									<div class="col-sm-12" align="right">
 										<button class="btn btn-primary" type="submit" [disabled]="!patientAddForm.form.valid">
