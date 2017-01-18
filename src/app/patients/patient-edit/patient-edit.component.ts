@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  template: '<shared-patient-form></shared-patient-form>'
+  template: '<shared-patient-form [edit]="true"></shared-patient-form>'
 })
 export class PatientEditComponent implements OnInit {
   constructor() { }

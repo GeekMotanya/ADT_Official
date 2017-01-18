@@ -114,8 +114,16 @@
 											<option value="0">No</option>
 										</select>
 									</div>
+									<div *ngIf="edit" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Start weight (KG)</label>
+										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="model.current_weight" name="weight" required>
+									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label><span style="color:red; font-weight:bold">*</span> Weight (KG)</label>
+										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="model.current_weight" name="weight" required>
+									</div>
+									<div *ngIf="edit" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+										<label>Current height (KG)</label>
 										<input class="form-control" placeholder="Weight" type="text" [(ngModel)]="model.current_weight" name="weight" required>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -128,6 +136,10 @@
 									</div>
 									<div *ngIf="formErrors.height" class="form-control col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-left alert alert-danger">
 										{{ formErrors.height }}
+									</div>
+									<div *ngIf="edit" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<label>Current Body Surface Area (MSQ)</label>
+										<input class="form-control" placeholder="<<auto generate>>" [(ngModel)]="model.bsa" type="text" disabled="disabled " name="bsa" />
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Body Surface Area (MSQ)</label>
@@ -206,14 +218,6 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Family planning method</label>
-										<!--<select select2 multiple style="width:100%" class="select2 form-control">
-											<optgroup label="Central Time Zone">
-												<option value="AL">Alabama</option>
-												<option value="AR">Arkansas</option>
-												<option value="IL">Illinois</option>
-												<option value="IA">Iowa</option>
-											</optgroup>
-										</select>-->
 										<ss-multiselect-dropdown [options]="familyPlanning | async" [texts]="myTexts" [settings]="mySettings" [(ngModel)]="model.family_planning"  [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
 									</div>
 									</div>
@@ -230,7 +234,6 @@
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>List Them Below (Type and enter to add tag)</label>
 										<textarea class="form-control" rows="2" [(ngModel)]="model.other_illness" name="other_illness" [disabled]="model.is_illness != true"></textarea>
-										<!--<input smartTags class="form-control tagsinput" [(ngModel)]="model.other_illness" name="other_illness" data-role="tagsinput">-->
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Is Patient Taking any Other Drugs?</label>
@@ -351,6 +354,13 @@
 											<option value="Inactive">Inactive</option>
 										</select>
 									</div>
+									<div *ngIf="edit" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+										<label>Date of status change:</label>
+											<div class="input-group">
+												<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
+												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											</div>	
+									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Source of Patient</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.source" name="source">
@@ -418,7 +428,7 @@
 												</div>	
 										</div>
 									</div>
-									<div class="col-sm-12" align="right">
+									<div *ngIf="edit != true" class="col-sm-12" align="right">
 										<button class="btn btn-primary" type="submit" [disabled]="!patientAddForm.form.valid">
 											<i class="fa fa-save"></i> Save
 										</button>
@@ -426,6 +436,11 @@
 											<i class="fa fa-save"></i> Dispense
 										</button>
 										<input type="reset" class="btn btn-danger button_size" value="Reset">
+									</div>
+									<div *ngIf="edit" class="col-sm-12" align="right">
+										<button class="btn btn-primary" type="button" [disabled]="!patientAddForm.form.valid">
+											<i class="fa fa-save"></i> Update Patient Information
+										</button>
 									</div>
 								</fieldset>
 							</form>

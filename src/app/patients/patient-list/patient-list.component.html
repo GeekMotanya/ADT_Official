@@ -22,18 +22,8 @@
           </header>
           <div>
             <div class="widget-body no-padding">
-              <!--<sa-datatable
-                [options]="{
-            ajax: 'http://192.168.33.10/ADT_api/public/api/v1/patients',
-            columns: [ {data: 'ccc_number'}, {data: 'first_name'}, {data: 'appointment.appointment_date'}, {data: 'phone_number'}, {data: 'regimen.name'}, {data: 'patient_status.status_id' } ], buttons: [
-                'copy', 'excel', 'pdf', 'print'
-                ] }
-            "
-                filter="true" tableClass="table table-condenced table-striped table-bordered" tableType="add-patient">-->
-
               <!-- This is where the configuration of the datatable takes place. -->
               <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-condenced table-striped table-bordered" width="100%" tableType="add-patient">
-
                 <thead>
                   <tr>
                     <th class="hasinput"><input type="text" class="form-control" placeholder="Filter ccc">
