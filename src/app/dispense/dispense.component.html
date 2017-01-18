@@ -8,7 +8,7 @@
         <sa-widget>
           <header>
             <h2>
-              <strong>Patients></strong>Dispensing Details</h2>
+              <strong>Dispense</strong></h2>
           </header>
           <!-- widget div-->
           <div role="content">
@@ -22,7 +22,15 @@
               <form>
                 <fieldset class="col-xs-24 col-sm-6 col-md-6 col-lg-6">
                   <legend>Dispensing Information</legend>
-                  <div class="col-sm-6">
+                  <div class="form-group col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label>Select Dispensing Point</label>
+                    <select class="form-control" id="select-1" placeholder="Select One">
+                      <option>Select One</option>
+                      <option>Main Store</option>
+                      <option>Pharmacy</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label>Select Dispensing Point</label>
                     <select class="form-control" id="select-1" placeholder="Select One">
                       <option>Select One</option>
@@ -32,22 +40,20 @@
                   </div>
                   <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Patient Number CCC</label>
-                    <input class="form-control" placeholder="autofilled" type="text">
+                    <input class="form-control" placeholder="autofilled" type="text" disabled>
                   </div>
                   <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Patient Name</label>
-                    <input class="form-control" placeholder="autofilled" type="text">
+                    <input class="form-control" placeholder="autofilled" type="text" disabled>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                       <label>Dispensing Date</label>
                       <div class="input-group">
                         <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
-                    </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Purpose of Visit</label>
                     <select class="form-control" id="select-1" placeholder="---Select One---">
                       <option>Select One</option>
@@ -68,20 +74,18 @@
                     <label>Days to Next Appointment</label>
                     <input class="form-control" placeholder="autofilled" type="text">
                   </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                       <label>Date of Next Appointment</label>
                       <div class="input-group">
                         <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
-                    </div>
                   </div>
                   <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Last Regimen Dispensed</label>
-                    <input class="form-control" placeholder="autofilled" type="text">
+                    <input class="form-control" placeholder="autofilled" type="text" disabled>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Current Regimen</label>
                     <select class="form-control" id="select-1" placeholder="---Select One---">
                       <option>Select One</option>
@@ -96,7 +100,7 @@
                     <label>Appointment Adherance (%)</label>
                     <input class="form-control" placeholder="autofilled" type="text">
                   </div>
-                  <div class="col-sm-6">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label>Poor/Fair Adherance Reasons</label>
                     <select class="form-control" id="select-1" placeholder="---Select One---">
                       <option>Select One</option>
@@ -109,25 +113,23 @@
                 </fieldset>
                 <fieldset class="col-xs-24 col-sm-6 col-md-6 col-lg-6">
                   <legend>Previous Patient Information</legend>
-                  <div class="col-sm-6">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <div class="form-group">
                       <label>Appointment Date</label>
                       <div class="input-group">
-                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
+                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" disabled>
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
+                  <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                       <label>Previous Visit Date</label>
                       <div class="input-group">
-                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }">
+                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" disabled>
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       </div>
-                    </div>
                   </div>
-                  <div class="col-sm-12">
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div role="content">
                       <div class="widget-body">
                         <div class="table-responsive">

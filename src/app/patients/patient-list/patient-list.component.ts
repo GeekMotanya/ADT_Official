@@ -27,9 +27,9 @@ export class PatientListComponent implements OnInit {
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a href="/dispense/${row['ccc_no']}">Dispense</a></li>
-                  <li><a href="/detail/${row['ccc_no']}">Detail</a></li>
-                  <li><a href="/edit/${row['ccc_no']}">Edit</a></li>
+                  <li><a href="/patients/dispense/${row['ccc_no']}">Dispense</a></li>
+                  <li><a href="/patients/detail/${row['ccc_no']}">Detail</a></li>
+                  <li><a href="/patients/edit/${row['ccc_no']}">Edit</a></li>
                   <li><a href="/disable/${row['ccc_no']}">Disable</a></li>
                 </ul>
               </div>
