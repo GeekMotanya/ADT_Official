@@ -56,7 +56,7 @@
                 <option>Bang Bang</option>
                 <option>Smash Smash</option>											
               </select>
-              <sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
+              <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
                 <thead>
                   <tr>
                     <th data-hide="phone">ID</th>
