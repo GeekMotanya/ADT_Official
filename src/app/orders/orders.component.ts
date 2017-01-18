@@ -28,6 +28,40 @@ export class OrdersComponent implements OnInit {
 
   constructor() { }
 
+    tableOptions: Object = {
+    colReorder: true,
+    ajax: 'assets/api/tables/orders.dummy.json',
+    columns: [{data: 'id'}, {data: 'period_beginning'}, {data: 'status'}, {data: 'facility_name'}],
+    "columnDefs": [
+          {
+            // The `data` parameter refers to the data for the cell (defined by the
+            // `data` option, which defaults to the column being worked with, in
+            // this case `data: 0`.
+            "render": function (data, type, row) {
+              return `
+               <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Options
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="/orders/view-cdrr">View</a></li>
+                  <li><a href="/orders/update-cdrr">Update</a></li>
+                  <li><a>Delete</a></li>
+                  <li><a>Download</a></li>
+                </ul>
+              </div>
+              `
+              // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['id'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['id'] + '">Detail</a>'
+            },
+            // NOTE: Targeting the [actions] column.
+            "targets": 4
+          },
+          { "width": "10%", "targets": 0 }
+        ],       
+    responsive: true
+  }
+
   ngOnInit() {
   }
 
