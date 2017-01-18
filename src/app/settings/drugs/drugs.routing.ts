@@ -15,57 +15,57 @@ import { GenericNamesComponent } from "./generic-names/generic-names.component";
 export const routes: Routes = [
     {
         path: 'brand-names',
-        loadChildren: 'app/settings/drugs/brand-names/brand-names.module#BrandNamesModule',
+        component: BrandNamesComponent,
         data: { pageTitle: 'Brand Name Management' }
     },
     {
         path: 'drug-classification',
-        loadChildren: 'app/settings/drugs/drug-classification/drug-classification.module#DrugClassificationModule',
+        component: DrugClassificationComponent,
         data: { pageTitle: 'Drug Classification Management' }
     },
     {
         path: 'drug-codes',
-        loadChildren: 'app/settings/drugs/drug-codes/drug-codes.module#DrugCodesModule',
+        component: DrugCodesComponent,
         data: { pageTitle: 'Drug Code Management' }
     },
     {
         path: 'drug-consumption',
-        loadChildren: 'app/settings/drugs/drug-consumption/drug-consumption.module#DrugConsumptionModule',
+        component: DrugConsumptionComponent,
         data: { pageTitle: 'Drug Consumption Management' }
     },
     {
         path: 'drug-destinations',
-        loadChildren: 'app/settings/drugs/drug-destinations/drug-destinations.module#DrugDestinationsModule',
+        component: DrugDestinationsComponent,
         data: { pageTitle: 'Drug Destination Management' }
     },
     {
         path: 'drug-doses',
-        loadChildren: 'app/settings/drugs/drug-doses/drug-doses.module#DrugDosesModule',
+        component: DrugDosesComponent,
         data: { pageTitle: 'Drug Dose Management' }
     },
     {
         path: 'drug-indications',
-        loadChildren: 'app/settings/drugs/drug-indications/drug-indications.module#DrugIndicationsModule',
+        component: DrugIndicationsComponent,
         data: { pageTitle: 'Drug Indication Management' }
     },
     {
         path: 'drug-instructions',
-        loadChildren: 'app/settings/drugs/drug-instructions/drug-instructions.module#DrugInstructionsModule',
+        component: DrugInstructionsComponent,
         data: { pageTitle: 'Drug Instruction Management' }
     },
     {
         path: 'drug-running-balance',
-        loadChildren: 'app/settings/drugs/drug-running-balance/drug-running-balance.module#DrugRunningBalanceModule',
+        component: DrugRunningBalanceComponent,
         data: { pageTitle: 'Drug Running Balance Management' }
     },
     {
         path: 'drug-sources',
-        loadChildren: 'app/settings/drugs//drug-sources/drug-sources.module#DrugSourcesModule',
+        component: DrugSourcesComponent,
         data: { pageTitle: 'Drug Sources Management' }
     },
     {
         path: 'generic-names',
-        loadChildren: 'app/settings/drugs/generic-names/generic-names.module#GenericNamesModule',
+        component: GenericNamesComponent,
         data: { pageTitle: 'Generic Name Management' }
     },
 ];

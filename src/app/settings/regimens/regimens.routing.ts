@@ -8,22 +8,22 @@ import { RegimenServiceTypeComponent } from "./regimen-service-type/regimen-serv
 export const routes: Routes = [
     {
         path: 'regimen-change-reason',
-        loadChildren: 'app/settings/regimens/regimen-change-reason/regimen-change-reason.module#RegimenChangeReasonModule',
+        component: RegimenChangeReasonComponent,
         data: { pageTitle: 'Regimen Change Reason Management' }
     },
     {
         path: 'regimen-drugs',
-        loadChildren: 'app/settings/regimens/regimen-drugs/regimen-drugs.module#RegimenDrugsModule',
+        component: RegimenDrugsComponent,
         data: { pageTitle: 'Regimen Drugs Management' }
     },
     {
         path: 'regimen-management',
-        loadChildren: 'app/settings/regimens/regimen-management/regimen-management.module#RegimenManagementModule',
+        component: RegimenManagementComponent,
         data: { pageTitle: 'Regimen Management' }
     },
     {
         path: 'regimen-service-type',
-        loadChildren: 'app/settings/regimens/regimen-service-type/regimen-service-type.module#RegimenServiceTypeModule',
+        component: RegimenServiceTypeComponent,
         data: { pageTitle: 'Regimen Service Type Management' }
     }
 ];

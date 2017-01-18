@@ -54,6 +54,7 @@
     "ng2-bootstrap": "^1.1.16",
     "ng2-popover": "git+https://github.com/griga/ng2-popover.git",
     "ng2-redux": "^4.2.5",
+    "ng2-smart-table": "^0.4.0-8",
     "nouislider": "^8.5.1",
     "raphael": "^2.2.7",
     "redux": "^3.6.0",
