@@ -8,22 +8,22 @@ import { FacilityUsersComponent } from "./facility-users/facility-users.componen
 export const routes: Routes = [
     {
         path: 'facility-details',
-        loadChildren: 'app/settings/facility/facility-details/facility-details.module#FacilityDetailsModule',
+        component: FacilityDetailsComponent,
         data: { pageTitle: 'Facility Details' }
     },
     {
         path: 'facility-patient-sources',
-        loadChildren: 'app/settings/facility/facility-patient-sources/facility-patient-sources.module#FacilityPatientSourcesModule',
+        component: FacilityPatientSourcesComponent,
         data: { pageTitle: 'Facility Patient Sources' }
     },
     {
         path: 'facility-supporters',
-        loadChildren: 'app/settings/facility/facility-supporters/facility-supporters.module#FacilitySupportersModule',
+        component: FacilitySupportersComponent,
         data: { pageTitle: 'Facility Supporters' }
     },
     {
         path: 'facility-users',
-        loadChildren: 'app/settings/facility/facility-users/facility-users.module#FacilityUsersModule',
+        component: FacilityUsersComponent,
         data: { pageTitle: 'Facility Users' }
     }
 ];
