@@ -4,12 +4,12 @@
       <sa-widget [editbutton]="false" color="darken">
         <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
           <h2>Facility Supporters</h2>
+          <div class="widget-toolbar">
+            <a class="btn btn-primary" data-toggle="modal" data-target="#newSupporter"><i class="fa fa-plus"></i> New Facility Supporter</a>
+          </div>
         </header>
         <div>
-          <div class="widget-body no-padding">
-            <ul class="nav nav-pills">
-              <li class="active"><a data-toggle="modal" data-target="#newSupporter"><i class="fa fa-plus"></i> New Facility Supporter</a></li>
-            </ul>
+          <div class="widget-body no-padding">           
             <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-striped table-bordered table-hover"
               width="100%">
               <thead>
@@ -20,14 +20,19 @@
               </thead>
             </sa-datatable>
             <div id="newSupporter" class="modal fade" role="dialog">
-              <div class="modal-dialog modal-lg">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">New Facility Supporter</h4>
                   </div>
                   <div class="modal-body">
-
+                    <form>
+                      <label>Client Support Name</label>
+                      <input type="text" class="form-control"><br/>
+                      <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save	</button>
+                      <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
+                    </form>
                   </div>
                 </div>
               </div>
