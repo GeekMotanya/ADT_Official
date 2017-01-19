@@ -16,6 +16,7 @@ export class Patient {
     gender: string; 
     is_pregnant: boolean;
     is_tb: boolean;
+    is_tb_tested?: boolean;
     is_sms: boolean;
     is_smoke: boolean;
     is_alcohol: number;
@@ -28,7 +29,6 @@ export class Patient {
     prophylaxis: number[];
     source: number;
     // optional properties
-    is_tb_tested?: boolean;
     status?: string;
     disclosure?: number;
     spouse_ccc?: number;

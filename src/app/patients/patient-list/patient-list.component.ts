@@ -12,8 +12,12 @@ export class PatientListComponent implements OnInit {
   // Datatable options
   tableOptions: Object = {
     colReorder: true,
-    ajax: 'assets/api/tables/patients.dummy.json',
-    columns: [{data: 'ccc_no'}, {data: 'patient_name'}, {data: 'next_appointment'} , {data: 'phone'}, {data: 'current_regimen'}, {data: 'status'}],
+    serverSide: true,
+    ajax: {
+      "url": 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/patients',
+      "type": 'GET'
+    },
+    columns: [{data: 'ccc_number'}, {data: 'first_name'}, {data: 'enrollment_date'} , {data: 'phone_number'}, {data: 'is_tb_tested'}, {data: 'status'}],
     "columnDefs": [
           {
             // The `data` parameter refers to the data for the cell (defined by the
@@ -27,10 +31,10 @@ export class PatientListComponent implements OnInit {
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a href="/patients/dispense/${row['ccc_no']}">Dispense</a></li>
-                  <li><a href="/patients/detail/${row['ccc_no']}">Detail</a></li>
-                  <li><a href="/patients/edit/${row['ccc_no']}">Edit</a></li>
-                  <li><a href="/disable/${row['ccc_no']}">Disable</a></li>
+                  <li><a href="/patients/dispense/${row['id']}">Dispense</a></li>
+                  <li><a href="/patients/detail/${row['id']}">Detail</a></li>
+                  <li><a href="/patients/edit/${row['id']}">Edit</a></li>
+                  <li><a href="/disable/${row['id']}">Disable</a></li>
                 </ul>
               </div>
               `
