@@ -1,3 +1,40 @@
-<p>
-  regimen-service-type works!
-</p>
+<div id="content">
+  <div class="row">
+    <article class="col-sm-12">
+      <sa-widget [editbutton]="false" color="darken">
+        <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+          <h2>Regimen Service Type</h2>
+        </header>
+        <div>
+          <div class="widget-body no-padding">
+            <ul class="nav nav-pills">
+              <li class="active"><a data-toggle="modal" data-target="#newRegimenService"><i class="fa fa-plus"></i> New Regimen Service Type</a></li>
+            </ul>
+            <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-striped table-bordered table-hover"
+              width="100%">
+              <thead>
+                <tr>
+                  <th data-hide="phone">Name</th>
+                  <th data-hide="phone,tablet">Options</th>
+                </tr>
+              </thead>
+            </sa-datatable>
+            <div id="newRegimenService" class="modal fade" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New Regimen Service Type</h4>
+                  </div>
+                  <div class="modal-body">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sa-widget>
+    </article>
+  </div>
+</div>
