@@ -1,1 +1,125 @@
-<p>facility-details works!</p>
+<div id="content">
+  <sa-widgets-grid>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <sa-widget [editbutton]="false" color="darken">
+          <header>
+            <h2>Facility Details</h2>
+          </header>
+          <div class="widget-body">            
+            <form>
+              <table class="table" style="width: 100%">
+                <tr>
+                  <th>Organization Code/MFL No</th>
+                  <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Name of Organization/System</th>
+                  <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Adult Age</th>
+                  <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Maximum Patients per Weekday</th>
+                  <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Maximum Patients per Weekend</th>
+                  <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Facility Type</th>
+                  <td>
+                    <select class="form-control" id="select-1">
+                      <option>Dispensary</option>
+                      <option>Health Center</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Sub-County</th>
+                  <td>
+                    <select class="form-control" id="select-1">
+                      <option>Starehe</option>
+                      <option>Makadara</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>County</th>
+                  <td>
+                    <select class="form-control" id="select-1">
+                      <option>Nairobi</option>
+                      <option>Kakamega</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Central Site</th>
+                  <td>
+                    <select class="form-control" id="select-1">
+                      <option>Special Treatment Clinic</option>
+                      <option>Spa Nursing Home</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Facility Phone Number</th>
+                  <td><input type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                  <th>Does Facility want to send SMS to Patients?</th>
+                  <td>
+                    <select class="form-control" id="select-1">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <hr>
+              <div>
+              <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div style="text-align: center">
+                <legend><b>Client Supported by</b></legend>
+                <label class="radio radio-inline no-margin">
+                  <input type="radio" class="radiobox style-2"/>
+                <span>GOK Sponsorship</span> 
+                </label>
+                <label class="radio radio-inline">
+                  <input type="radio" class="radiobox style-2"/>
+                <span>PEPFAR Sponsorship</span> 
+                </label>
+                </div>
+              </fieldset>
+              <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div style="text-align: center">
+                <legend><b>Services Offered at the Facility</b></legend>
+                <label class="checkbox-inline"><input class="form" type="checkbox">ART</label>
+                <label class="checkbox-inline"><input class="form" type="checkbox">PMTCT</label>
+                <label class="checkbox-inline"><input class="form" type="checkbox">PEP</label>
+                </div>
+              </fieldset>
+              <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div style="text-align: center">
+                <legend><b>Client Supplied by</b></legend>
+                <label class="radio radio-inline no-margin">
+                  <input type="radio" class="radiobox style-2"/>
+                <span>KEMSA</span> 
+                </label>
+                <label class="radio radio-inline">
+                  <input type="radio" class="radiobox style-2"/>
+                <span>Kenya Pharma</span> 
+                </label>
+                </div>
+              </fieldset>
+              </div>            
+            </form>
+          </div>
+        </sa-widget>
+      </article>
+    </div>
+  </sa-widgets-grid>
+</div>
