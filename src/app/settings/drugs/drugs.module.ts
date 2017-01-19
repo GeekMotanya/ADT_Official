@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { routing } from "./drugs.routing";
 import { SmartadminModule } from "../../shared/smartadmin.module";
+import { SmartadminDatatableModule } from "../../shared/ui/datatable/smartadmin-datatable.module";
+import { SmartadminInputModule } from "../../shared/forms/input/smartadmin-input.module";
 import { FormsModule } from '@angular/forms';
 import { BrandNamesComponent } from "./brand-names/brand-names.component";
 import { DrugClassificationComponent } from "./drug-classification/drug-classification.component";
@@ -33,6 +35,8 @@ import { GenericNamesComponent } from "./generic-names/generic-names.component";
         CommonModule,
         routing,
         SmartadminModule,
+        SmartadminDatatableModule,
+        SmartadminInputModule,
         FormsModule
     ]
 })
