@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Illness, Allergies, Source, Service, date, Locations, FamilyPlanning } from './patients';
+import { Patient, Illness, Allergies, Source, Service, date, Locations, FamilyPlanning } from './patients';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -34,6 +34,20 @@ export class PatientsService {
     getFamilyPlan() {
         return this._http.get(this._servicesApi)
             .map((response: Response) => <FamilyPlanning[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getPatients() {
+        return this._http.get(this._addPatientRoute)
+            .map((response: Response) => <Patient[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getPatient(id: number) {
+        return this._http.get(this._addPatientRoute+`/${id}`)
+            .map((response: Response) => <Patient[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

@@ -15,7 +15,7 @@ export class SharedComponent implements OnInit {
 
     @Input() edit: boolean;
 
-    model = new Patient;
+    model = new Patient();
     source = new Source;
     service = new Service
     regimen = new Regimen;

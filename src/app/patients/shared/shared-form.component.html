@@ -365,6 +365,7 @@
 										<label><span style="color:red; font-weight:bold">*</span> Source of Patient</label>
 										<select  required class="form-control" id="select-1" [(ngModel)]="model.source" name="source">
 											<option *ngFor="let source of patientSources | async">{{source.name}}</option>
+											<input type="hidden" value="{{source.name}}" >
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -16,12 +16,12 @@ export const routes: Routes = [
         data: { pageTitle: 'Patient List' }
     },
     {
-        path: 'detail',
+        path: 'detail/:id',
         component: PatientViewComponent,
         data: { pageTitle: 'Patient View' }
     },
     {
-        path: 'edit',
+        path: 'edit/:id',
         component: PatientEditComponent,
         data: { pageTitle: 'Edit Patient' }
     }
