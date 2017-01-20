@@ -1,0 +1,40 @@
+{
+    "data": [
+        {
+            "service_point": "Main Pharmacy",
+            "non_adherance": "Alcohol",
+            "ccc_no": "<input type='checkbox'>  1010100066",
+            "patient": "Marybelle Kamau",
+            "pep_reason": "Occupational",
+            "transaction": "Adjustments(-)",
+            "description": "Adjustments",
+            "effect": "1",
+            "purpose": "Displacement",
+            "status": "PMTCT End"
+        },
+        {
+            "service_point": "Main Store",
+            "non_adherance": "Depression",
+            "ccc_no": "<input type='checkbox'>  1010100281",
+            "patient": "Gemma Lucy",
+            "pep_reason": "Other Reason",
+            "transaction": "Issued to(+)",
+            "description": "Drug Issue Report",
+            "effect": "0",
+            "purpose": "PEP Refill",
+            "status": "Stopped by Physician"
+        },
+        {
+            "service_point": "Transaction Point",
+            "non_adherance": "Felt Better",
+            "ccc_no": "<input type='checkbox'>  10101002376",
+            "patient": "Charlotte Crosby",
+            "pep_reason": "Sexual Assault",
+            "transaction": "Returns From(-)",
+            "description": "Drugs Received Report",
+            "effect": "1",
+            "purpose": "Switch Regimen",
+            "status": "Lost to follow up"
+        }
+    ]
+}

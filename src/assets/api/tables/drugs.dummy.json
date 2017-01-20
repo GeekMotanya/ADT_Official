@@ -13,7 +13,7 @@
             "sources": "CLIENT",
             "destinations": "KALAMENE DISPENSARY",
             "generic_names": "Amoxycillin",
-            "brand names": "COSATRIM"
+            "brand_names": "COSATRIM"
         },
         {
             "classification": "Anti TB",
@@ -28,7 +28,7 @@
             "sources": "CLIENT",
             "destinations": "AMWAMBA DISPENSARY",
             "generic_names": "Amphotericin",
-            "brand names": "COTRIMOXAZOLE 480MG Tabs"
+            "brand_names": "COTRIMOXAZOLE 480MG Tabs"
         },
         {
             "classification": "ART",
@@ -43,7 +43,7 @@
             "sources": "CLIENT",
             "destinations": "KANGETA HC",
             "generic_names": "Anusol",
-            "brand names": "LAMIVUDINE (3TC)150MG TABS"
+            "brand_names": "LAMIVUDINE (3TC)150MG TABS"
         },
         {
             "classification": "Essential Drug",
@@ -58,7 +58,7 @@
             "sources": "CLIENT",
             "destinations": "KINNA DISP",
             "generic_names": "Amitriptyline",
-            "brand names": "EFAVIRENZ (EFV)600MG Tabs"
+            "brand_names": "EFAVIRENZ (EFV)600MG Tabs"
         }
     ]
 }
