@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "classification": "Anti-Malaria",
+            "drug": "<input type='checkbox'> ABACAVIR (ABC) LIQUID 20MG/ML (240ML) ",
+            "unit": "Bottle",
+            "dose": "5ml BD",
+            "supplier": "Kenya Pharma",
+            "value": "0.5",
+            "frequency": "3",
+            "instruction": "swallowed whole, not chewed",
+            "indication": "IND01 | Oesophageal Candidiasis",
+            "sources": "CLIENT",
+            "destinations": "KALAMENE DISPENSARY",
+            "generic_names": "Amoxycillin",
+            "brand names": "COSATRIM"
+        },
+        {
+            "classification": "Anti TB",
+            "drug": "<input type='checkbox'> ACYCLOVIR 400 MG TABS ( 30S)",
+            "unit": "Tablet",
+            "dose": "1 BD",
+            "supplier": "Kenya Pharma",
+            "value": "1",
+            "frequency": "2",
+            "instruction": "avoid a lot of fatty meals together with efavirenz",
+            "indication": "IND02 | Vaginal Candidiasis",
+            "sources": "CLIENT",
+            "destinations": "AMWAMBA DISPENSARY",
+            "generic_names": "Amphotericin",
+            "brand names": "COTRIMOXAZOLE 480MG Tabs"
+        },
+        {
+            "classification": "ART",
+            "drug": "<input type='checkbox'> ATAZANAVIR 300/100 MG",
+            "unit": "Vial",
+            "dose": "1 OD",
+            "supplier": "Kenya Pharma",
+            "value": "0.5",
+            "frequency": "4",
+            "instruction": "an hour before food or on an empty stomach",
+            "indication": "IND05 | ORAL THRUSH",
+            "sources": "CLIENT",
+            "destinations": "KANGETA HC",
+            "generic_names": "Anusol",
+            "brand names": "LAMIVUDINE (3TC)150MG TABS"
+        },
+        {
+            "classification": "Essential Drug",
+            "drug": "<input type='checkbox'> AZT/3TC FDC (60MG/30MG) ",
+            "unit": "Tablet",
+            "dose": "2 TDS",
+            "supplier": "Kenya Pharma",
+            "value": "1.5",
+            "frequency": "1",
+            "instruction": "with plenty of water",
+            "indication": "IND07 | PEP Condom Burst",
+            "sources": "CLIENT",
+            "destinations": "KINNA DISP",
+            "generic_names": "Amitriptyline",
+            "brand names": "EFAVIRENZ (EFV)600MG Tabs"
+        }
+    ]
+}

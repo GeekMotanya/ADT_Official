@@ -32,6 +32,16 @@
 						</ul>
 					</li>
 					<!-- !! Patients Zone End !! -->
+					<!-- !! Dispense !! -->
+					<li>
+						<a href="#" title="Dispense"><i class="fa fa-lg fa-heartbeat" aria-hidden="true"></i> <span class="menu-item-parent">DISPENSE</span></a>
+						<ul>
+							<li>
+							<a [routerLink]="['/dispense']"><span class="menu-item-parent"><i class="glyphicon glyphicon-plus"></i> Dispense</span></a>
+							</li>
+						</ul>
+					</li>
+					<!-- !! Dispense End !! -->
 					<!-- !! Inventory Zone Begin !! -->
 					<li>
 						<a href="#" title="Inventory"><i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent"> INVENTORY</span></a>
@@ -40,7 +50,7 @@
 							<a href="#"><span class="menu-item-parent">Stock transactions</span></a>
 							<ul>
 								<li>
-								<a href="#"><span class="menu-item-parent">Receive/Issue</span></a>
+								<a [routerLink]="['/inventory/stock-transactions']"><span class="menu-item-parent">Receive/Issue</span></a>
 								</li>
 							</ul>
 							</li>			
@@ -52,18 +62,7 @@
 					<!-- !! Inventory Zone End !! -->
 					<!-- !! Orders Zone Begin !! -->
 					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-bars" aria-hidden="true"></i> <span class="menu-item-parent"> ORDERS</span></a>
-						<ul>
-							<li>
-							<a href="#"><span class="menu-item-parent"><i class="fa fa-table"></i> My CDDRs</span></a>							
-							</li>
-							<li>
-							<a href="#"><span class="menu-item-parent"><i class="fa fa-table"></i> My MAPs</span></a>
-							</li>			
-							<li>
-							<a href="#"><span class="menu-item-parent"><i class="fa fa-file-excel-o"></i> My Templates</span></a>
-							</li>
-						</ul>
+						<a [routerLink]="['/orders']"><i class="fa fa-lg fa-fw fa-bars" aria-hidden="true"></i> <span class="menu-item-parent"> ORDERS</span></a>						
 					</li>
 					<!-- !! Orders Zone End !! -->
           <!-- reports -->

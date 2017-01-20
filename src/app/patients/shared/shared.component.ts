@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PatientsService } from '../patients.service';
-import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies } from '../patients';
+import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies, FamilyPlanning, Locations } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs'
 
@@ -12,17 +12,22 @@ import { Observable } from 'rxjs'
 })
 export class SharedComponent implements OnInit {
     // Define properties first.
-    model = new Patient;
+
+    @Input() edit: boolean;
+
+    model = new Patient();
     source = new Source;
     service = new Service
     regimen = new Regimen;
     who_stage = new Who_stage;
     prophylaxis = new Prophylaxis;
     errorMessage: string;
-    patientServices: Observable<Service[]>;
+    patientServices: Service[];
     patientRegimen: Observable<Regimen[]>;
     patientWhostage: Observable<Who_stage[]>;
     patientProphylaxis: Observable<IMultiSelectOption[]>;
+    familyPlanning: Observable<FamilyPlanning[]>;
+    locations: Observable<Locations[]>;
 
     private selectedOptions: string[]; // Default selection
 
@@ -58,10 +63,12 @@ export class SharedComponent implements OnInit {
     constructor(private _patientService: PatientsService) { }
 
     ngOnInit(): void {
+        this.locations = this._patientService.getLocation();
+        this.familyPlanning = this._patientService.getFamilyPlan();
         this.chronicIllness = this._patientService.getIllness();
         this.allergiesList = this._patientService.getAllergies();
         this.patientSources = this._patientService.getSource();
-        this.patientServices = this._patientService.getService();
+        this._patientService.getService().subscribe( service => this.patientServices = service);
         this.patientRegimen = this._patientService.getRegimen();
         this.patientWhostage = this._patientService.getWho_stage();
         this.patientProphylaxis = this._patientService.getProphylaxis();
@@ -177,11 +184,19 @@ export class SharedComponent implements OnInit {
         this.model.regimen_start_date = value;
     }
 
+    setService(value) {
+        console.log(this.patientServices.indexOf(value));
+    }
+
     /**
      * Submit form data to the back-end server
      */
     onSubmit(): void {
         this._patientService.addPatient(this.model);
+    }
+
+    onChange(value: any): void {
+        console.log(value);
     }
 
     // TODO: Remove this when done

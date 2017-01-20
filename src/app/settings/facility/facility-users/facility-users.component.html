@@ -1,3 +1,91 @@
-<p>
-  facility-users works!
-</p>
+<div id="content">
+  <div class="row">
+    <article class="col-sm-12">
+      <sa-widget [editbutton]="false" color="darken">
+        <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+          <h2>Facility Users</h2>
+          <div class="widget-toolbar">
+            <a class="btn btn-primary" data-toggle="modal" data-target="#newUser"><i class="fa fa-plus"></i> New Facility User</a>
+          </div>
+        </header>
+        <div>
+          <div class="widget-body no-padding">
+            <!--<ul class="nav nav-pills">
+              <li class="active"><a data-toggle="modal" data-target="#newUser"><i class="fa fa-plus"></i> New Facility User</a></li>
+            </ul>-->
+            <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-striped table-bordered table-hover"
+              width="100%">
+              <thead>
+                <tr>
+                  <th data-hide="phone">Name</th>
+                  <th data-hide="phone,tablet">Email Address</th>
+                  <th data-hide="phone,tablet">Phone Number</th>
+                  <th data-hide="phone,tablet">Access Level</th>
+                  <th data-hide="phone,tablet">Registered By</th>
+                  <th data-hide="phone,tablet">Options</th>
+                </tr>
+              </thead>
+            </sa-datatable>
+            <div id="newUser" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New Facility User</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <table style="width: 100%" class="table">
+                        <tbody>
+                          <tr>
+                            <th>User Type</th>
+                            <td>
+                              <select class="form-control" id="select-1">
+                                <option>Pharmacist</option>
+                                <option>Facility Administrator</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Full Name</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Username</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Phone Number</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Email Address</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Facility</th>
+                            <td>
+                              <select class="form-control" id="select-1">
+                                <option>Special Treatment Clinic</option>
+                                <option>District Hospital</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td style="text-align: right"><button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save	</button>
+                            <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sa-widget>
+    </article>
+  </div>
+</div>

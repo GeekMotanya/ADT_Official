@@ -1,0 +1,40 @@
+{
+    "data": [
+        {
+            "name": "Asha Hassan",
+            "email_address": "ashahassan@gmail.com",
+            "phone_no": "+254721113004",
+            "access_level": "Facility Administrator",
+            "registered_by": "Admin",
+            "source_name": "HTC",
+            "supporter_name": "GOK"
+        },
+        {
+            "name": "Mary Cheche",
+            "email_address": "yourmail@gmail.com",
+            "phone_no": "+254721113004",
+            "access_level": "Facility Administrator",
+            "registered_by": "Admin",
+            "source_name": "Inpatient",
+            "supporter_name": "PEPFAR"
+        },
+        {
+            "name": "Rosemary Muraya",
+            "email_address": "murayarn@gmail.com",
+            "phone_no": "+254721113004",
+            "access_level": "Facility Administrator",
+            "registered_by": "Admin",
+            "source_name": "PMTCT",
+            "supporter_name": "CTDC"
+        },
+        {
+            "name": "SYSADMIN",
+            "email_address": "admin@admin.com",
+            "phone_no": "+254721113004",
+            "access_level": "Facility Administrator",
+            "registered_by": "Admin",
+            "source_name": "Transit",
+            "supporter_name": "MNHK"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "data":[
+        {
+            "id":"F-CDRR#35906",
+            "period_beginning":"2016-04-01",
+            "status":"Prepared",
+            "facility_name":"STC Casino, Nairobi Dispensing Point"            
+        },
+        {
+            "id":"F-CDRR#37061",
+            "period_beginning":"2016-04-01",
+            "status":"Rationalized",
+            "facility_name":"STC Casino, Nairobi Dispensing Point"
+        },
+        {
+            "id":"F-CDRR#35491",
+            "period_beginning":"2016-04-01",
+            "status":"Prepared",
+            "facility_name":"STC Casino, Nairobi Dispensing Point"
+        },
+        {
+            "id":"F-CDRR#34813",
+            "period_beginning":"2016-04-01",
+            "status":"Approved",
+            "facility_name":"STC Casino, Nairobi Dispensing Point"
+        },
+        {
+            "id":"F-CDRR#35906",
+            "period_beginning":"2016-04-01",
+            "status":"Prepared",
+            "facility_name":"STC Casino, Nairobi Dispensing Point"
+        }
+    ]
+}

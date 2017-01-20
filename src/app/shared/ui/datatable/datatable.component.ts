@@ -26,8 +26,6 @@ export class DatatableComponent implements OnInit {
   @Input() public tableClass: string;
   @Input() public width: string = '100%';
 
-  @Input() public tableType: string;
-
   constructor(private el: ElementRef) {
   }
 
@@ -75,7 +73,7 @@ export class DatatableComponent implements OnInit {
         "sSearch": "<span class='input-group-addon'><i class='glyphicon glyphicon-search'></i></span> ",
         "sLengthMenu": "_MENU_"
       },
-      "autoWidth": false,
+      "autoWidth": true,
       retrieve: true,
       responsive: true,
       initComplete: (settings, json) => {
@@ -96,45 +94,6 @@ export class DatatableComponent implements OnInit {
         { "visible": false, "targets": [3] }
       ],
     });
-
-    if (this.tableType === "add-patient") {
-      options = $.extend(options, {
-        "columnDefs": [
-          {
-            // The `data` parameter refers to the data for the cell (defined by the
-            // `data` option, which defaults to the column being worked with, in
-            // this case `data: 0`.
-            "render": function (data, type, row) {
-              return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['ccc_no'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['ccc_no'] + '">Detail</a>'
-              // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['id'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['id'] + '">Detail</a>'
-            },
-            // NOTE: Targeting the [actions] column.
-            "targets": 6
-          },
-          { "width": "10%", "targets": 0 }
-        ],       
-    responsive: true
-      });
-    } else if (this.tableType === "list-inventory") {
-      options = $.extend(options, {
-        "columnDefs": [
-          {
-            // The `data` parameter refers to the data for the cell (defined by the
-            // `data` option, which defaults to the column being worked with, in
-            // this case `data: 0`.
-            "render": function (data, type, row) {
-              // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['ccc_no'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['ccc_no'] + '">Detail</a>'
-              return '<a class="btn btn-primary" href="inventory/bin-card/' + row['id'] + '">Bin card</a>'
-            },
-            // NOTE: Targeting the [actions] column.
-            "targets": 7
-          }
-        ]
-      });
-    }
-    else {
-      console.log('I did not find it!');
-    }
 
     const _dataTable = element.DataTable(options);
 

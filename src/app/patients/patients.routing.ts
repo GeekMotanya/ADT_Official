@@ -21,7 +21,7 @@ export const routes: Routes = [
         data: { pageTitle: 'Patient View' }
     },
     {
-        path: 'edit',
+        path: 'edit/:id',
         component: PatientEditComponent,
         data: { pageTitle: 'Edit Patient' }
     }

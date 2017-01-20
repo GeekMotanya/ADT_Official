@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Illness, Allergies, Source, Service, date } from './patients';
+import { Patient, Illness, Allergies, Source, Service, date, Locations, FamilyPlanning } from './patients';
 
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -18,17 +18,46 @@ export class PatientsService {
     private _illnessApi = this._apiUrl+'lists/illnesses';
     private _allergiesApi = this._apiUrl+'lists/allergies';
     private _sourcesApi = this._apiUrl+'lists/patientsources';
-    private _servicesApi = this._apiUrl+'services';
+    private _servicesApi = this._apiUrl+'lists/services';
     private _regimenApi = this._apiUrl+'lists/regimen';
     private _prophylaxisApi = this._apiUrl+'lists/prophylaxis';
     private _whoStageApi = this._apiUrl+'lists/whostage';
     private _pepReasonApi = this._apiUrl+'lists/pep';
-
+    private _locationsApi = this._apiUrl+'/lists/sub_county';
+    private _familyPlanning = this._apiUrl+'/lists/familyplanning';
     constructor(private _http: Http) { }
 
     /**
      * GET Section
      */
+
+    getFamilyPlan() {
+        return this._http.get(this._servicesApi)
+            .map((response: Response) => <FamilyPlanning[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getPatients() {
+        return this._http.get(this._addPatientRoute)
+            .map((response: Response) => <Patient[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getPatient(id: number) {
+        return this._http.get(this._addPatientRoute+`/${id}`)
+            .map((response: Response) => <Patient[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getLocation() {
+        return this._http.get(this._servicesApi)
+            .map((response: Response) => <Locations[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
 
     getService() {
         return this._http.get(this._servicesApi)
