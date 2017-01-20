@@ -5,7 +5,7 @@
             "line": "1",
             "regimen_category": "Adult First Line",
             "type_of_service": "ART",
-            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>",
+            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-danger btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-success btn-xs' (click)='(null)'>Merge</a>",
             "change_rname": "Anaemia",
             "service_type":"ART"
         },
@@ -14,7 +14,7 @@
             "line": "1",
             "regimen_category": "Adult First Line",
             "type_of_service": "ART",
-            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>",
+            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-danger btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-success btn-xs' (click)='(null)'>Merge</a>",
             "change_rname": "By virtue of age",
             "service_type":"PEP"
         },
@@ -23,7 +23,7 @@
             "line": "1",
             "regimen_category": "Adult First Line",
             "type_of_service": "ART",
-            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>",
+            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-danger btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-success btn-xs' (click)='(null)'>Merge</a>",
             "change_rname": "Ceasation in Breastfeeding",
             "service_type":"OI Only"
         },
@@ -32,7 +32,7 @@
             "line": "1",
             "regimen_category": "Adult First Line",
             "type_of_service": "ART",
-            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-primary btn-xs' (click)='(null)'>Merge</a>",
+            "options": "<a style='' class='btn btn-primary btn-xs' (click)='(null)'>Edit</a> <a style='' class='btn btn-danger btn-xs' (click)='(null)'>Disable</a> <a style='' class='btn btn-success btn-xs' (click)='(null)'>Merge</a>",
             "change_rname": "Change in guidelines",
             "service_type":"PMTCT"
         }

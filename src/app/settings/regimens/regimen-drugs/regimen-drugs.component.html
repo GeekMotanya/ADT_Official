@@ -4,12 +4,12 @@
       <sa-widget [editbutton]="false" color="darken">
         <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
           <h2>Regimen Drugs</h2>
+          <div class="widget-toolbar">
+            <a class="btn btn-primary" data-toggle="modal" data-target="#newRegimenDrug"><i class="fa fa-plus"></i> New Regimen Drug</a>
+          </div>
         </header>
         <div>
-          <div class="widget-body no-padding">
-            <ul class="nav nav-pills">
-              <li class="active"><a data-toggle="modal" data-target="#newRegimenDrug"><i class="fa fa-plus"></i> New Regimen Drug</a></li>
-            </ul>
+          <div class="widget-body no-padding">            
             <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
               <thead>
                 <tr>
@@ -20,14 +20,29 @@
               </thead>
             </sa-datatable>
              <div id="newRegimenDrug" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-lg">
+          <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">New Regimen Drug</h4>
               </div>
               <div class="modal-body">
-                
+                <form>
+                  <label>Select Regimen</label>
+                  <select class="form-control">
+                    <option>AF1A | AZT + 3TC + NVP</option>
+                    <option>AF1A | AZT + 3TC + NVP</option>
+                    <option>AF1A | AZT + 3TC + NVP</option>
+                  </select>
+                  <label>Select Drug</label>
+                  <select class="form-control">
+                    <option>ABACAVIR (ABC) Liquid 20MG/ML (240ml)</option>
+                    <option>ABACAVIR (ABC) Liquid 20MG/ML (240ml)</option>
+                    <option>BACAVIR (ABC) Liquid 20MG/ML (240ml)</option>
+                  </select><br>                 
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save	</button>
+                  <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
+                </form>                
               </div>
             </div>
           </div>

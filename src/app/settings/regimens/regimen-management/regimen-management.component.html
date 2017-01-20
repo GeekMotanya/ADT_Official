@@ -4,16 +4,16 @@
       <sa-widget [editbutton]="false" color="darken">
         <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
           <h2>Regimens</h2>
+          <div class="widget-toolbar">
+            <a class="btn btn-default" data-toggle="modal" data-target="#newRegimenModal"><i class="fa fa-plus"></i> New Regimen</a>
+            <a class="btn btn-danger" data-toggle="modal" data-target="#disableModal"><i class="fa fa-ban"></i> Disable Selected Regimens</a>
+            <a class="btn btn-primary" data-toggle="modal" data-target="#enableModal"> Enable Selected Regimens</a>
+            <a class="btn btn-success" data-toggle="modal" data-target="#bulkModal">Bulk Mapping</a>
+            <a class="btn btn-warning" data-toggle="modal" data-target="#updateModal"> Update Tables</a>
+          </div>
         </header>
         <div>
-          <div class="widget-body no-padding">
-            <ul class="nav nav-pills">
-              <li class="active"><a data-toggle="modal" data-target="#newRegimenModal"><i class="fa fa-plus"></i> New Regimen</a></li>
-              <li><a data-toggle="modal" data-target="#disableModal"><i class="fa fa-ban"></i> Disable Selected Regimens</a></li>
-              <li><a data-toggle="modal" data-target="#enableModal">Enable Selected Regimens</a></li>
-              <li><a data-toggle="modal" data-target="#bulkModal">Bulk Mapping</a></li>
-              <li><a data-toggle="modal" data-target="#updateModal">Update Tables</a></li>
-            </ul>
+          <div class="widget-body no-padding">            
             <sa-datatable [options]="{
                 colReorder: true,
               ajax: 'assets/api/tables/regimen.dummy.json',
