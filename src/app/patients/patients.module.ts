@@ -7,6 +7,7 @@ import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { PatientsService } from './patients.service';
 import { SharedModule } from './shared/shared.module';
 import { routing } from "./patients.routing";
+import { PatientsFilterPipe } from './patient-list/patients-filter.pipe';
 import { PaginationModule } from 'ng2-bootstrap';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { PaginationModule } from 'ng2-bootstrap';
     PatientAddComponent,
     PatientListComponent,
     PatientViewComponent,
-    PatientEditComponent
+    PatientEditComponent,
+    PatientsFilterPipe
   ],
   imports: [
     routing,
