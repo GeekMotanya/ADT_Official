@@ -23,7 +23,7 @@
           <div>
             <div class="widget-body no-padding">
               <!-- This is where the configuration of the datatable takes place. -->
-              <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-condenced table-striped table-bordered" width="100%" tableType="add-patient">
+              <!--<sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-condenced table-striped table-bordered" width="100%" tableType="add-patient">
                 <thead>
                   <tr>
                     <th class="hasinput"><input type="text" class="form-control" placeholder="Filter ccc">
@@ -49,7 +49,56 @@
                     <th data-hide="phone">Action</th>
                   </tr>
                 </thead>
-              </sa-datatable>
+              </sa-datatable>-->
+              <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>CCC No</th>
+                      <th>Patient Name</th>
+                      <th>Next Appointment</th>
+                      <th>Contact</th>
+                      <th>Current Regimen</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let patient of patients">
+                    <td>{{patient.ccc_number}}</td>
+                    <td>{{patient.first_name}}</td>
+                    <td>{{patient.phone_number}}</td>
+                    <td>{{patient.birth_date}}</td>
+                    <td>{{patient.facility_id}}</td>
+                    <td>{{patient.status}}</td>
+                    <td>
+                      <!--<div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Options
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a></li>
+                          <li><a href="" [routerLink]="['/patients/detail',patient.id]">Detail</a></li>
+                          <li><a href="" [routerLink]="['/patients/edit',patient.id]">Edit</a></li>
+                          <li><a href="" [routerLink]="['/patients/disable',patient.id]">Disable</a></li>
+                        </ul>
+                      </div>-->
+                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a> 
+                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/detail',patient.id]">Detail</a>
+                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/edit',patient.id]">Edit</a> 
+                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/disable',patient.id]">Disable</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pull-right">
+                      <pagination [itemsPerPage]="10" [totalItems]="17" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+                      <pre class="card card-block card-header">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
+                      <!--<button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>-->
+              </div>
             </div>
           </div>
         </sa-widget>

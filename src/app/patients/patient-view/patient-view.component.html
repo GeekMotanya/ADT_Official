@@ -10,7 +10,7 @@
 						<div class="jarviswidget-editbox">
 						</div>
 						<div class="widget-body">
-							<form>
+							<form #patientDetailForm="ngForm">
 								<!-- Patients Information and Demographics -->
 								<fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 									<legend>Patient Information and Demographics</legend>
@@ -46,7 +46,7 @@
 										<div class="form-group">
 											<label><span style="color:red; font-weight:bold">*</span> Date of Birth:</label>
 											<div class="input-group">
-												<input type="text" #dob required name="birth_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0', maxDate: 'new Date()'}"
+												<input type="text" required name="birth_date" [(ngModel)]="model.birth_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0', maxDate: 'new Date()'}"
 													(selectDate)='setDateOfBirth($event)' disabled>
 												<!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
 											</div>
@@ -164,7 +164,7 @@
 									<div *ngIf="model.age_in_years >= 18">
 										<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Patient Status</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.patient_status" name="patient_status">
+										<select class="form-control" id="select-1" [(ngModel)]="model.patient_status" name="patient_status" disabled>
 											<option value="no partner">No partner</option>
 											<option value="concordant">Concordant</option>
 											<option value="discordant">Discordant</option>
@@ -177,19 +177,19 @@
 										<div class="row">
 											<div class="col-sm-12 col-md-10">
 												<label class="radio radio-inline no-margin">
-            									<input type="radio" value="1" class="radiobox style-2" [(ngModel)]="model.disclosure" name="disclosure"/>
+            									<input type="radio" value="1" class="radiobox style-2" [(ngModel)]="model.disclosure" name="disclosure" disabled/>
 												<span>Yes</span> 
 												</label>
 												<label class="radio radio-inline">
-												<input type="radio" value="0" class="radiobox style-2" [(ngModel)]="model.disclosure" name="disclosure"/>
+												<input type="radio" value="0" class="radiobox style-2" [(ngModel)]="model.disclosure" name="disclosure" disabled/>
 												<span>No</span> 
 												</label>
 											</div>
 										</div>
 									</div>
-									<div *ngIf="model.patient_status == 'Concordant'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div *ngIf="model.patient_status == 'concordant'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Match to spouse in this ccc?</label>
-										<input class="form-control" placeholder="Enter ccc number" [(ngModel)]="model.spouse_ccc" type="text" name="spouse_ccc" />
+										<input class="form-control" placeholder="Enter ccc number" [(ngModel)]="model.spouse_ccc" type="text" name="spouse_ccc" disabled/>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Family planning method</label>
@@ -204,7 +204,7 @@
 										<label>If other Illnesses</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label class="checkbox-inline"><input type="checkbox" [(ngModel)]="model.is_illness" name="is_illness">Click Here</label>
+										<label class="checkbox-inline"><input type="checkbox" [(ngModel)]="model.is_illness" name="is_illness" disabled>Click Here</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>List Them Below (Type and enter to add tag)</label>
@@ -214,7 +214,7 @@
 										<label>Is Patient Taking any Other Drugs?</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label class="checkbox-inline"><input type="checkbox" [(ngModel)]="model.is_drugs" name="is_drugs">Yes</label>
+										<label class="checkbox-inline"><input type="checkbox" [(ngModel)]="model.is_drugs" name="is_drugs" disabled>Yes</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>List Them</label>
@@ -228,7 +228,7 @@
 										<label>Does Patient have any Other Drugs/ADR not Listed?</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-										<label class="checkbox-inline"><input type="checkbox" [(ngModel)]="model.is_allergies" name="is_allergies">Yes</label>
+										<label class="checkbox-inline"><input type="checkbox" [(ngModel)]="model.is_allergies" name="is_allergies" disabled>Yes</label>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>List Them</label>
@@ -236,35 +236,35 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient Smoke?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.is_smoke" name="is_smoke">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_smoke" name="is_smoke" disabled>
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient Drink Alcohol?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.is_alcohol" name="is_alcohol">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_alcohol" name="is_alcohol" disabled>
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Tested for TB?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.is_tb_tested" name="is_tb_tested">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_tb_tested" name="is_tb_tested" disabled>
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient have TB?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.is_tb" name="tb">
+										<select class="form-control" id="select-1" [(ngModel)]="model.is_tb" name="tb" disabled>
 											<option value="0">No</option>
 											<option value="1">Yes</option>
 										</select>
 									</div>
 									<div *ngIf="model.is_tb == 1" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Select TB Category</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.tb_category" name="tb_category">
+										<select class="form-control" id="select-1" [(ngModel)]="model.tb_category" name="tb_category" disabled>
 											<option selected>--Selected--</option>
 											<option value="1">Category 1</option>
 											<option value="2">Category 2</option>
@@ -272,7 +272,7 @@
 									</div>
 									<div *ngIf="model.tb_category >= 1"class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
 										<label>Does Patient have TB?</label>
-										<select class="form-control" id="select-1" [(ngModel)]="model.tb_phase" name="tb_phase">
+										<select class="form-control" id="select-1" [(ngModel)]="model.tb_phase" name="tb_phase" disabled>
 											<option value="intensive">Intensive</option>
 											<option value="continuation">Continuation</option>
 											<option value="completed">Completed</option>
@@ -284,7 +284,7 @@
 												<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
 													<label>End of phase:</label>
 														<div class="input-group">
-															<input type="text" name="enrollment_date" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")'> 
+															<input type="text" name="enrollment_date" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")' disabled> 
 															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 														</div>	
 												</div>	
@@ -294,7 +294,7 @@
 													<div class="form-group">
 														<label>Start of phase:</label>
 														<div class="input-group">
-															<input type="text" name="enrollment_date" placeholder="Start phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"tb_start")'> 
+															<input type="text" name="enrollment_date" placeholder="Start phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"tb_start")' disabled> 
 															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 														</div>
 													</div>
@@ -302,7 +302,7 @@
 												<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
 													<label>End of phase:</label>
 														<div class="input-group">
-															<input type="text" name="enrollment_date" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")'> 
+															<input type="text" name="enrollment_date" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")' disabled> 
 															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 														</div>	
 												</div>
@@ -317,13 +317,13 @@
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 											<label><span style="color:red; font-weight:bold">*</span> Enrollment date:</label>
 											<div class="input-group">
-												<input  required type="text" name="enrollment_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"enrollment")'>
+												<input  required type="text" name="enrollment_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"enrollment")' disabled>
 												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 											</div>
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Current Status</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="model.current_status" name="current_status">
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.current_status" name="current_status" disabled>
 											<option selected>--Select--</option>
 											<option value="Active">Active</option>
 											<option value="Inactive">Inactive</option>
@@ -332,7 +332,7 @@
 									<div *ngIf="edit" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
 										<label>Date of status change:</label>
 											<div class="input-group">
-												<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
+												<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")' disabled> 
 												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 											</div>	
 									</div>
@@ -345,7 +345,7 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label><span style="color:red; font-weight:bold">*</span> Type of Service</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type" (click)="setService(model.service_type)">
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.service_type" name="service_type" (click)="setService(model.service_type)" disabled>
 											<!--<option *ngFor="let service of patientServices" value=""></option>-->
 											<option value="">ART</option>
 											<option value="">PMTCT</option>
@@ -356,7 +356,7 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="model.regimen" name="regimen">
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.regimen" name="regimen" disabled>
 											<option selected>--Select--</option>
 											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
 											<option value="AF1A | AZT + 3TC + NVP">AF1A | AZT + 3TC + NVP</option>
@@ -365,7 +365,7 @@
 									</div>
 									<div *ngIf="model.service_type == 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Pep reason</label>
-										<select  required class="form-control" id="select-1" [(ngModel)]="model.pep_reason" name="regimen">
+										<select  required class="form-control" id="select-1" [(ngModel)]="model.pep_reason" name="regimen" disabled>
 											<option selected>--Select--</option>
 											<option value="Occupational">Occupational</option>
 											<option value="Sexual Assault">Sexual Assault</option>
@@ -374,7 +374,7 @@
 									</div>
 									<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>Start Regimen Date</label>
-										<input type="text" name="regimen_date" placeholder="Regimen start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"regimen")' >
+										<input type="text" name="regimen_date" placeholder="Regimen start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"regimen")' disabled>
 									</div>
 									<div *ngIf="model.service_type != 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
 										<label>WHO Stage</label>
@@ -391,7 +391,7 @@
 											<div class="form-group">
 												<label>Isoniazid start date:</label>
 												<div class="input-group">
-													<input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'> 
+													<input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")' disabled> 
 													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 												</div>
 											</div>
@@ -399,13 +399,13 @@
 										<div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6"> 
 											<label>Isoniazid end date:</label>
 												<div class="input-group">
-													<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'> 
+													<input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")' disabled> 
 													<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 												</div>	
 										</div>
 									</div>
-									<div *ngIf="edit != true" class="col-sm-12" align="right">
-										<button class="btn btn-primary" type="submit" [disabled]="!patientAddForm.form.valid">
+									<!--<div *ngIf="edit != true" class="col-sm-12" align="right">
+										<button class="btn btn-primary" type="submit" [disabled]="!patientViewForm.form.valid">
 											<i class="fa fa-save"></i> Save
 										</button>
 										<button class="btn btn-primary" type="button">
@@ -417,7 +417,7 @@
 										<button class="btn btn-primary" type="button" [disabled]="!patientAddForm.form.valid">
 											<i class="fa fa-save"></i> Update Patient Information
 										</button>
-									</div>
+									</div>-->
 								</fieldset>
 								<fieldset class="col-xs-48 col-sm-12 col-md-12 col-lg-12">
 									<div>
@@ -445,30 +445,7 @@
 													</header>
 													<div>
 														<div class="widget-body no-padding">
-															<sa-datatable paginationLength="true" tableClass="table table-striped table-bordered table-hover" width="100%">
-																<thead>
-																	<tr style="text-align:center;">
-																		<th data-hide="phone">Date</th>
-																		<th data-class="expand"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Purpose of Visit
-																		</th>
-																		<th data-hide="phone"><i class="text-muted hidden-md hidden-sm hidden-xs"></i> Dose
-																		</th>
-																		<th>Company</th>
-																		<th data-hide="phone,tablet"><i class=" txt-color-blue hidden-md hidden-sm hidden-xs"></i> Duration
-																		</th>
-																		<th data-hide="phone,tablet">Action</th>
-																		<th><i class="txt-color-blue hidden-md hidden-sm hidden-xs"></i> Drug</th>
-																		<th>Quantity</th>
-																		<th>Weight</th>
-																		<th>Current Regimen</th>
-																		<th>Batch No</th>
-																		<th>Pill Count</th>
-																		<th>Adherance</th>
-																		<th>Operator</th>
-																		<th>Reasons for Change</th>
-																	</tr>
-																</thead>
-															</sa-datatable>
+															
 														</div>
 													</div>
 												</sa-widget>

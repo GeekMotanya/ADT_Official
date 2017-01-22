@@ -42,9 +42,9 @@ export class Patient {
     drug_allergies?: number[];
     tb_category?: string;
     tb_phase?: string;
-    start_tb_phase: string;
-    end_tb_phase: string;
-    pep_reason: string;
+    start_tb_phase?: string;
+    end_tb_phase?: string;
+    pep_reason?: string;
     isoniazid_start?: string;
     isoniazid_end?: string;
 
@@ -53,6 +53,22 @@ export class Patient {
     is_illness: boolean;
     is_drugs: boolean;
     is_allergies: boolean;
+    
+    getAge(value: any): any {
+        let dob: any = new Date(value);
+        let today: any = new Date();
+        let age_in_years: number;
+        let age_in_months: number;
+
+        this.age_in_years = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+        var y1 = today.getFullYear();
+        var y2 = dob.getFullYear();
+        this.age_in_months = (today.getMonth() + y1 * 12) - (dob.getMonth() + y2 * 12);
+    }
+
+    getMSQ() {
+        this.bsa = Math.sqrt((this.current_weight * this.current_height) / 3600);
+    }
 }
 
 export class Service {

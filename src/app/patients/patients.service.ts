@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class PatientsService {
 
     // To be placed in a config file
-    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/';
+    private _apiUrl = 'http://41.89.6.210/adt-core/lib/public/ADT_CORE/v0.1/';
 
     private _addPatientRoute = this._apiUrl+'patients';
     private _illnessApi = this._apiUrl+'lists/illnesses';
