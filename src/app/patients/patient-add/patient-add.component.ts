@@ -183,7 +183,10 @@ export class PatientAddComponent implements OnInit, DoCheck {
    * Submit form data to the back-end server
    */
   onSubmit(): void {
-    this._patientService.addPatient(this.patient);
+    this._patientService.addPatient(this.patient).subscribe(
+       p => { console.log(`I have posted: ` + p) },
+       error =>  this.errorMessage = <any>error
+    );
   }
 
   onChange(value: any): void {
