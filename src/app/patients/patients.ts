@@ -23,11 +23,13 @@ export class Patient {
     current_status: string; 
     enrollment_date: string;
     regimen_start_date: string;
-    regimen: number;
-    service_type: number;
-    who_stage: number;
+    regimen_id: number;
+    service_id: number;
+    facility_id: number = 1;
+    supporter_id: number = 1;
+    who_stage_id: number;
     prophylaxis: number[];
-    source: number;
+    source_id: number;
     // optional properties
     status?: string;
     disclosure?: number;
@@ -38,7 +40,7 @@ export class Patient {
     other_drugs?: string;
     other_illness?: string;
     other_allergies?: string;
-    chronic_illnesses?: number[];
+    illnesses?: number[];
     drug_allergies?: number[];
     tb_category?: string;
     tb_phase?: string;

@@ -1,108 +1,86 @@
 <div id="content">
 
-  <sa-widgets-grid>
-    <div class="row">
-      <article class="col-sm-12">
+    <sa-widgets-grid>
+        <div class="row">
+            <article class="col-sm-12">
 
-        <sa-widget [editbutton]="false" color="blueDark">
-          <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
-            <h2>Patients</h2>
-            <div class="widget-toolbar">
-              Filter Patients based on status:
-              <div class="btn-group" dropdown>
-                <button id="single-button" type="button" class="btn btn-xs btn-default" dropdownToggle>
-                  Choose Status <span class="caret"></span>
-                </button>
-                <ul dropdownMenu role="menu" aria-labelledby="single-button">
-                  <li role="menuitem"><a class="dropdown-item">Active</a></li>
-                  <li role="menuitem"><a class="dropdown-item">Inactive</a></li>
-                </ul>
-              </div>
-            </div>
-          </header>
-          <div>
-            <div class="widget-body no-padding">
-              <!-- This is where the configuration of the datatable takes place. -->
-              <!--<sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-condenced table-striped table-bordered" width="100%" tableType="add-patient">
-                <thead>
-                  <tr>
-                    <th class="hasinput"><input type="text" class="form-control" placeholder="Filter ccc">
-                    </th>
-                    <th class="hasinput">
-                      <input class="form-control" placeholder="Filter Patient Name" type="text">
-                    </th>
-                    <th></th>
-                    <th class="hasinput"><input type="text" class="form-control" placeholder="Filter Contact">
-                    </th>
-                    <th class="hasinput"><input type="text" class="form-control" placeholder="Filter Current Regimen">
-                    </th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                  <tr>
-                    <th data-class="expand">CCC No</th>
-                    <th data-hide="phone">Patient Name</th>
-                    <th data-hide="phone">Next Appointment</th>
-                    <th data-hide="phone">Contact</th>
-                    <th data-hide="phone">Current Regimen</th>
-                    <th data-hide="phone">Status</th>
-                    <th data-hide="phone">Action</th>
-                  </tr>
-                </thead>
-              </sa-datatable>-->
-              <div class="table-responsive">
-
-                <table class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>CCC No</th>
-                      <th>Patient Name</th>
-                      <th>Next Appointment</th>
-                      <th>Contact</th>
-                      <th>Current Regimen</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let patient of patients">
-                    <td>{{patient.ccc_number}}</td>
-                    <td>{{patient.first_name}}</td>
-                    <td>{{patient.phone_number}}</td>
-                    <td>{{patient.birth_date}}</td>
-                    <td>{{patient.facility_id}}</td>
-                    <td>{{patient.status}}</td>
-                    <td>
-                      <!--<div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Options
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a></li>
-                          <li><a href="" [routerLink]="['/patients/detail',patient.id]">Detail</a></li>
-                          <li><a href="" [routerLink]="['/patients/edit',patient.id]">Edit</a></li>
-                          <li><a href="" [routerLink]="['/patients/disable',patient.id]">Disable</a></li>
-                        </ul>
-                      </div>-->
-                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a> 
-                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/detail',patient.id]">Detail</a>
-                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/edit',patient.id]">Edit</a> 
-                      <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/disable',patient.id]">Disable</a>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="pull-right">
-                      <pagination [itemsPerPage]="10" [totalItems]="17" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-                      <pre class="card card-block card-header">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
-                      <!--<button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>-->
-              </div>
-            </div>
-          </div>
-        </sa-widget>
-      </article>
-    </div>
-  </sa-widgets-grid>
+                <sa-widget [editbutton]="false" color="blueDark">
+                    <header><span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>Patients</h2>
+                        <div class="widget-toolbar">
+                            Filter Patients based on status:
+                            <div class="btn-group" dropdown>
+                                <button id="single-button" type="button" class="btn btn-xs btn-default" dropdownToggle>
+                                    Choose Status <span class="caret"></span>
+                                </button>
+                                <ul dropdownMenu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem"><a class="dropdown-item">Active</a></li>
+                                    <li role="menuitem"><a class="dropdown-item">Inactive</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                    <div>
+                        <div class="widget-body no-padding">
+                            <div class="table-responsive">
+                                <div class="dt-toolbar">
+                                    <div class="col-xs-12 col-sm-6 hidden-xs">
+                                        <div id="datatable_fixed_column_filter" class="dataTables_filter">
+                                            <label>
+                                                <span class="input-group-addon">
+                                                  <i class="glyphicon glyphicon-search"></i>
+                                                </span>
+                                                <input type="search" class="form-control" [(ngModel)]="binding" placeholder="Search" aria-controls="datatable_fixed_column">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>CCC No</th>
+                                            <th>Patient Name</th>
+                                            <th>Next Appointment</th>
+                                            <th>Contact</th>
+                                            <th>Current Regimen</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let patient of patients | patientsFilter:'first_name':binding">
+                                            <td>{{patient.ccc_number}}</td>
+                                            <td>{{patient.first_name}}</td>
+                                            <td>{{patient.phone_number}}</td>
+                                            <td>{{patient.birth_date}}</td>
+                                            <td>{{patient.facility_id}}</td>
+                                            <td>{{patient.status}}</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a>
+                                                <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/detail',patient.id]">Detail</a>
+                                                <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/edit',patient.id]">Edit</a>
+                                                <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/disable',patient.id]">Disable</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="dt-toolbar-footer">
+                                    <div class="col-sm-6 col-xs-12 hidden-xs">
+                                        <div aria-live="polite" class="dataTables_info" id="dt_basic_info" role="status">
+                                            Showing 41 to 50 of 100 entries
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12 hidden-xs">
+                                            <div class="">
+                                                <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="10" [totalItems]="17" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sa-widget>
+            </article>
+        </div>
+    </sa-widgets-grid>
 </div>

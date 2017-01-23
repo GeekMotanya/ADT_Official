@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class PatientsService {
 
     // To be placed in a config file
-    private _apiUrl = 'http://41.89.6.210/adt-core/lib/public/ADT_CORE/v0.1/';
+    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/';
 
     private _addPatientRoute = this._apiUrl + 'patients';
     private _illnessApi = this._apiUrl + 'lists/illnesses';
@@ -34,7 +34,7 @@ export class PatientsService {
     getFamilyPlan() {
         return this._http.get(this._servicesApi)
             .map((response: Response) => <FamilyPlanning[]>response.json())
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -62,7 +62,7 @@ export class PatientsService {
     getService() {
         return this._http.get(this._servicesApi)
             .map((response: Response) => <Service[]>response.json())
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -106,28 +106,28 @@ export class PatientsService {
     /**
      * POST Section
      */
-    // addPatient(newPatient: any) {
-    //     var headers = new Headers();
-    //     headers.append('Content-Type', 'application/json; charset=utf-8');
-    //     console.log(newPatient);
-    //     return this._http.post(this._addPatientRoute, JSON.stringify(newPatient), { headers: headers })
-    //         .map((res: Response) => res.json())
-    //         .subscribe(
-    //         () => { },
-    //         err => console.error(err)
-    //         )
-    // }
-
-    // Add a new comment
-    addPatient(body: Object): Observable<Comment[]> {
+    // Add a new patient
+    addPatient(body: Object): Observable<Patient[]> {
         let bodyString = JSON.stringify(body); // Stringify payload
-        console.log(bodyString)
-        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); // ... Set content type to JSON
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this._http.post(this._addPatientRoute, body, options) // ...using post request
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+    }
+
+    /**
+     * PUT Section: Update of patients takes place.
+     */
+    updatePatient(body: Object): Observable<Patient> {
+        let bodyString = JSON.stringify(body); // Stringify payload
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+
+        return this._http.put(`${this._addPatientRoute}/${body['id']}`, body, options) // ...using put request
+            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 
     private handleError(error: Response) {

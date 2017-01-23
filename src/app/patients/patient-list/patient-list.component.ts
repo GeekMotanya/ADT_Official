@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 export class PatientListComponent implements OnInit, DoCheck {
 
   patients: Patient[];
-  
+  binding: string;
   public currentPage: number = 1;
 
 
