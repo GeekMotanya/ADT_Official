@@ -7,6 +7,7 @@ import { PatientEditComponent } from './patient-edit/patient-edit.component';
 import { PatientsService } from './patients.service';
 import { SharedModule } from './shared/shared.module';
 import { routing } from "./patients.routing";
+import { PaginationModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { routing } from "./patients.routing";
   ],
   imports: [
     routing,
-    SharedModule
+    SharedModule,
+    PaginationModule
   ],
   providers: [PatientsService],
   entryComponents: []
