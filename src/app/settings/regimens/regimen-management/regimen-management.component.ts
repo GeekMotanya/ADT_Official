@@ -33,11 +33,57 @@ export class RegimenManagementComponent implements OnInit {
                     </div>
                     <div class="modal-body">
                       <form>
-                        <label>Name</label>
-                        <p><input type="text" class="form-control" style="width:100%"></p>
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
-                        <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
-                      </form>
+                      <table style="width: 100%" class="table">
+                        <tbody>
+                          <tr>
+                            <th>Regimen Code</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Description</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Category</th>
+                            <td><select class="form-control" id="select-1">
+                                <option>Adult ART Third Line Regimens</option>
+                                <option>Adult Second Line</option>
+                              </select></td>
+                          </tr>
+                          <tr>
+                            <th>Line</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Type of Service</th>
+                            <td><select class="form-control" id="select-1">
+                                <option>ART</option>
+                                <option>PEP</option>
+                                <option>PMTCT</option>
+                              </select>
+                              </td>
+                          </tr>
+                          <tr>
+                            <th>Remarks</th>
+                            <td><textarea rows="4" style="width: 100%"></textarea></td>
+                          </tr>
+                          <tr>
+                            <th>Mapping</th>
+                            <td>
+                              <select class="form-control" id="select-1">
+                                <option> AF1A | AZT + 3TC + NVP</option>
+                                <option> AF2B | TDF + 3TC + EFV</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td style="text-align: right"><button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
+                            <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form> 
                     </div>
                   </div>
                 </div>

@@ -32,11 +32,50 @@ export class FacilityUsersComponent implements OnInit {
                     </div>
                     <div class="modal-body">
                       <form>
-                        <label>Name</label>
-                        <p><input type="text" class="form-control" style="width:100%"></p>
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
-                        <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
-                      </form>
+                      <table style="width: 100%" class="table">
+                        <tbody>
+                          <tr>
+                            <th>User Type</th>
+                            <td>
+                              <select class="form-control" id="select-1">
+                                <option>Pharmacist</option>
+                                <option>Facility Administrator</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Full Name</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Username</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Phone Number</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Email Address</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Facility</th>
+                            <td>
+                              <select class="form-control" id="select-1">
+                                <option>Special Treatment Clinic</option>
+                                <option>District Hospital</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td style="text-align: right"><button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
+                            <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
                     </div>
                   </div>
                 </div>

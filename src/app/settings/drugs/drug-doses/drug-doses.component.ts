@@ -29,11 +29,28 @@ export class DrugDosesComponent implements OnInit {
                     </div>
                     <div class="modal-body">
                       <form>
-                        <label>Name</label>
-                        <p><input type="text" class="form-control" style="width:100%"></p>
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
-                        <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
-                      </form>
+                      <table style="width: 100%" class="table">
+                        <tbody>
+                          <tr>
+                            <th>Dose Name</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Dose Value</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <th>Dose Frequency</th>
+                            <td><input type="text" class="form-control"></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td style="text-align: right"><button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
+                              <button class="btn btn-danger" data-dismiss="modal"> Cancel	</button></td>
+                          </tr>
+                        </tbody>
+                      </table>                                           
+                    </form>
                     </div>
                   </div>
                 </div>
