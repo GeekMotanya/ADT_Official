@@ -5,7 +5,7 @@ import { PatientsService } from '../patients.service';
 import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies, FamilyPlanning, Locations } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs/Observable';
-import { AlertService } from './alert.service';
+
 
 @Component({
     selector: 'patient-form',
@@ -66,7 +66,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
     };
 
     // Methods section: The constructor comes first!
-    constructor(private _patientService: PatientsService, private alertService: AlertService, private router: Router) { }
+    constructor(private _patientService: PatientsService, private router: Router) { }
 
     ngOnInit(): void {
         this.birth_place = this._patientService.getLocation();
@@ -196,9 +196,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
     onSubmit(): void {
         if (this.formType == 'addPatient' ) {
             this._patientService.addPatient(this.patient).subscribe(
-                p => {
-                    this.alertService.success('Registration successful', true);
-                },
+                p => {   },
                 error => this.errorMessage = <any>error
             );
         }
