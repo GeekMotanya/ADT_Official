@@ -8,7 +8,7 @@ import 'rxjs/add/operator/switchMap';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  template: '<patient-form [patient]="patient" [edit]="edit" [formType]="editPatient"></patient-form>'
+  template:`<patient-form [patient]="patient" [edit]="edit" [formType]="'editPatient'"></patient-form>`
 })
 export class PatientEditComponent implements OnInit, OnDestroy {
   edit: boolean = true;

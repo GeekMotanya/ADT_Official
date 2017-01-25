@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from '../patients';
 import { PatientsService } from '../patients.service';
 @Component({
-  template: '<patient-form [patient]="patient" [formType]="addPatient"></patient-form>'
+  template: `<patient-form [patient]="patient" [formType]="'addPatient'"></patient-form>`
 })
 export class PatientAddComponent implements OnInit {
   // Define properties first.

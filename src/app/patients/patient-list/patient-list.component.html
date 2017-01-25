@@ -1,6 +1,5 @@
 <!-- Only display after patients list has been pulled from server-->
 <div id="content" *ngIf="patients">
-
     <sa-widgets-grid>
         <div class="row">
             <article class="col-sm-12">
@@ -64,19 +63,19 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <tfoot class="dt-toolbar-footer">
-                                        <div class="col-sm-6 col-xs-12 hidden-xs">
-                                            <div aria-live="polite" class="dataTables_info" id="dt_basic_info" role="status">
-                                                Showing {{patients.from}} to {{patients.to}} of {{patients.total}} entries
-                                            </div>
-                                            <div class="col-sm-6 col-xs-12 hidden-xs">
-                                                <div class="">
-                                                    <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="patients.per_page" [totalItems]="patients.total" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </tfoot>
                                 </table>
+                                <div class="dt-toolbar-footer">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">
+                                            Showing {{patients.from}} to {{patients.to}} of {{patients.total}} entries
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
+                                            <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="patients.per_page" [totalItems]="patients.total" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
