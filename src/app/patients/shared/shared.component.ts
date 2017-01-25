@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PatientsService } from '../patients.service';
 import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies, FamilyPlanning, Locations } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs/Observable';
+import { AlertService } from './alert.service';
 
 @Component({
     selector: 'patient-form',
@@ -12,9 +14,10 @@ import { Observable } from 'rxjs/Observable';
 
 // TODO: Handle error catching in all subscriptions
 
-export class SharedComponent implements OnInit, DoCheck {
+export class SharedComponent implements OnInit, DoCheck, OnChanges {
 
     @Input() formType: string;
+    form: string;
 
     // Define properties first.
     @Input() patient = new Patient;
@@ -63,7 +66,7 @@ export class SharedComponent implements OnInit, DoCheck {
     };
 
     // Methods section: The constructor comes first!
-    constructor(private _patientService: PatientsService) { }
+    constructor(private _patientService: PatientsService, private alertService: AlertService, private router: Router) { }
 
     ngOnInit(): void {
         this.birth_place = this._patientService.getLocation();
@@ -85,7 +88,7 @@ export class SharedComponent implements OnInit, DoCheck {
      * Visit angular.i0 -> 
      * Forms Validation Cookbook Tutorial
      */
-     patientForm: NgForm;
+    patientForm: NgForm;
     // Queries for the form-> patientForm
     @ViewChild('patientForm') currentForm: NgForm;
 
@@ -191,20 +194,23 @@ export class SharedComponent implements OnInit, DoCheck {
      * Submit form data to the back-end server
      */
     onSubmit(): void {
-        if (this.formType == 'addPatient') {
+        if (this.formType == 'addPatient' ) {
             this._patientService.addPatient(this.patient).subscribe(
-                p => { console.log(`I have posted: ` + p) },
+                p => {
+                    this.alertService.success('Registration successful', true);
+                },
                 error => this.errorMessage = <any>error
             );
         }
         else {
-            console.log(this.patient);
-            this._patientService.updatePatient(this.patient).subscribe(
-                p => { console.log(`I have put: ` + p) },
-                error => this.errorMessage = <any>error
-            );
+            this._patientService.updatePatient(this.patient).subscribe();
         }
     }
+
+    ngOnChanges() {
+        this.form = this.formType;
+    }
+
     onChange(value: any): void {
         console.log(value);
     }
