@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class PatientsService {
 
     // To be placed in a config file
-    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/';
+    private _apiUrl = 'http://192.168.33.10/adt-core/lib/public/ADT_CORE/v0.1/';
 
     private _addPatientRoute = this._apiUrl + 'patients';
     private _illnessApi = this._apiUrl + 'lists/illnesses';
@@ -25,11 +25,19 @@ export class PatientsService {
     private _pepReasonApi = this._apiUrl + 'lists/pep';
     private _locationsApi = this._apiUrl + '/lists/sub_county';
     private _familyPlanning = this._apiUrl + '/lists/familyplanning';
+    private _patientsList = this._apiUrl + 'patients?page=';
+    
     constructor(private _http: Http) { }
 
     /**
      * GET Section
      */
+    getPaginatedPatients(id: number) {
+        return this._http.get(this._patientsList+id)
+            .map((response: Response) => <Patient[]>response.json())
+            // .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
 
     getFamilyPlan() {
         return this._http.get(this._servicesApi)
@@ -59,11 +67,20 @@ export class PatientsService {
             .catch(this.handleError);
     }
 
-    getService() {
+    getServices() {
         return this._http.get(this._servicesApi)
             .map((response: Response) => <Service[]>response.json())
             // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
+    }
+
+    // Loops through the lists of services to get individual service properties
+    // such as different regimens
+
+    getService(id: number): Observable<any> {
+        return this.getServices()
+            .map((service: Service[]) => service.find(p => p.id === id))
+            .do(data => console.log('Service: ' + JSON.stringify(data)));
     }
 
     getRegimen() {

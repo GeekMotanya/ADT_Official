@@ -1,16 +1,16 @@
-import {Directive, ElementRef, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Directive, ElementRef, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
-declare var $:any;
+declare var $: any;
 
 @Directive({
   selector: '[saUiDatepicker]'
 })
-export class UiDatepickerDirective implements OnInit {
+export class UiDatepickerDirective implements OnInit, OnChanges {
 
-  @Input() saUiDatepicker:any;
+  @Input() saUiDatepicker: any;
   @Output() selectDate: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor(private el:ElementRef) {
+  @Input() setDate: string;
+  constructor(private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -19,12 +19,12 @@ export class UiDatepickerDirective implements OnInit {
     let element = $(this.el.nativeElement);
 
     if (saUiDatepicker.minRestrict) {
-      onSelectCallbacks.push((selectedDate)=> {
+      onSelectCallbacks.push((selectedDate) => {
         $(saUiDatepicker.minRestrict).datepicker('option', 'minDate', selectedDate);
       });
     }
     if (saUiDatepicker.maxRestrict) {
-      onSelectCallbacks.push((selectedDate)=> {
+      onSelectCallbacks.push((selectedDate) => {
         $(saUiDatepicker.maxRestrict).datepicker('option', 'maxDate', selectedDate);
       });
     }
@@ -47,8 +47,8 @@ export class UiDatepickerDirective implements OnInit {
     let options = $.extend(saUiDatepicker, {
       prevText: '<i class="fa fa-chevron-left"></i>',
       nextText: '<i class="fa fa-chevron-right"></i>',
-      onSelect: (selectedDate) =>{
-        onSelectCallbacks.forEach((callback) =>{
+      onSelect: (selectedDate) => {
+        onSelectCallbacks.forEach((callback) => {
           callback.call(callback, selectedDate)
           // Exposes the value of the selected date to respective component
           this.selectDate.emit(selectedDate);
@@ -57,6 +57,18 @@ export class UiDatepickerDirective implements OnInit {
     });
 
     element.datepicker(options);
+
+  }
+  /**
+     * Date: 1/24/2017
+     * This is the best way I have come up with to programatically change the date.
+     * onChanges: Checks changes to the value of the @Input. This enables automatic
+     * change of the date based on the user input.
+     */
+  ngOnChanges(): void {
+    let element = $(this.el.nativeElement);
+    // Implement jQueryUI datepicker methods
+    element.datepicker("setDate", this.setDate);
   }
 
 }

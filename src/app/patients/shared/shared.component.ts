@@ -9,6 +9,9 @@ import { Observable } from 'rxjs/Observable';
     selector: 'patient-form',
     templateUrl: './shared-form.component.html'
 })
+
+// TODO: Handle error catching in all subscriptions
+
 export class SharedComponent implements OnInit, DoCheck {
 
     @Input() formType: string;
@@ -68,14 +71,13 @@ export class SharedComponent implements OnInit, DoCheck {
         this.chronicIllness = this._patientService.getIllness();
         this.allergiesList = this._patientService.getAllergies();
         this.patientSources = this._patientService.getSource();
-        this._patientService.getService().subscribe(service => { this.patientServices = service });
+        this._patientService.getServices().subscribe(service => { this.patientServices = service });
         this.patientRegimen = this._patientService.getRegimen();
         this.patientWhostage = this._patientService.getWho_stage();
         this.patientProphylaxis = this._patientService.getProphylaxis();
     }
     ngDoCheck(): void {
         this.patient.bsa = Math.sqrt((this.patient.current_weight * this.patient.current_height) / 3600);
-        // console.log(this.illness.data);
     }
 
     /**
@@ -180,8 +182,9 @@ export class SharedComponent implements OnInit, DoCheck {
     }
 
     setService(value) {
-        console.log(value);
-        // console.log(this.patientServices.indexOf(value));
+        // console.log(value);
+        // console.log(this.patientServices.find(value));
+        this._patientService.getService(+[value]).subscribe(regimen => this.regimen = regimen);
     }
 
     /**
