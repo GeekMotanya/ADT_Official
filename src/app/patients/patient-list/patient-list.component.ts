@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class PatientListComponent implements OnInit, DoCheck {
 
-  patients: Patient[];
+  patients: any;
   binding: string;
   public currentPage: number = 1;
 
@@ -20,10 +20,12 @@ export class PatientListComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.service.getPatients().subscribe(p => this.patients = p);
+    console.log('I got: '+ this.patients)
   }
 
   ngDoCheck() {
     // this.totalItems = this.patients.length;
+    // console.log(this.patients.data)
   }
 
   public setPage(pageNo: number): void {
@@ -32,6 +34,7 @@ export class PatientListComponent implements OnInit, DoCheck {
  
   public pageChanged(event: any): void {
     console.log('Page changed to: ' + event.page);
+    this.service.getPaginatedPatients(event.page).subscribe(p => this.patients = p); // TODO: Error handling
     console.log('Number items per page: ' + event.itemsPerPage);
   }
 }

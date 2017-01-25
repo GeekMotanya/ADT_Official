@@ -29,7 +29,7 @@ export class PatientViewComponent implements OnInit {
 
   getPatient(id: number) {
     this._patientService.getPatient(id).subscribe(
-      product => this.model = product,
+      data => this.model = data,
       error => this.errorMessage = <any>error);
   }
 

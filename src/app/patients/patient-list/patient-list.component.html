@@ -1,4 +1,5 @@
-<div id="content">
+<!-- Only display after patients list has been pulled from server-->
+<div id="content" *ngIf="patients">
 
     <sa-widgets-grid>
         <div class="row">
@@ -48,7 +49,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let patient of patients | patientsFilter:'first_name':binding">
+                                        <tr *ngFor="let patient of patients.data | patientsFilter:'first_name':binding">
                                             <td>{{patient.ccc_number}}</td>
                                             <td>{{patient.first_name}}</td>
                                             <td>{{patient.phone_number}}</td>
@@ -63,19 +64,19 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                </table>
-                                <div class="dt-toolbar-footer">
-                                    <div class="col-sm-6 col-xs-12 hidden-xs">
-                                        <div aria-live="polite" class="dataTables_info" id="dt_basic_info" role="status">
-                                            Showing 41 to 50 of 100 entries
-                                        </div>
+                                    <tfoot class="dt-toolbar-footer">
                                         <div class="col-sm-6 col-xs-12 hidden-xs">
-                                            <div class="">
-                                                <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="10" [totalItems]="17" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+                                            <div aria-live="polite" class="dataTables_info" id="dt_basic_info" role="status">
+                                                Showing {{patients.from}} to {{patients.to}} of {{patients.total}} entries
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12 hidden-xs">
+                                                <div class="">
+                                                    <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="patients.per_page" [totalItems]="patients.total" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
                     </div>
