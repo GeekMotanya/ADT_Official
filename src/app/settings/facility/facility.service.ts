@@ -6,7 +6,7 @@ import { Facility } from './facility';
 @Injectable()
 export class FacilityService {
 
-    private _apiUrl = 'http://192.168.33.10/adt-core/lib/public/ADT_CORE/v0.1/';
+    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/api/';
 
     private _faciltyApi = this._apiUrl + 'facility';
 
