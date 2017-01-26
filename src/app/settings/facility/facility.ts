@@ -6,7 +6,17 @@ export class Facility {
     phone_number: number;
     weekday_max: number;
     weekend_max: number;
-    county_id: number;
+    // county: Counties[];
     county_sub_id: number;
     supporter_id: number;
 }
+
+export class Counties {
+    id: number;
+    name: string
+}
+
+// export class SubCounties {
+//     id: number;
+//     name: string;
+// }

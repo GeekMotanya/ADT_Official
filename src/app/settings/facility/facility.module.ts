@@ -5,6 +5,7 @@ import { SmartadminModule } from "../../shared/smartadmin.module";
 import { SmartadminDatatableModule } from "../../shared/ui/datatable/smartadmin-datatable.module";
 import { SmartadminInputModule } from "../../shared/forms/input/smartadmin-input.module";
 import { FormsModule } from '@angular/forms';
+import { FacilityService } from './facility.service'
 import { FacilityDetailsComponent } from "./facility-details/facility-details.component"
 import { FacilityPatientSourcesComponent } from "./facility-patient-sources/facility-patient-sources.component"
 import { FacilitySupportersComponent } from "./facility-supporters/facility-supporters.component"
@@ -24,7 +25,9 @@ import { FacilityUsersComponent } from "./facility-users/facility-users.componen
     SmartadminDatatableModule,
     SmartadminInputModule,
     FormsModule
-  ]
+  ],
+  providers: [FacilityService],
+  entryComponents: []
 })
 
 export class FacilityModule { }
