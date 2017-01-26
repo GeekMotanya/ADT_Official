@@ -35,11 +35,11 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Patient Number CCC</label>
-                                            <input class="form-control" placeholder="autofilled" type="text" disabled>
+                                            <input class="form-control" placeholder="autofilled" type="text" [(ngModel)]="patient.ccc_number" name="ccc_number" disabled>
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Patient Name</label>
-                                            <input class="form-control" placeholder="autofilled" type="text" disabled>
+                                            <input class="form-control" placeholder="autofilled" type="text" [(ngModel)]="patient.first_name" name="first_name" disabled>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -63,11 +63,11 @@
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Current Height (CM)</label>
-                                            <input class="form-control" placeholder="autofilled" type="text">
+                                            <input class="form-control" placeholder="autofilled" [(ngModel)]="patient.current_height" name="current_height" type="text">
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Current Weight (KG)</label>
-                                            <input class="form-control" placeholder="autofilled" type="text">
+                                            <input class="form-control" placeholder="autofilled" [(ngModel)]="patient.current_weight" name="current_weight" type="text">
                                         </div>
                                     </div>
                                     <div class="row">
