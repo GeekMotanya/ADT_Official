@@ -1,3 +1,4 @@
+{{diagnostic}}
 <div id="content">
   <sa-widgets-grid>
     <div class="row">
@@ -12,37 +13,36 @@
                 <tbody>
                 <tr>
                   <th>Organization Code/MFL No</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="model.code" name="organizationCode" disabled></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.code" name="organizationCode" disabled></td>
                 </tr>
                 <tr>
                   <th>Name of Organization/System</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="model.name" name="organizationName"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.name" name="organizationName"></td>
                 </tr>
                 <tr>
                   <th>Adult Age</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="model.adult_age" name="adultAge"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.adult_age" name="adultAge"></td>
                 </tr>
                 <tr>
                   <th>Maximum Patients per Weekday</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="model.weekday_max" name="weekdayMax"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.weekday_max" name="weekdayMax"></td>
                 </tr>
                 <tr>
                   <th>Maximum Patients per Weekend</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="model.weekend_max" name="weekendMax"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.weekend_max" name="weekendMax"></td>
                 </tr>
                 <tr>
                   <th>Facility Type</th>
                   <td>
                     <select class="form-control" id="select-1">
-                      <option>Dispensary</option>
-                      <option>Health Center</option>
+                      <option *ngFor="let types of facilityTypes | async "value="{{types.id}}">{{types.name}}</option>
                     </select>
                   </td>
                 </tr>
                 <tr>
                   <th>County</th>
                   <td>
-                    <select class="form-control" id="select-1" name="county_id">
+                    <select class="form-control" id="select-1"  name="county_id">
                       <option *ngFor="let counties of countiesList | async" value="{{counties.id}}">{{counties.name}}</option>
                     </select>
                   </td>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                   <th>Facility Phone Number</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="model.phone_number" name="phoneNumber"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.phone_number" name="phoneNumber"></td>
                 </tr>
                 <tr>
                   <th>Does Facility want to send SMS to Patients?</th>

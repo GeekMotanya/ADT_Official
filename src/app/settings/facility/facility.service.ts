@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Facility, Counties } from './facility';
+import { Facility, Counties, Types } from './facility';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -9,10 +9,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class FacilityService {
 
-    private _apiUrl = 'http://41.89.6.210/adt-core/lib/public/api/';
+    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/api/';
 
     private _faciltyApi = this._apiUrl + 'facility';
     private _countiesApi = this._apiUrl+ 'lists/counties';
+    private _typesApi = this._apiUrl+ 'lists/type';
 
     constructor(private _http: Http) { }
 
@@ -29,8 +30,13 @@ export class FacilityService {
     getCounties() {
         return this._http.get(this._countiesApi)
             .map((response: Response) => <Counties[]>response.json())
-            // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);        
+    }
+
+    getFacilityTypes(){
+        return this._http.get(this._typesApi)
+            .map((response: Response) => <Types[]>response.json())
+            .catch(this.handleError); 
     }
 
     // Put

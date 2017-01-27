@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Facility, Counties } from '../facility';
+import { Facility, Counties, Types } from '../facility';
 import { FacilityService } from '../facility.service';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -15,9 +15,10 @@ import { NgForm } from '@angular/forms';
 export class FacilityDetailsComponent implements OnInit {
   // edit: boolean = true;
   @Input() edit: boolean;
-  model = new Facility();
+  facility = new Facility();
   errorMessage: string;
   private countiesList: Observable<string[]>;
+  private facilityTypes: Observable<string[]>;
 
   constructor(private route: ActivatedRoute,
     private _router: Router,
@@ -26,18 +27,19 @@ export class FacilityDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => this._facilityService.getFacilityDetails(+params['id']))
-      .subscribe(facility => this.model = facility);
+      .subscribe(facility => this.facility = facility);
 
     this.countiesList = this._facilityService.getCounties();
+    this.facilityTypes = this._facilityService.getFacilityTypes();
   }
 
   getFacilityDetails(id: number) {
     this._facilityService.getFacilityDetails(id).subscribe(
-      data => this.model = data,
+      data => this.facility = data,
       error => this.errorMessage = <any>error);
   }
   get diagnostic() {
-    return JSON.stringify(this.model);
+    return JSON.stringify(this.facility);
   }
 
   // Update
@@ -64,7 +66,7 @@ export class FacilityDetailsComponent implements OnInit {
     }
 
      onSubmit(): void {
-       this._facilityService.updateFacility(this.model).subscribe();
+       this._facilityService.updateFacility(this.facility).subscribe();
      }
 
 }
