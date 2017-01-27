@@ -7,27 +7,28 @@
             <h2>Facility Details</h2>
           </header>
           <div class="widget-body" style="padding: 20px">            
-            <form>
+            <form (ngSubmit)="onSubmit() "#facilityDetailForm="ngForm">
               <table class="table" style="width: 100%">
+                <tbody>
                 <tr>
                   <th>Organization Code/MFL No</th>
-                  <td><input type="text" class="form-control"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="model.code" name="organizationCode" disabled></td>
                 </tr>
                 <tr>
                   <th>Name of Organization/System</th>
-                  <td><input type="text" class="form-control"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="model.name" name="organizationName"></td>
                 </tr>
                 <tr>
                   <th>Adult Age</th>
-                  <td><input type="text" class="form-control"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="model.adult_age" name="adultAge"></td>
                 </tr>
                 <tr>
                   <th>Maximum Patients per Weekday</th>
-                  <td><input type="text" class="form-control"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="model.weekday_max" name="weekdayMax"></td>
                 </tr>
                 <tr>
                   <th>Maximum Patients per Weekend</th>
-                  <td><input type="text" class="form-control"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="model.weekend_max" name="weekendMax"></td>
                 </tr>
                 <tr>
                   <th>Facility Type</th>
@@ -39,6 +40,14 @@
                   </td>
                 </tr>
                 <tr>
+                  <th>County</th>
+                  <td>
+                    <select class="form-control" id="select-1" name="county_id">
+                      <option *ngFor="let counties of countiesList | async" value="{{counties.id}}">{{counties.name}}</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
                   <th>Sub-County</th>
                   <td>
                     <select class="form-control" id="select-1">
@@ -46,16 +55,7 @@
                       <option>Makadara</option>
                     </select>
                   </td>
-                </tr>
-                <tr>
-                  <th>County</th>
-                  <td>
-                    <select class="form-control" id="select-1">
-                      <option>Nairobi</option>
-                      <option>Kakamega</option>
-                    </select>
-                  </td>
-                </tr>
+                </tr>                
                 <tr>
                   <th>Central Site</th>
                   <td>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                   <th>Facility Phone Number</th>
-                  <td><input type="text" class="form-control"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="model.phone_number" name="phoneNumber"></td>
                 </tr>
                 <tr>
                   <th>Does Facility want to send SMS to Patients?</th>
@@ -78,45 +78,37 @@
                     </select>
                   </td>
                 </tr>
+                </tbody>
               </table>
               <hr>
               <div>
-              <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div style="text-align: center">
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <legend><b>Client Supported by</b></legend>
-                <label class="radio radio-inline no-margin">
-                  <input type="radio" class="radiobox style-2"/>
-                <span>GOK Sponsorship</span> 
-                </label>
-                <label class="radio radio-inline">
-                  <input type="radio" class="radiobox style-2"/>
-                <span>PEPFAR Sponsorship</span> 
-                </label>
+                <div class="inline-group" style="padding-left: 20px">
+                  <label class="radio"><input type="radio" name="radio-inline" checked="checked">GOK Sponsorship</label>
+                  <label class="radio"><input type="radio" name="radio-inline">PEPFAR Sponsorship</label>
                 </div>
-              </fieldset>
-              <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div style="text-align: center">
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <legend><b>Services Offered at the Facility</b></legend>
-                <label class="checkbox-inline"><input class="form" type="checkbox">ART</label>
-                <label class="checkbox-inline"><input class="form" type="checkbox">PMTCT</label>
-                <label class="checkbox-inline"><input class="form" type="checkbox">PEP</label>
+                <div class="inline-group" style="padding-left: 20px">
+                  <label class="checkbox"><input type="checkbox" name="checkbox-inline" checked="checked">ART</label>
+                  <label class="checkbox"><input type="checkbox" name="checkbox-inline">PMTCT</label>
+                  <label class="checkbox"><input type="checkbox" name="checkbox-inline">PEP</label>
                 </div>
-              </fieldset>
-              <fieldset class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div style="text-align: center">
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <legend><b>Client Supplied by</b></legend>
-                <label class="radio radio-inline no-margin">
-                  <input type="radio" class="radiobox style-2"/>
-                <span>KEMSA</span> 
-                </label>
-                <label class="radio radio-inline">
-                  <input type="radio" class="radiobox style-2"/>
-                <span>Kenya Pharma</span> 
-                </label>
+                <div class="inline-group" style="padding-left: 20px">
+                  <label class="radio"><input type="radio" name="radio-inline" checked="checked">KEMSA</label>
+                  <label class="radio"><input type="radio" name="radio-inline">Kenya Pharma</label>
                 </div>
-              </fieldset>
-              </div>            
-            </form>
+              </div>
+              </div>
+              <div style="text-align: right; padding: 12px">
+              <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update </button>
+              </div>
+              </form>
           </div>
         </sa-widget>
       </article>
