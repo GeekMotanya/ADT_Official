@@ -52,8 +52,8 @@
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Purpose of Visit</label>
-                                            <select class="form-control" id="select-1" placeholder="---Select One---">
-                                                <option>Select One</option>
+                                            <select class="form-control" id="select-1">
+                                                <option selected>Select One</option>
                                                 <option>Enrollment</option>
                                                 <option>Routine Refill</option>
                                                 <option>PEP Refill</option>
@@ -88,13 +88,8 @@
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Current Regimen</label>
-                                            <select class="form-control" id="select-1" placeholder="---Select One---">
-                                                <option>Select One</option>
-                                                <option>AF1A|AZT+3TC+NVP</option>
-                                                <option>AF1A|AZT+3TC+NVP</option>
-                                                <option>AF1A|AZT+3TC+NVP</option>
-                                                <option>AF1A|AZT+3TC+NVP</option>
-                                                <option>AF1A|AZT+3TC+NVP</option>
+                                            <select class="form-control" id="select-1" name="current_regimen" [(ngModel)]="current_regimen" (click)="setDrug(current_regimen)">
+                                                <option *ngFor="let regimenDrug of regimenDrugs" value={{regimenDrug.id}}>{{regimenDrug.name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -105,7 +100,7 @@
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Poor/Fair Adherance Reasons</label>
-                                            <select class="form-control" id="select-1" placeholder="---Select One---">
+                                            <select class="form-control" id="select-1">
                                                 <option>Select One</option>
                                                 <option>Toxicity/Side Effects</option>
                                                 <option>Share with Others</option>
@@ -182,21 +177,36 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
+                                                            <tr class="">
+                                                                <td id="complex_table">
+                                                                    <select class="form-control" id="input" *ngIf="regimen" name="drug" id="" [(ngModel)]="drug">
+                                                                        <option value="" *ngFor="let drug of regimen.drugs" value="{{drug.id}}">{{drug.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="unit"></td>
+                                                                <td id="complex_table">
+                                                                    <select class="form-control" name="batch_no" id=""></select>
+                                                                </td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="expiry_date"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="dose"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="exp_pill_count"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="actual_pill_count"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="duration"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="dispensed_qty"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="stock"></td>
+                                                                <td id="complex_table">
+                                                                    <select class="form-control" id="input" *ngIf="regimen" name="indication" id="">
+                                                                        <option *ngFor="let indication of regimen.drugs['indication']" value="{{indication.id}}">{{indication.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="comment"></td>
+                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="missed_pills"></td>
+                                                                <td id="complex_table">
+                                                                    <select class="form-control" name="action" id="">
+                                                                        <option value="0">Add</option>
+                                                                        <option value="1">Remove</option>
+                                                                    </select>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
