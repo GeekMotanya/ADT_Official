@@ -194,15 +194,29 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
      * Submit form data to the back-end server
      */
     onSubmit(): void {
-        if (this.formType == 'addPatient' ) {
+        if (this.formType == 'addPatient') {
             this._patientService.addPatient(this.patient).subscribe(
-                p => {   },
+                () => this.onSaveComplete(),
                 error => this.errorMessage = <any>error
             );
         }
         else {
-            this._patientService.updatePatient(this.patient).subscribe();
+            this._patientService.updatePatient(this.patient).subscribe(
+                (response) => this.onUpdateComplete(response),
+                (error) => { console.log("Error happened" + error) },
+                () => { console.log("the subscription is completed") }
+            );
         }
+    }
+
+    onSaveComplete() {
+        console.log('Created a new patient...');
+    }
+
+    onUpdateComplete(val) {
+        this.patientForm.reset();
+        alert('You have successfully updated'+val.first_name);
+        this.router.navigateByUrl('/home');
     }
 
     ngOnChanges() {

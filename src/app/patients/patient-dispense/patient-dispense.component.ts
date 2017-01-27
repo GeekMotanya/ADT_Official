@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Patient } from '../patients';
+import { Patient, Regimen } from '../patients';
 import { PatientsService } from '../patients.service';
+import { DispenseService } from './dispense.service';
 import 'rxjs/add/operator/switchMap';
 declare var $: any;
 
 @Component({
   selector: 'app-dispense',
   templateUrl: './patient-dispense.component.html',
+  styleUrls: ['./patient-dispense.component.css'],
   providers: [DatePipe]
 })
 export class PatientDispenseComponent implements OnInit {
@@ -28,11 +30,16 @@ export class PatientDispenseComponent implements OnInit {
 
   setdate: Date;
 
+  regimenDrugs: Regimen[];
+  regimen: any;
+  current_regimen: number;
+
   constructor(
     private _datePipe: DatePipe,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _patientService: PatientsService
+    private _patientService: PatientsService,
+    private _dispenseService: DispenseService
   ) { }
 
   ngOnInit() {
@@ -40,6 +47,10 @@ export class PatientDispenseComponent implements OnInit {
     this._route.params
       .switchMap((params: Params) => this._patientService.getPatient(+params['id']))
       .subscribe(patient => this.patient = patient);
+    this._dispenseService.getRegimenDrugs().subscribe(
+      regimen => this.regimenDrugs = regimen,
+      error => console.error(error)
+    )
   }
   /**
    * Get users input, add the number of days and
@@ -69,5 +80,12 @@ export class PatientDispenseComponent implements OnInit {
 
     this.ctrl = Math.floor(diff / divideBy['d']);
     console.log(this.ctrl);
+  }
+
+  setDrug(value) {
+    this._dispenseService.getRegimen(+[value]).subscribe(
+      regimen => this.regimen = regimen,
+      error => console.log(error)
+    )
   }
 }

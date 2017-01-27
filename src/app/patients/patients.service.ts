@@ -23,7 +23,7 @@ export class PatientsService {
     private _prophylaxisApi = this._apiUrl + 'lists/prophylaxis';
     private _whoStageApi = this._apiUrl + 'lists/whostage';
     private _pepReasonApi = this._apiUrl + 'lists/pep';
-    private _locationsApi = this._apiUrl + '/lists/sub_county';
+    private _locationsApi = this._apiUrl + '/lists/counties';
     private _familyPlanning = this._apiUrl + '/lists/familyplanning';
     private _patientsList = this._apiUrl + 'patients?page=';
     
@@ -35,7 +35,7 @@ export class PatientsService {
     getPaginatedPatients(id: number) {
         return this._http.get(this._patientsList+id)
             .map((response: Response) => <Patient[]>response.json())
-            // .do(data => console.log('All: ' + JSON.stringify(data)))
+            // .do(data => console.log('All: ' + JSON.stringify(data)))z
             .catch(this.handleError);
     }
 
@@ -61,7 +61,7 @@ export class PatientsService {
     }
 
     getLocation() {
-        return this._http.get(this._servicesApi)
+        return this._http.get(this._locationsApi)
             .map((response: Response) => <Locations[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -143,7 +143,7 @@ export class PatientsService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this._http.put(`${this._addPatientRoute}/${body['id']}`, body, options) // ...using put request
-            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+            .map(()=> body) 
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 
