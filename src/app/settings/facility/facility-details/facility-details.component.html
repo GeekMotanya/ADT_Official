@@ -13,46 +13,45 @@
                 <tbody>
                 <tr>
                   <th>Organization Code/MFL No</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="facility.code" name="organizationCode" disabled></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.code" name="code" disabled></td>
                 </tr>
                 <tr>
                   <th>Name of Organization/System</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="facility.name" name="organizationName"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.name" name="name"></td>
                 </tr>
                 <tr>
                   <th>Adult Age</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="facility.adult_age" name="adultAge"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.adult_age" name="adult_age"></td>
                 </tr>
                 <tr>
                   <th>Maximum Patients per Weekday</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="facility.weekday_max" name="weekdayMax"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.weekday_max" name="weekday_max"></td>
                 </tr>
                 <tr>
                   <th>Maximum Patients per Weekend</th>
-                  <td><input type="text" class="form-control" [(ngModel)]="facility.weekend_max" name="weekendMax"></td>
+                  <td><input type="text" class="form-control" [(ngModel)]="facility.weekend_max" name="weekend_max"></td>
                 </tr>
                 <tr>
                   <th>Facility Type</th>
-                  <td>
-                    <select class="form-control" id="select-1">
+                  <td *ngIf="facility.type">
+                    <select class="form-control" id="select-1" [(ngModel)]="facility.type.id" name="type">
                       <option *ngFor="let types of facilityTypes | async "value="{{types.id}}">{{types.name}}</option>
                     </select>
                   </td>
                 </tr>
                 <tr>
                   <th>County</th>
-                  <td>
-                    <select class="form-control" id="select-1"  name="county_id">
-                      <option *ngFor="let counties of countiesList | async" value="{{counties.id}}">{{counties.name}}</option>
+                  <td *ngIf="facility.county">
+                    <select class="form-control" id="select-1" [(ngModel)]="facility.county.id" name="county">
+                      <option *ngFor="let counties of countiesList | async" value="{{counties.id}}">{{counties.name | uppercase}}</option>
                     </select>
                   </td>
                 </tr>
                 <tr>
                   <th>Sub-County</th>
-                  <td>
-                    <select class="form-control" id="select-1">
-                      <option>Starehe</option>
-                      <option>Makadara</option>
+                  <td *ngIf="facility.subcounty">
+                    <select class="form-control" id="select-1" [(ngModel)]="facility.subcounty.id" name="subcounty">
+                      <option *ngFor="let subcounties of subcountiesList | async" value="{{subcounties.id}}">{{subcounties.name}}</option>
                     </select>
                   </td>
                 </tr>                
@@ -72,9 +71,9 @@
                 <tr>
                   <th>Does Facility want to send SMS to Patients?</th>
                   <td>
-                    <select class="form-control" id="select-1">
-                      <option>Yes</option>
-                      <option>No</option>
+                    <select class="form-control" id="select-1" [(ngModel)]="facility.is_sms" name="is_sms">
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
                     </select>
                   </td>
                 </tr>
@@ -85,8 +84,8 @@
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <legend><b>Client Supported by</b></legend>
                 <div class="inline-group" style="padding-left: 20px">
-                  <label class="radio"><input type="radio" name="radio-inline" checked="checked">GOK Sponsorship</label>
-                  <label class="radio"><input type="radio" name="radio-inline">PEPFAR Sponsorship</label>
+                  <label class="radio"><input type="radio" name="supporter_id" value="1" [(ngModel)]="facility.supporter_id">GOK Sponsorship</label>
+                  <label class="radio"><input type="radio" name="supporter_id" value="2"  [(ngModel)]="facility.supporter_id">PEPFAR Sponsorship</label>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">

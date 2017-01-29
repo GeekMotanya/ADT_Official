@@ -8,7 +8,9 @@ export class Facility {
     weekend_max: number;
     type: Types;
     county: Counties;
-    county_sub_id: number;
+    subcounty: SubCounties;
+    service: Services;
+    is_sms: number;
     supporter_id: number;
 }
 
@@ -22,7 +24,17 @@ export class Types {
     name: string;
 }
 
-// export class SubCounties {
-//     id: number;
-//     name: string;
-// }
+export class SubCounties {
+    id: number;
+    name: string;
+}
+
+export class Services {
+    id: number;
+    name: string;
+}
+
+export class Sources {
+    id: number;
+    name: string;
+}
