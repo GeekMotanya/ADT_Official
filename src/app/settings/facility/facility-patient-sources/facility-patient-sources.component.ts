@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked, OnChanges } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Sources } from '../facility';
 import { FacilityService } from '../facility.service';
@@ -13,7 +13,7 @@ export class FacilityPatientSourcesComponent implements OnInit {
 
   errorMessage: string;
   @Input() source = new Sources;
-  jQuery:any;
+  jQuery: any;
 
   constructor(private _facilityService: FacilityService, private router: Router) { }
 
@@ -26,15 +26,22 @@ export class FacilityPatientSourcesComponent implements OnInit {
   onSubmit(): void {
     this._facilityService.addPatientSource(this.source).subscribe(
       () => this.onSaveComplete(),
-      error=>console.log(error)
+      error => console.log(error)
     );
   }
 
   onSaveComplete() {
     console.log('Created a new patient source...');
     jQuery("#newPatientSource").modal("hide");
-    this.router.navigateByUrl('/settings/facility/facility-patient-sources');
     this._facilityService.getSources().subscribe(sources => this.source = sources);
+  }
+
+  disable(val) {
+    this._facilityService.disableSource(val).subscribe(
+      () => this._facilityService.getSources().subscribe(sources => this.source = sources),
+      (error) => { console.log("Error happened" + error) },
+      () => { console.log("the subscription is completed") }
+    );
   }
 
   get diagnostic() {

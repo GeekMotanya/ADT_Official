@@ -38,3 +38,8 @@ export class Sources {
     id: number;
     name: string;
 }
+
+export class Supporters {
+    id: number;
+    name: string;
+}

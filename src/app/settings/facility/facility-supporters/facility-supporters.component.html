@@ -1,3 +1,4 @@
+{{diagnostic}}
 <div id="content">
   <div class="row">
     <article class="col-sm-12">
@@ -10,15 +11,37 @@
         </header>
         <div>
           <div class="widget-body no-padding">           
-            <sa-datatable [options]="tableOptions" filter="true" paginationLength="true" tableClass="table table-striped table-bordered table-hover"
-              width="100%">
-              <thead>
-                <tr>
-                  <th data-hide="phone">Name</th>
-                  <th data-hide="phone,tablet">Options</th>
-                </tr>
-              </thead>
-            </sa-datatable>
+            <div class="table-responsive">
+              <div class="dt-toolbar">
+                <div class="col-xs-12 col-sm-6 hidden-xs">
+                  <div id="datatable_fixed_column_filter" class="dataTables_filter">
+                    <label>
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                      </span>
+                      <input type="search" class="form-control" placeholder="Search" aria-controls="datatable_fixed_column">
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Facility Supporters</th>
+                    <th style="width: 15%">Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let supporter of supporters">
+                    <td>{{supporter.name}}</td>
+                    <td>
+                      <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit">Edit</a>
+                      <a class="btn btn-danger btn-xs" >Disable</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <div id="newSupporter" class="modal fade" role="dialog">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -37,6 +60,43 @@
                 </div>
               </div>
             </div>
+            <div id="edit" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Edit</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <label>Name</label>
+                      <p><input type="text" class="form-control" style="width:100%"></p>
+                      <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
+                      <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="disable" class="modal fade" role="dialog">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Disable</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <h3>Are you sure?</h3>
+                      <div style="text-align: right">
+                      <button class="btn btn-primary"> Disable	</button>
+                      <button class="btn btn-danger" data-dismiss="modal"> Cancel	</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>          
           </div>
         </div>
       </sa-widget>

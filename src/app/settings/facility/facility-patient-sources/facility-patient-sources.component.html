@@ -36,7 +36,7 @@
                     <td>{{source.name}}</td>
                     <td>
                       <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit{{source.id}}" >Edit</a>
-                      <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#disable">Disable</a>
+                      <a class="btn btn-danger btn-xs" (click)="disable(source.id)">Disable</a>
                     </td>
                   </tr>
                 </tbody>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <!--Edit Modal-->
-            <div id="#edit{{source.id}}" class="modal fade" role="dialog">
+            <div id="edit{{source.id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
