@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { routing } from "./patients.routing";
 import { PatientsFilterPipe } from './patient-list/patients-filter.pipe';
 import { PaginationModule } from 'ng2-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PaginationModule } from 'ng2-bootstrap';
   ],
   imports: [
     routing,
+    ReactiveFormsModule,
     SharedModule,
     PaginationModule
   ],

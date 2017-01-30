@@ -4,6 +4,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Patient, Regimen } from '../patients';
 import { PatientsService } from '../patients.service';
 import { DispenseService } from './dispense.service';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { DrugsTable } from './dispense';
 import 'rxjs/add/operator/switchMap';
 declare var $: any;
 
@@ -20,6 +22,8 @@ export class PatientDispenseComponent implements OnInit {
 
   patient = new Patient();
 
+  drug_table = new DrugsTable();
+
   // Datepicker properties
   date_options: Object = {
     dateFormat: 'mm/dd/yy',
@@ -33,13 +37,20 @@ export class PatientDispenseComponent implements OnInit {
   regimenDrugs: Regimen[];
   regimen: any;
   current_regimen: number;
+  dispenseTableForm: FormGroup;
+
+  get rows(): FormArray{
+        return <FormArray>this.dispenseTableForm.get('dispenseTable');
+    }
+
 
   constructor(
     private _datePipe: DatePipe,
     private _route: ActivatedRoute,
     private _router: Router,
     private _patientService: PatientsService,
-    private _dispenseService: DispenseService
+    private _dispenseService: DispenseService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -51,6 +62,27 @@ export class PatientDispenseComponent implements OnInit {
       regimen => this.regimenDrugs = regimen,
       error => console.error(error)
     )
+    this.dispenseTableForm = this.fb.group({
+      dispenseTable: this.fb.array([this.buildRow()])
+    })
+  }
+
+  buildRow(): FormGroup {
+    return this.fb.group({
+      drug: '',
+      unit: '',
+      batch_no: '',
+      expiry_date: '',
+      dose: '',
+      exp_pill_count: '',
+      actual_pill_count: '',
+      duration: '',
+      dispensed_qty: '',
+      stock: '',
+      indication: '',
+      comment: '',
+      missed_pills: '',
+    });
   }
   /**
    * Get users input, add the number of days and
@@ -88,4 +120,14 @@ export class PatientDispenseComponent implements OnInit {
       error => console.log(error)
     )
   }
+
+  addRow() {
+    this.rows.push(this.buildRow());
+  }
+
+  removeRow(i: number) {
+    // remove address from the list
+    const control = <FormArray>this.dispenseTableForm.controls['dispenseTable'];
+    control.removeAt(i);
+}
 }

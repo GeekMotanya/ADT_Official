@@ -152,64 +152,88 @@
                                     </div>
                                 </fieldset>
                                 <fieldset class="col-xs-48 col-sm-12 col-md-12 col-lg-12">
-                                    <legend>Drug Details</legend>
+                                    <legend>Drug Details <button class=" btn btn-default pull-right" (click)="addRow()">Add</button></legend>
                                     <div class="col-sm-24">
                                         <div role="content">
                                             <div class="widget-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Drug</th>
-                                                                <th>Unit</th>
-                                                                <th>Batch No.</th>
-                                                                <th>Expiry Date</th>
-                                                                <th>Dose</th>
-                                                                <th>Expected Pill Count</th>
-                                                                <th>Actual Pill Count</th>
-                                                                <th>Duration</th>
-                                                                <th>Quantity Dispensed</th>
-                                                                <th>Stock on Hand</th>
-                                                                <th>Indication</th>
-                                                                <th>Comment</th>
-                                                                <th>Missed Pills</th>
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="">
-                                                                <td id="complex_table">
-                                                                    <select class="form-control" id="input" *ngIf="regimen" name="drug" id="" [(ngModel)]="drug">
-                                                                        <option value="" *ngFor="let drug of regimen.drugs" value="{{drug.id}}">{{drug.name}}</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="unit"></td>
-                                                                <td id="complex_table">
-                                                                    <select class="form-control" name="batch_no" id=""></select>
-                                                                </td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="expiry_date"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="dose"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="exp_pill_count"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="actual_pill_count"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="duration"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="dispensed_qty"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="stock"></td>
-                                                                <td id="complex_table">
-                                                                    <select class="form-control" id="input" *ngIf="regimen" name="indication" id="">
-                                                                        <option *ngFor="let indication of regimen.drugs['indication']" value="{{indication.id}}">{{indication.name}}</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="comment"></td>
-                                                                <td id="complex_table"><input class="form-control" id="input" type="text" name="missed_pills"></td>
-                                                                <td id="complex_table">
-                                                                    <select class="form-control" name="action" id="">
-                                                                        <option value="0">Add</option>
-                                                                        <option value="1">Remove</option>
-                                                                    </select>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                <div class="table-responsive">                                                   
+                                                    <form action="" [formGroup]="dispenseTableForm" (ngSubmit)="save()">
+                                                        <div formArrayName="dispenseTable" *ngFor="let row of rows.controls; let i=index">
+                                                            <div [formGroupName]="i">
+                                                                <table id="disp_table" class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Drug</th>
+                                                                            <th>Unit</th>
+                                                                            <th>Batch No.</th>
+                                                                            <th>Expiry Date</th>
+                                                                            <th>Dose</th>
+                                                                            <th>Expected Pill Count</th>
+                                                                            <th>Actual Pill Count</th>
+                                                                            <th>Duration</th>
+                                                                            <th>Quantity Dispensed</th>
+                                                                            <th>Stock on Hand</th>
+                                                                            <th>Indication</th>
+                                                                            <th>Comment</th>
+                                                                            <th>Missed Pills</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td id="complex_table">
+                                                                                <select class="form-control" id="input" *ngIf="regimen" formControlName="drug" id="">
+                                                                                    <option value="" *ngFor="let drug of regimen.drugs" value="{{drug.id}}">{{drug.name}}</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="unit">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <select class="form-control" formControlName="batch_no" id=""></select>
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="expiry_date">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="dose">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="exp_pill_count">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="actual_pill_count">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="duration">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="dispensed_qty">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="stock">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <select class="form-control" id="input" *ngIf="regimen" formControlName="indication" id="">
+                                                                                    <option *ngFor="let indication of regimen.drugs['indication']" value="{{indication.id}}">{{indication.name}}</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="comment">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <input class="form-control" id="input" type="text" formControlName="missed_pills">
+                                                                            </td>
+                                                                            <td id="complex_table">
+                                                                                <button class="btn btn-danger" (click)="removeRow(i)">Remove</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    {{ dispenseTableForm.value | json}}
                                                 </div>
                                             </div>
                                         </div>
