@@ -12,12 +12,12 @@ export class FacilityService {
     private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/api/';
 
     private _faciltyApi = this._apiUrl + 'facility';
-    private _countiesApi = this._apiUrl+ 'lists/counties';
-    private _typesApi = this._apiUrl+ 'lists/type';
-    private _subcountiesApi = this._apiUrl+ 'lists/sub_county';
-    private _servicesApi = this._apiUrl+ 'lists/services';
-    private _sourcesApi = this._apiUrl+ 'lists/patientsources';
-    private _supportersApi = this._apiUrl+ 'lists/supporters';
+    private _countiesApi = this._apiUrl + 'lists/counties';
+    private _typesApi = this._apiUrl + 'lists/type';
+    private _subcountiesApi = this._apiUrl + 'lists/sub_county';
+    private _servicesApi = this._apiUrl + 'lists/services';
+    private _sourcesApi = this._apiUrl + 'lists/patientsources';
+    private _supportersApi = this._apiUrl + 'lists/supporters';
 
     constructor(private _http: Http) { }
 
@@ -34,31 +34,31 @@ export class FacilityService {
     getCounties() {
         return this._http.get(this._countiesApi)
             .map((response: Response) => <Counties[]>response.json())
-            .catch(this.handleError);        
+            .catch(this.handleError);
     }
 
-    getSubcounties(){
+    getSubcounties() {
         return this._http.get(this._subcountiesApi)
             .map((response: Response) => <SubCounties[]>response.json())
-            .catch(this.handleError);           
+            .catch(this.handleError);
     }
 
-    getFacilityTypes(){
+    getFacilityTypes() {
         return this._http.get(this._typesApi)
             .map((response: Response) => <Types[]>response.json())
-            .catch(this.handleError); 
+            .catch(this.handleError);
     }
 
-    getServices(){
+    getServices() {
         return this._http.get(this._servicesApi)
             .map((response: Response) => <Services[]>response.json())
-            .catch(this.handleError);               
+            .catch(this.handleError);
     }
 
-    getSources(){
-         return this._http.get(this._sourcesApi)
+    getSources() {
+        return this._http.get(this._sourcesApi)
             .map((response: Response) => <Sources[]>response.json())
-            .catch(this.handleError);        
+            .catch(this.handleError);
     }
 
     // Put
@@ -83,6 +83,15 @@ export class FacilityService {
         return this._http.post(this._sourcesApi, body, options) // ...using post request
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+    }
+
+    // Delete
+
+    deleteSource(body: Object): Observable<Sources[]> {
+        return this._http
+            .delete(this._sourcesApi)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     // Error Handling
