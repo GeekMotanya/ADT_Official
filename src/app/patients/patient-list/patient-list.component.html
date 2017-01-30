@@ -59,7 +59,7 @@
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a>
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/detail',patient.id]">Detail</a>
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/edit',patient.id]">Edit</a>
-                                                <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/disable',patient.id]">Disable</a>
+                                                <button class="btn btn-primary btn-xs" (click)="disable(patient.id)">Disable</button>
                                             </td>
                                         </tr>
                                     </tbody>

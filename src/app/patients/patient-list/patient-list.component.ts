@@ -37,4 +37,12 @@ export class PatientListComponent implements OnInit, DoCheck {
     this.service.getPaginatedPatients(event.page).subscribe(p => this.patients = p); // TODO: Error handling
     console.log('Number items per page: ' + event.itemsPerPage);
   }
+
+  disable(val) {
+    this.service.disablePatient(val).subscribe(
+                () => this.service.getPatients().subscribe(p => this.patients = p),
+                (error) => { console.log("Error happened" + error) },
+                () => { console.log("the subscription is completed") }
+            );
+  }
 }
