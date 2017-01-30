@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Facility, Counties, Types } from '../facility';
+import { Facility, Counties, Types, SubCounties } from '../facility';
 import { FacilityService } from '../facility.service';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,9 @@ export class FacilityDetailsComponent implements OnInit {
   facility = new Facility();
   errorMessage: string;
   private countiesList: Observable<string[]>;
+  private subcountiesList: Observable<string[]>;
   private facilityTypes: Observable<string[]>;
+  private serviceTypes: Observable<string[]>;
 
   constructor(private route: ActivatedRoute,
     private _router: Router,
@@ -30,7 +32,9 @@ export class FacilityDetailsComponent implements OnInit {
       .subscribe(facility => this.facility = facility);
 
     this.countiesList = this._facilityService.getCounties();
+    this.subcountiesList = this._facilityService.getSubcounties();
     this.facilityTypes = this._facilityService.getFacilityTypes();
+    this.serviceTypes = this._facilityService.getServices();
   }
 
   getFacilityDetails(id: number) {

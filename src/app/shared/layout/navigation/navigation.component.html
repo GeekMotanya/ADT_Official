@@ -7,7 +7,7 @@
   <nav>
     <!-- NOTE: Notice the gaps after each icon usage <i></i>..
     Please note that these links work a bit different than
-    traditional href="" links. See documentation for details.
+    traditional  links. See documentation for details.
     -->
 
     <ul saSmartMenu>
@@ -18,7 +18,7 @@
         </li>
         					<!-- !! Patients Zone Begin !! -->
 					<li>
-						<a href="#" title="Patients"><i class="fa fa-lg fa-fw fa-medkit"></i> <span class="menu-item-parent"> PATIENTS</span></a>
+						<a  title="Patients"><i class="fa fa-lg fa-fw fa-medkit"></i> <span class="menu-item-parent"> PATIENTS</span></a>
 						<ul>
 							<li>
 							<a [routerLink]="['/patients/add']"><span class="menu-item-parent"><i class="glyphicon glyphicon-plus"></i> Add patients</span></a>
@@ -27,25 +27,38 @@
 							<a [routerLink]="['/patients/list']"><span class="menu-item-parent"><i class="fa fa-lg fa-fw fa-table"></i> List of Patients</span></a>
 							</li>
 							<li>
-							<a href="#"><span class="menu-item-parent"><i class="fa fa-download"></i> Patients master List</span></a>
+							<a><span class="menu-item-parent"><i class="fa fa-download"></i> Patients master List</span></a>
 							</li>
 						</ul>
 					</li>
 					<!-- !! Patients Zone End !! -->
 					<!-- !! Inventory Zone Begin !! -->
 					<li>
-						<a href="#" title="Inventory"><i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent"> INVENTORY</span></a>
+						<a  title="Inventory"><i class="fa fa-lg fa-fw fa-bank"></i> <span class="menu-item-parent"> INVENTORY</span></a>
 						<ul>
 							<li>
-							<a href="#"><span class="menu-item-parent">Stock transactions</span></a>
+							<a><span class="menu-item-parent">Stock transactions</span></a>
 							<ul>
 								<li>
-								<a [routerLink]="['/inventory/stock-transactions']"><span class="menu-item-parent">Receive/Issue</span></a>
+									<a><span class="menu-item-parent"> Main Store</span></a>
+									<ul>
+										<li>
+											<a [routerLink]="['/inventory/stock-transactions']"><span class="menu-item-parent">Receive/Issue</span></a>
+										</li>
+									</ul>								
+								</li>
+								<li>
+									<a><span class="menu-item-parent"> Main Pharmacy</span></a>
+									<ul>
+										<li>
+											<a [routerLink]="['/inventory/stock-transactions']"><span class="menu-item-parent">Receive/Issue</span></a>
+										</li>
+									</ul>								
 								</li>
 							</ul>
 							</li>			
 							<li>
-							<a href="#"><span class="menu-item-parent">Stores</span></a>
+							<a><span class="menu-item-parent">Stores</span></a>
 							</li>
 						</ul>
 					</li>
@@ -57,157 +70,157 @@
 					<!-- !! Orders Zone End !! -->
           <!-- reports -->
 					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-folder-open-o" aria-hidden="true"></i> <span class="menu-item-parent"> REPORTS</span></a>
+						<a><i class="fa fa-lg fa-fw fa-folder-open-o" aria-hidden="true"></i> <span class="menu-item-parent"> REPORTS</span></a>
 						<ul>
 							<li>
-								<a href="#"><i class="glyphicon glyphicon-list-alt"></i> Standard Reports</a>
+								<a><i class="glyphicon glyphicon-list-alt"></i> Standard Reports</a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>Number of Patients Enrolled in a period</a>
+										<a><i class="fa fa-table"></i>Number of Patients Enrolled in a period</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/glyph.html"><i class="fa fa-table"></i>Number of Patients Started on ART in Period</a>
+										<a><i class="fa fa-table"></i>Number of Patients Started on ART in Period</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/flags.html"><i class="fa fa-bar-chart-o"></i>Graph of Number of Patients Enrolled per Month in a given Year</a>
+										<a><i class="fa fa-bar-chart-o"></i>Graph of Number of Patients Enrolled per Month in a given Year</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Cummulative Number of Patients to Date</a>
+										<a><i class="fa fa-table"></i>Cummulative Number of Patients to Date</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Number of Active Patients Receiving ART [by Regimen]</a>
+										<a><i class="fa fa-table"></i>Number of Active Patients Receiving ART [by Regimen]</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Family Plannig Summary</a>
+										<a><i class="fa fa-table"></i>Family Plannig Summary</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patient Indications Summary</a>
+										<a><i class="fa fa-table"></i>Patient Indications Summary</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>TB Stages Summary</a>
+										<a><i class="fa fa-table"></i>TB Stages Summary</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Chronic Illness Summary</a>
+										<a><i class="fa fa-table"></i>Chronic Illness Summary</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patient Allergy Summary</a>
+										<a><i class="fa fa-table"></i>Patient Allergy Summary</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patient Status and Disclosure</a>
+										<a><i class="fa fa-table"></i>Patient Status and Disclosure</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patient BMI Summary</a>
+										<a><i class="fa fa-table"></i>Patient BMI Summary</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patient on Drug Prophylaxis</a>
+										<a><i class="fa fa-table"></i>Patient on Drug Prophylaxis</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-							<a href="#"><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Visitng Patients</span></a>
+							<a><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Visitng Patients</span></a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>List of Patients Scheduled to Visit</a>
+										<a><i class="fa fa-table"></i>List of Patients Scheduled to Visit</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>List of Patients Started [on a particular Date]</a>
+										<a><i class="fa fa-table"></i>List of Patients Started [on a particular Date]</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>List of Patients who Visit for Refill</a>
+										<a><i class="fa fa-table"></i>List of Patients who Visit for Refill</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patients Missing Appointments</a>
+										<a><i class="fa fa-table"></i>Patients Missing Appointments</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patients Visit Summary</a>
+										<a><i class="fa fa-table"></i>Patients Visit Summary</a>
 									</li>
 								</ul>
 							</li>			
 							<li>
-							<a href="#"><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Early Warning Indicators</span></a>
+							<a><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Early Warning Indicators</span></a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>Active Patients Who have changed regimen</a>
+										<a><i class="fa fa-table"></i>Active Patients Who have changed regimen</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>List of Patients Starting [by regimen]</a>
+										<a><i class="fa fa-table"></i>List of Patients Starting [by regimen]</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>HIV Early Warning Indicators</a>
+										<a><i class="fa fa-table"></i>HIV Early Warning Indicators</a>
 									</li>
 									<li class="menu-item-parent indent-text">
-										<a href=""><i class="fa fa-bar-chart-o"></i>Patients Adherence Report</a>
+										<a><i class="fa fa-bar-chart-o"></i>Patients Adherence Report</a>
 										<ul>
 											<li>
-												<a href=""><i class="fa fa-bar-chart-o"></i>Appointment</a>
+												<a><i class="fa fa-bar-chart-o"></i>Appointment</a>
 											</li>
 											<li>
-												<a href=""><i class="fa fa-bar-chart-o"></i>Pill Count</a>
+												<a><i class="fa fa-bar-chart-o"></i>Pill Count</a>
 											</li>
 											<li>
-												<a href=""><i class="fa fa-bar-chart-o"></i>Missed Pill</a>
+												<a><i class="fa fa-bar-chart-o"></i>Missed Pill</a>
 											</li>
 										</ul>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patients Non Adherence Report</a>
+										<a><i class="fa fa-table"></i>Patients Non Adherence Report</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Lost to Followup report</a>
+										<a><i class="fa fa-table"></i>Lost to Followup report</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-							<a href="#"><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Drug Inventory</span></a>
+							<a><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Drug Inventory</span></a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>Drug Consumption Report</a>
+										<a><i class="fa fa-table"></i>Drug Consumption Report</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Patient Drug Consumption Report</a>
+										<a><i class="fa fa-table"></i>Patient Drug Consumption Report</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Drug Stock on Hand Report</a>
+										<a><i class="fa fa-table"></i>Drug Stock on Hand Report</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>Facility Summary Commodity Report</a>
+										<a><i class="fa fa-table"></i>Facility Summary Commodity Report</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Short Dated Stocks &lt;6 Months to Expiry</a>
+										<a><i class="fa fa-table"></i>Short Dated Stocks &lt;6 Months to Expiry</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>List of Expired Drugs</a>
+										<a><i class="fa fa-table"></i>List of Expired Drugs</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>Stock Consumption</a>
+										<a><i class="fa fa-table"></i>Stock Consumption</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Daily Drug Consumption</a>
+										<a><i class="fa fa-table"></i>Daily Drug Consumption</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Drugs Issued at [place]</a>
+										<a><i class="fa fa-table"></i>Drugs Issued at [place]</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Drugs Received at [place]</a>
+										<a><i class="fa fa-table"></i>Drugs Received at [place]</a>
 									</li>
 								</ul>							
 							</li>
 							<li>
-							<a href="#"><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> MOH FORMS</span></a>
+							<a><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> MOH FORMS</span></a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-file-excel-o"></i>Get MOH 711</a>
+										<a><i class="fa fa-file-excel-o"></i>Get MOH 711</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/fafa.html"><i class="fa fa-file-excel-o"></i>Get MOH 731</a>
+										<a><i class="fa fa-file-excel-o"></i>Get MOH 731</a>
 									</li>
 								</ul>
 							</li>			
 							<li>
-							<a href="#"><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Guidlines</span></a>
+							<a><span class="menu-item-parent"><i class="glyphicon glyphicon-list-alt"></i> Guidlines</span></a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-file-pdf-o"></i>List of Guidlines</a>
+										<a><i class="fa fa-file-pdf-o"></i>List of Guidlines</a>
 									</li>
 								</ul>
 							</li>
@@ -217,10 +230,10 @@
 
 					<!-- settings -->
 					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-gear" aria-hidden="true"></i> <span class="menu-item-parent"> SETTINGS</span></a>
+						<a><i class="fa fa-lg fa-fw fa-gear" aria-hidden="true"></i> <span class="menu-item-parent"> SETTINGS</span></a>
 						<ul>
 							<li>
-								<a href="#"><i class="fa fa-gear"></i> Regimens</a>
+								<a><i class="fa fa-gear"></i> Regimens</a>
 								<ul>
 									<li class="indent-text">
 										<a [routerLink]="['/settings/regimens/regimen-management']"><i class="fa fa-table"></i>Regimens</a>
@@ -237,7 +250,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-gear"></i> Drugs</a>
+								<a><i class="fa fa-gear"></i> Drugs</a>
 								<ul>
 									<li class="indent-text">
 										<a [routerLink]="['/settings/drugs/drug-classification']"><i class="fa fa-table"></i>Drug Classification</a>
@@ -275,10 +288,10 @@
 								</ul>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-gear"></i> Facility</a>
+								<a><i class="fa fa-gear"></i> Facility</a>
 								<ul>
 									<li class="indent-text">
-										<a [routerLink]="['/settings/facility/facility-details']"><i class="fa fa-edit"></i>Facility Details</a>
+										<a [routerLink]="['/settings/facility/facility-details/1']"><i class="fa fa-edit"></i>Facility Details</a>
 									</li>
 									<li class="indent-text">
 										<a [routerLink]="['/settings/facility/facility-users']"><i class="fa fa-table"></i>Facility Users</a>
@@ -292,24 +305,24 @@
 								</ul>
 							</li>
 							<!--<li>
-								<a href="#"><i class="fa fa-gear"></i> Order</a>
+								<a><i class="fa fa-gear"></i> Order</a>
 								<ul>
 									<li class="indent-text">
-										<a href="ajax/fa.html"><i class="fa fa-table"></i>Order Drugs</a>
+										<a><i class="fa fa-table"></i>Order Drugs</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/glyph.html"><i class="fa fa-table"></i>Order Regimens</a>
+										<a><i class="fa fa-table"></i>Order Regimens</a>
 									</li>
 									<li class="indent-text">
-										<a href="ajax/flags.html"><i class="fa fa-table"></i>Order Regimen Category</a>
+										<a><i class="fa fa-table"></i>Order Regimen Category</a>
 									</li>
 									<li class="indent-text">
-										<a href=""><i class="fa fa-table"></i>Order Facility</a>
+										<a><i class="fa fa-table"></i>Order Facility</a>
 									</li>
 								</ul>
 							</li>-->
 							<li>
-								<a href="#"><i class="fa fa-gear"></i> Others</a>
+								<a><i class="fa fa-gear"></i> Others</a>
 								<ul>
 									<li class="indent-text">
 										<a [routerLink]="['/settings/others/service-points']"><i class="fa fa-table"></i>CCC Store/Pharmacy</a>
