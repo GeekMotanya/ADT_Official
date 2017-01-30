@@ -6,6 +6,7 @@ import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illn
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs/Observable';
 
+declare var $:any;
 
 @Component({
     selector: 'patient-form',
@@ -29,6 +30,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
     prophylaxis = new Prophylaxis;
     errorMessage: string;
     patientServices: Service[];
+    patientSources: Source[];
     patientRegimen: Observable<Regimen[]>;
     patientWhostage: Observable<Who_stage[]>;
     patientProphylaxis: Observable<IMultiSelectOption[]>;
@@ -40,8 +42,6 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
     private chronicIllness: Observable<IMultiSelectOption[]>;
 
     private allergiesList: Observable<IMultiSelectOption[]>;
-
-    private patientSources: Observable<string[]>;
 
     private mySettings: IMultiSelectSettings = {
         pullRight: false,
@@ -73,7 +73,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
         this.familyPlanning = this._patientService.getFamilyPlan();
         this.chronicIllness = this._patientService.getIllness();
         this.allergiesList = this._patientService.getAllergies();
-        this.patientSources = this._patientService.getSource();
+        this._patientService.getSource().subscribe(source => this.patientSources = source);
         this._patientService.getServices().subscribe(service => { this.patientServices = service });
         this.patientRegimen = this._patientService.getRegimen();
         this.patientWhostage = this._patientService.getWho_stage();
@@ -85,7 +85,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
 
     /**
      * Validation for template driven forms
-     * Visit angular.i0 -> 
+     * Visit angular.io -> 
      * Forms Validation Cookbook Tutorial
      */
     patientForm: NgForm;
@@ -197,7 +197,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
         if (this.formType == 'addPatient') {
             this._patientService.addPatient(this.patient).subscribe(
                 () => this.onSaveComplete(),
-                error => this.errorMessage = <any>error
+                (error) => { console.log("Error happened" + error) }
             );
         }
         else {
@@ -211,13 +211,26 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
 
     onSaveComplete() {
         console.log('Created a new patient...');
+        this.patientForm.reset();
+        this.notification('created');
+        this.router.navigateByUrl('/patients/list');
     }
 
     onUpdateComplete(val) {
         this.patientForm.reset();
-        alert('You have successfully updated'+val.first_name);
-        this.router.navigateByUrl('/home');
+        this.notification('updated');
+        this.router.navigateByUrl('/patients/list');
     }
+
+    notification(value: string) {
+    $.smallBox({
+      title: `You have successfully ${value} the patient`,
+      content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+      color: "#296191",
+      iconSmall: "fa fa-thumbs-up bounce animated",
+      timeout: 4000
+    });
+  }
 
     ngOnChanges() {
         this.form = this.formType;

@@ -23,17 +23,17 @@ export class PatientsService {
     private _prophylaxisApi = this._apiUrl + 'lists/prophylaxis';
     private _whoStageApi = this._apiUrl + 'lists/whostage';
     private _pepReasonApi = this._apiUrl + 'lists/pep';
-    private _locationsApi = this._apiUrl + '/lists/counties';
-    private _familyPlanning = this._apiUrl + '/lists/familyplanning';
+    private _locationsApi = this._apiUrl + 'lists/counties';
+    private _familyPlanning = this._apiUrl + 'lists/familyplanning';
     private _patientsList = this._apiUrl + 'patients?page=';
-    
+
     constructor(private _http: Http) { }
 
     /**
      * GET Section
      */
     getPaginatedPatients(id: number) {
-        return this._http.get(this._patientsList+id)
+        return this._http.get(this._patientsList + id)
             .map((response: Response) => <Patient[]>response.json())
             // .do(data => console.log('All: ' + JSON.stringify(data)))z
             .catch(this.handleError);
@@ -130,8 +130,8 @@ export class PatientsService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this._http.post(this._addPatientRoute, body, options) // ...using post request
-            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+            .map(() => body) // ...and calling .json() on the response to return data
+            .catch(this.handleError); //...errors if any
     }
 
     /**
@@ -143,15 +143,21 @@ export class PatientsService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this._http.put(`${this._addPatientRoute}/${body['id']}`, body, options) // ...using put request
-            .map(()=> body) 
+            .map(() => body)
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 
-    private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
-        let msg = `Status code ${error.status} on url ${error.url}`;
-        console.error(msg);
-        return Observable.throw(msg);
+    private handleError(error: Response | any) {
+        // In a real world app, we might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Promise.reject(errMsg);
     }
 }
