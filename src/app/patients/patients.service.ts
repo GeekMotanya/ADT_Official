@@ -146,6 +146,14 @@ export class PatientsService {
             .map(() => body)
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
+    /**
+     * PUT Section: Update of patients takes place.
+     */
+    disablePatient(id:string): Observable<Patient> {
+        return this._http.delete(`${this._addPatientRoute}/${id}`) // ...using put request
+            .map(() => { })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
+    }
 
     private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
