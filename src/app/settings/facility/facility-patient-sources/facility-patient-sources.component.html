@@ -19,7 +19,7 @@
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-search"></i>
                       </span>
-                      <input type="search" class="form-control" [(ngModel)]="source.name" placeholder="Search" aria-controls="datatable_fixed_column">
+                      <input type="search" class="form-control" placeholder="Search" aria-controls="datatable_fixed_column">
                     </label>
                   </div>
                 </div>
@@ -35,7 +35,7 @@
                   <tr *ngFor="let source of source.data">
                     <td>{{source.name}}</td>
                     <td>
-                      <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit">Edit</a>
+                      <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit{{source.id}}" >Edit</a>
                       <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#disable">Disable</a>
                     </td>
                   </tr>
@@ -51,9 +51,9 @@
                     <h4 class="modal-title">New Patient Source</h4>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form (ngSubmit)="onSubmit()" #sourcesForm="ngForm">
                       <label>Client Source Name</label>
-                      <input type="text" class="form-control"><br>
+                      <input type="text" class="form-control" [(ngModel)]="source.name" name="name"><br>
                       <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save	</button>
                       <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
                     </form>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <!--Edit Modal-->
-            <div id="edit" class="modal fade" role="dialog">
+            <div id="#edit{{source.id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">

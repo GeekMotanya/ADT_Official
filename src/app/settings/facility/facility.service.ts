@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class FacilityService {
 
-    private _apiUrl = 'http://41.89.6.210/adt-core/lib/public/api/';
+    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/api/';
 
     private _faciltyApi = this._apiUrl + 'facility';
     private _countiesApi = this._apiUrl+ 'lists/counties';
@@ -58,7 +58,6 @@ export class FacilityService {
     getSources(){
          return this._http.get(this._sourcesApi)
             .map((response: Response) => <Sources[]>response.json())
-            .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);        
     }
 
@@ -72,6 +71,18 @@ export class FacilityService {
         return this._http.put(`${this._faciltyApi}/${body['id']}`, body, options) // ...using put request
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
+    }
+
+    // Post
+
+    addPatientSource(body: Object): Observable<Sources[]> {
+        let bodyString = JSON.stringify(body); // Stringify payload
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+
+        return this._http.post(this._sourcesApi, body, options) // ...using post request
+            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
 
     // Error Handling
