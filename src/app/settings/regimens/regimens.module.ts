@@ -9,6 +9,9 @@ import { RegimenChangeReasonComponent } from "./regimen-change-reason/regimen-ch
 import { RegimenDrugsComponent } from "./regimen-drugs/regimen-drugs.component";
 import { RegimenManagementComponent } from "./regimen-management/regimen-management.component";
 import { RegimenServiceTypeComponent } from "./regimen-service-type/regimen-service-type.component";
+import { RegimenOrderComponent } from "./regimen-order/regimen-order.component";
+import { RegimenCategoryComponent } from "./regimen-category/regimen-category.component";
+import { RegimenCategoryOrderComponent } from "./regimen-category-order/regimen-category-order.component";
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { RegimenServiceTypeComponent } from "./regimen-service-type/regimen-serv
         RegimenServiceTypeComponent,
         RegimenDrugsComponent,
         RegimenManagementComponent,
-        RegimenChangeReasonComponent
+        RegimenChangeReasonComponent,
+        RegimenOrderComponent,
+        RegimenCategoryComponent,
+        RegimenCategoryOrderComponent
     ],
     imports: [
         CommonModule,

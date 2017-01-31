@@ -77,7 +77,17 @@ export class FacilityService {
         return this._http.put(`${this._faciltyApi}/${body['id']}`, body, options) // ...using put request
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
-    }    
+    }
+
+    updatePatientSource(body: Object): Observable<Sources> {
+        let bodyString = JSON.stringify(body);
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put(`${this._sourcesApi}/${body['id']}`, body, options)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }  
 
     // Post
 
@@ -91,7 +101,7 @@ export class FacilityService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
 
-    addSupporter(body: Object): Observable<Supporters[]> {
+    addSupporter(body: Object): Observable<Supporters> {
         let bodyString = JSON.stringify(body); // Stringify payload
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
@@ -118,8 +128,6 @@ export class FacilityService {
     // Error Handling
 
     private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
         let msg = `Status code ${error.status} on url ${error.url}`;
         console.error(msg);
         return Observable.throw(msg);

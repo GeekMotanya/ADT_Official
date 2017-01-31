@@ -13,21 +13,33 @@ export class FacilityPatientSourcesComponent implements OnInit {
 
   errorMessage: string;
   @Input() source = new Sources;
+  @Input() formType: string;
   jQuery: any;
 
   constructor(private _facilityService: FacilityService, private router: Router) { }
 
   sourcesForm: NgForm;
+  editForm: NgForm;
 
   ngOnInit() {
     this._facilityService.getSources().subscribe(sources => this.source = sources);
   }
 
   onSubmit(): void {
-    this._facilityService.addPatientSource(this.source).subscribe(
+    if (this.formType == 'sourcesForm') {
+            this._facilityService.addPatientSource(this.source).subscribe(
       () => this.onSaveComplete(),
       error => console.log(error)
     );
+        }
+        else {
+            this._facilityService.updatePatientSource(this.source).subscribe(
+                (response) => this.onUpdateComplete(response),
+                (error) => { console.log("Error happened" + error) },
+                () => { console.log("the subscription is completed") }
+            );
+        }
+    
   }
 
   onSaveComplete() {
@@ -35,6 +47,12 @@ export class FacilityPatientSourcesComponent implements OnInit {
     jQuery("#newPatientSource").modal("hide");
     this._facilityService.getSources().subscribe(sources => this.source = sources);
   }
+
+  onUpdateComplete(val) {
+        this.editForm.reset();
+        jQuery("#edit").modal("hide");
+        this._facilityService.getSources().subscribe(sources => this.source = sources);
+    }
 
   disable(val) {
     this._facilityService.disableSource(val).subscribe(
