@@ -79,7 +79,7 @@ export class FacilityService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 
-    updatePatientSource(body: Object): Observable<Sources> {
+updatePatientSource(body: Object): Observable<Sources[]> {
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
         let options = new RequestOptions({ headers: headers });
@@ -101,7 +101,7 @@ export class FacilityService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
 
-    addSupporter(body: Object): Observable<Supporters> {
+    addSupporter(body: Object): Observable<Supporters[]> {
         let bodyString = JSON.stringify(body); // Stringify payload
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
