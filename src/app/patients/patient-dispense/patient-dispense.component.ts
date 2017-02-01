@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Patient, Regimen } from '../patients';
 import { PatientsService } from '../patients.service';
 import { DispenseService } from './dispense.service';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { DrugsTable } from './dispense';
 import 'rxjs/add/operator/switchMap';
 declare var $: any;
@@ -15,10 +15,7 @@ declare var $: any;
   styleUrls: ['./patient-dispense.component.css'],
   providers: [DatePipe]
 })
-export class PatientDispenseComponent implements OnInit {
-
-  // TODO: Remove this segment
-  public ctrl: number;
+export class PatientDispenseComponent implements OnInit, DoCheck {
 
   patient = new Patient();
 
@@ -37,11 +34,11 @@ export class PatientDispenseComponent implements OnInit {
   regimenDrugs: Regimen[];
   regimen: any;
   current_regimen: number;
-  dispenseTableForm: FormGroup;
+  dispenseForm: FormGroup;
 
-  get rows(): FormArray{
-        return <FormArray>this.dispenseTableForm.get('dispenseTable');
-    }
+  get rows(): FormArray {
+    return <FormArray>this.dispenseForm.get('drugs');
+  }
 
 
   constructor(
@@ -61,27 +58,59 @@ export class PatientDispenseComponent implements OnInit {
     this._dispenseService.getRegimenDrugs().subscribe(
       regimen => this.regimenDrugs = regimen,
       error => console.error(error)
-    )
-    this.dispenseTableForm = this.fb.group({
-      dispenseTable: this.fb.array([this.buildRow()])
+    );
+    this.dispenseForm = this.fb.group({
+      dispense_point: ['', Validators.required],
+      ccc_number: [{ value: this.patient.ccc_number, disabled: true }],
+      patient_name: [{ value: this.patient.first_name, disabled: true }],
+      purpose_id: '',
+      visit_date: ['', Validators.required],
+      appointment_date: ['', Validators.required],
+      current_height: '',
+      current_weight: ['', Validators.required],
+      days_to: ['', Validators.required],
+      current_regimen: ['', Validators.required],
+      last_regimen_id: [{ value: '', disabled: true }],
+      appointment_adherance: '',
+      non_adherance_reason_id: '',
+      patient_id: '',
+      drugs: this.fb.array([this.buildRow()])
+    });
+    const regimenControl = this.dispenseForm.get('current_regimen');
+    regimenControl.valueChanges.subscribe(value => this.setDrug(value)); // checks for changes in value
+  }
+
+  ngDoCheck() {
+    this.dispenseForm.patchValue({
+      ccc_number: this.patient.ccc_number,
+      patient_name: this.patient.first_name,
+      patient_id: this.patient.id
     })
+  }
+
+  populateTestData(value: number): void {
+    this.dispenseForm.patchValue({
+      days_to: value,
+    });
   }
 
   buildRow(): FormGroup {
     return this.fb.group({
-      drug: '',
+      drug_id: '',
       unit: '',
       batch_no: '',
       expiry_date: '',
-      dose: '',
-      exp_pill_count: '',
+      dose_id: '',
+      expected_pill_count: '',
       actual_pill_count: '',
       duration: '',
       dispensed_qty: '',
-      stock: '',
+      stock_id: '',
       indication: '',
       comment: '',
       missed_pills: '',
+      facility_id: 1,
+      appointment_id: 1 // TODO: Remove
     });
   }
   /**
@@ -110,8 +139,13 @@ export class PatientDispenseComponent implements OnInit {
       s: 1000
     };
 
-    this.ctrl = Math.floor(diff / divideBy['d']);
-    console.log(this.ctrl);
+    let ctrl = Math.floor(diff / divideBy['d']);
+    // Activate the function that sets the days remaining field
+    this.populateTestData(ctrl);
+     this.dispenseForm.patchValue({
+       appointment_date: todate
+     });
+    console.log(ctrl);
   }
 
   setDrug(value) {
@@ -127,7 +161,31 @@ export class PatientDispenseComponent implements OnInit {
 
   removeRow(i: number) {
     // remove address from the list
-    const control = <FormArray>this.dispenseTableForm.controls['dispenseTable'];
+    const control = <FormArray>this.dispenseForm.controls['drugs'];
     control.removeAt(i);
-}
+  }
+
+  save() {
+        this._dispenseService.saveDispenseDetails(this.dispenseForm.value).subscribe(
+          () => { this.notification('dispensed')},
+          error => console.log(error)
+        )
+  }
+
+  setDispenseDate(val) {
+    this.dispenseForm.patchValue({
+      visit_date: val
+    });
+  }
+
+  notification(value: string) {
+    $.smallBox({
+      title: `You have successfully ${value} drugs to the patient`,
+      content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+      color: "#296191",
+      iconSmall: "fa fa-thumbs-up bounce animated",
+      timeout: 4000
+    });
+  }
+
 }

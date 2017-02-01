@@ -11,6 +11,7 @@ import { Regimen } from '../patients';
 export class DispenseService {
 
     private _apiUrl = 'assets/api/patients/dispense.dummy.json';
+    private _url = 'http://192.168.133.10/adt-core/lib/public/api/patients'
 
     constructor(private _http: Http) { }
 
@@ -39,5 +40,17 @@ export class DispenseService {
         let msg = `Status code ${error.status} on url ${error.url}`;
         console.error(msg);
         return Observable.throw(msg);
+    }
+    /**
+     * POST Section
+     */
+    saveDispenseDetails(body: Object){
+        let bodyString = JSON.stringify(body); // Stringify payload
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+
+         return this._http.post(`${this._url}/${body['patient_id']}/dispense`, body, options) // ...using put request
+            .map(() => body)
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 }
