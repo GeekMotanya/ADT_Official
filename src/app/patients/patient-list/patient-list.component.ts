@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Patient } from '../patients';
 import { PatientsService } from '../patients.service';
 import { Observable } from 'rxjs/Observable';
+import { ModalDirective } from "ng2-bootstrap";
+import { ViewChild } from "@angular/core/src/metadata/di";
 
 @Component({
   selector: 'app-patient-list',
@@ -22,6 +24,18 @@ export class PatientListComponent implements OnInit, DoCheck {
     this.service.getPatients().subscribe(p => this.patients = p);
     console.log('I got: '+ this.patients)
   }
+
+    @ViewChild('lgModal') public lgModal: ModalDirective;
+
+  public showChildModal(): void {
+    this.lgModal.show();
+  }
+
+  public hideChildModal(): void {
+    this.lgModal.hide();
+  }
+
+  
 
   ngDoCheck() {
     // this.totalItems = this.patients.length;

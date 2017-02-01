@@ -78,6 +78,21 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
     });
     const regimenControl = this.dispenseForm.get('current_regimen');
     regimenControl.valueChanges.subscribe(value => this.setDrug(value)); // checks for changes in value
+    let appointmentCtrl = this.dispenseForm.get('appointment_date');
+    this.dispenseForm.get('days_to').valueChanges.subscribe(value => {
+      if (value == '') {
+        // if null clear the appointment date and reset the validity of the form
+        this.dispenseForm.patchValue({ appointment_date: '' });
+        appointmentCtrl.setValidators(Validators.required);
+        appointmentCtrl.updateValueAndValidity();
+      }
+      else {
+        this.nextAppointment(value);
+        console.log('I got: ' + value);
+        appointmentCtrl.clearValidators();
+        appointmentCtrl.updateValueAndValidity();
+      }
+    });
   }
 
   ngDoCheck() {
@@ -142,9 +157,9 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
     let ctrl = Math.floor(diff / divideBy['d']);
     // Activate the function that sets the days remaining field
     this.populateTestData(ctrl);
-     this.dispenseForm.patchValue({
-       appointment_date: todate
-     });
+    this.dispenseForm.patchValue({
+      appointment_date: todate
+    });
     console.log(ctrl);
   }
 
@@ -166,10 +181,10 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
   }
 
   save() {
-        this._dispenseService.saveDispenseDetails(this.dispenseForm.value).subscribe(
-          () => { this.notification('dispensed')},
-          error => console.log(error)
-        )
+    this._dispenseService.saveDispenseDetails(this.dispenseForm.value).subscribe(
+      () => { this.notification('dispensed') },
+      error => console.log(error)
+    )
   }
 
   setDispenseDate(val) {
