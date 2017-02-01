@@ -5,11 +5,12 @@ import { SmartadminModule } from "../../shared/smartadmin.module";
 import { SmartadminDatatableModule } from "../../shared/ui/datatable/smartadmin-datatable.module";
 import { SmartadminInputModule } from "../../shared/forms/input/smartadmin-input.module";
 import { FormsModule } from '@angular/forms';
-import { FacilityService } from './facility.service'
-import { FacilityDetailsComponent } from "./facility-details/facility-details.component"
-import { FacilityPatientSourcesComponent } from "./facility-patient-sources/facility-patient-sources.component"
-import { FacilitySupportersComponent } from "./facility-supporters/facility-supporters.component"
-import { FacilityUsersComponent } from "./facility-users/facility-users.component"
+import { FacilityService } from './facility.service';
+import { FacilityDetailsComponent } from "./facility-details/facility-details.component";
+import { FacilityPatientSourcesComponent } from "./facility-patient-sources/facility-patient-sources.component";
+import { FacilitySupportersComponent } from "./facility-supporters/facility-supporters.component";
+import { FacilityUsersComponent } from "./facility-users/facility-users.component";
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FacilityUsersComponent } from "./facility-users/facility-users.componen
     SmartadminModule,
     SmartadminDatatableModule,
     SmartadminInputModule,
-    FormsModule
+    FormsModule,
+    MultiselectDropdownModule
   ],
   providers: [FacilityService],
   entryComponents: []
