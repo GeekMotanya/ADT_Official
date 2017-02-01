@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Facility, Counties, Types, SubCounties, Services, Sources } from './facility';
+import { Facility, Counties, Types, SubCounties, Services, Sources, Supporters } from './facility';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -17,10 +17,9 @@ export class FacilityService {
     private _subcountiesApi = this._apiUrl+ 'lists/sub_county';
     private _servicesApi = this._apiUrl+ 'lists/services';
     private _sourcesApi = this._apiUrl+ 'lists/patientsources';
-    private _supportersApi = this._apiUrl+ 'lists/supporters';
+    private _supportersApi = this._apiUrl+ 'lists/supporter';
 
     constructor(private _http: Http) { }
-
 
     // Get
 
@@ -61,6 +60,13 @@ export class FacilityService {
             .catch(this.handleError);        
     }
 
+    getSupporters() {
+        return this._http.get(this._supportersApi)
+            .map((response: Response) => <Supporters[]>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
     // Put
 
     updateFacility(body: Object): Observable<Facility> {
@@ -72,6 +78,16 @@ export class FacilityService {
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
+
+updatePatientSource(body: Object): Observable<Sources[]> {
+        let bodyString = JSON.stringify(body);
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put(`${this._sourcesApi}/${body['id']}`, body, options)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }  
 
     // Post
 
@@ -85,11 +101,33 @@ export class FacilityService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
 
+    addSupporter(body: Object): Observable<Supporters[]> {
+        let bodyString = JSON.stringify(body); // Stringify payload
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
+        let options = new RequestOptions({ headers: headers }); // Create a request option
+
+        return this._http.post(this._supportersApi, body, options) // ...using post request
+            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+    }
+
+    // Delete
+
+    disableSource(id:string): Observable<Sources> {
+        return this._http.delete(`${this._sourcesApi}/${id}`)
+            .map(() => { })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    disableSupporter(id:string): Observable<Supporters> {
+        return this._http.delete(`${this._supportersApi}/${id}`)
+            .map(() => { })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }    
+
     // Error Handling
 
     private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
         let msg = `Status code ${error.status} on url ${error.url}`;
         console.error(msg);
         return Observable.throw(msg);

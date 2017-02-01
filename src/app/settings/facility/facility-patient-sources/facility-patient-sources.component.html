@@ -28,15 +28,15 @@
                 <thead>
                   <tr>
                     <th>Patient Source</th>
-                    <th style="width: 25%">Options</th>
+                    <th style="width: 15%; text-align: center">Options</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let source of source.data">
+                  <tr *ngFor="let source of sourcesList">
                     <td>{{source.name}}</td>
-                    <td>
-                      <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit{{source.id}}" >Edit</a>
-                      <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#disable">Disable</a>
+                    <td style="text-align: center">
+                      <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" attr.data-id="{{source.id}}">Edit</a>
+                      <a class="btn btn-danger btn-xs" (click)="disable(source.id)">Disable</a>
                     </td>
                   </tr>
                 </tbody>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <!--Edit Modal-->
-            <div id="#edit{{source.id}}" class="modal fade" role="dialog">
+            <div id="edit" class="modal fade" role="dialog" attr.data-id="{{source.id}}">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -70,9 +70,9 @@
                       <h4 class="modal-title">Edit</h4>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form (ngSubmit)="onSubmit()" #editForm="ngForm">
                         <label>Name</label>
-                        <p><input type="text" class="form-control" style="width:100%"></p>
+                        <p><input type="text" class="form-control" style="width:100%" [(ngModel)]="source.name" name="name"></p>
                         <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
                         <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
                       </form>

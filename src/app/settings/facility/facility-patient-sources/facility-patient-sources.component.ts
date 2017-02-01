@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked, OnChanges } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Sources } from '../facility';
 import { FacilityService } from '../facility.service';
@@ -12,33 +12,52 @@ import { FacilityService } from '../facility.service';
 export class FacilityPatientSourcesComponent implements OnInit {
 
   errorMessage: string;
-  @Input() source = new Sources;
-  jQuery:any;
+  sourcesList: Sources[];
+  source = new Sources();
+  @Input() formType: string;
+  jQuery: any;
+  form: string;
 
-  constructor(private _facilityService: FacilityService, private router: Router) { }
+  constructor(private _facilityService: FacilityService) { }
 
   sourcesForm: NgForm;
+  @ViewChild ('sourcesForm')
+  editForm: NgForm;
+  // @ViewChild('editForm')
 
   ngOnInit() {
-    this._facilityService.getSources().subscribe(sources => this.source = sources);
+    this._facilityService.getSources().subscribe(data => this.sourcesList = data);
   }
 
-  onSubmit(): void {
-    this._facilityService.addPatientSource(this.source).subscribe(
-      () => this.onSaveComplete(),
-      error=>console.log(error)
-    );
-  }
+  onSubmit(): void {    
+      this._facilityService.addPatientSource(this.source).subscribe(
+        () => this.onSaveComplete(),
+        error => console.log(error)
+      );
+    }  
 
   onSaveComplete() {
     console.log('Created a new patient source...');
     jQuery("#newPatientSource").modal("hide");
-    this.router.navigateByUrl('/settings/facility/facility-patient-sources');
-    this._facilityService.getSources().subscribe(sources => this.source = sources);
+    this._facilityService.getSources().subscribe(data => this.sourcesList = data);
+  }
+
+  onUpdateComplete(val) {
+        this.editForm.reset();
+        jQuery("#edit").modal("hide");
+        this._facilityService.getSources().subscribe(data => this.sourcesList = data);
+    }
+
+  disable(val) {
+    this._facilityService.disableSource(val).subscribe(
+      () => this._facilityService.getSources().subscribe(data => this.sourcesList = data),
+      (error) => { console.log("Error happened" + error) },
+      () => { console.log("DELETED") }
+    );
   }
 
   get diagnostic() {
-    return JSON.stringify(this.source);
+    return JSON.stringify(this.sourcesList);
   }
 
 
