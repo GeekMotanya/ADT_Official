@@ -19,7 +19,7 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body">
-                            <form (ngSubmit)="save()" [formGroup]="dispenseForm">
+                            <form (ngSubmit)="save()" novalidate [formGroup]="dispenseForm">
                                 <fieldset class="col-xs-24 col-sm-6 col-md-6 col-lg-6">
                                     <legend>Dispensing Information</legend>
                                     <div class="row">
@@ -242,8 +242,8 @@
                                     </div>
                                     <div class="row col-sm-12" align="right" style="padding-bottom:30px">
                                         <input type="reset" class="btn btn-danger button_size" value="Reset Fields">
-                                        <button class="btn btn-primary" type="button"><i class="fa fa-print"></i> Print Labels</button>
-                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Dispense Drugs</button>
+                                        <button class="btn btn-primary" [disabled]="!dispenseForm.valid" type="button"><i class="fa fa-print"></i> Print Labels</button>
+                                        <button class="btn btn-primary" [disabled]="!dispenseForm.valid" type="submit"><i class="fa fa-save"></i> Dispense Drugs</button>
                                     </div>
                                 </fieldset>
                             </form>
