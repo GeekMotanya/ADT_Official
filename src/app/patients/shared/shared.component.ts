@@ -151,6 +151,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
      */
 
     setDateOfBirth(value: any) {
+        this.patient.birth_date = value; // set the input control date
         this.patient.getAge(value);
     }
 
