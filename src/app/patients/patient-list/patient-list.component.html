@@ -59,8 +59,30 @@
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a>
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/detail',patient.id]">Detail</a>
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/edit',patient.id]">Edit</a>
-                                                <button class="btn btn-primary btn-xs" (click)="disable(patient.id)">Disable</button>
+                                                <!-- For the modal to be dynamic: The following ought to be considered: data-target & id of the modal -->
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" attr.data-target="#confirmDelete{{patient.id}}">
+                                                    Disable
+                                                </button>
+                                                <!--<button class="btn btn-primary btn-xs" (click)="disable(patient.id)">Disable</button>-->
                                             </td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="confirmDelete{{patient.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you would like to disable {{patient.first_name}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                            <button class="btn btn-primary" (click)="disable(patient.id)" data-dismiss="modal"> Yes I am</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>
