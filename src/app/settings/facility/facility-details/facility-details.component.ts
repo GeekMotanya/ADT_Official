@@ -5,6 +5,7 @@ import { FacilityService } from '../facility.service';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { NgForm } from '@angular/forms';
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 
 @Component({
   selector: 'app-facility-details',
@@ -20,7 +21,29 @@ export class FacilityDetailsComponent implements OnInit {
   private countiesList: Observable<string[]>;
   private subcountiesList: Observable<string[]>;
   private facilityTypes: Observable<string[]>;
-  private serviceTypes: Observable<string[]>;
+  private serviceTypes: Observable<IMultiSelectOption[]>;
+
+  private mySettings: IMultiSelectSettings = {
+        pullRight: false,
+        enableSearch: true,
+        checkedStyle: 'checkboxes',
+        buttonClasses: 'btn btn-default',
+        selectionLimit: 0,
+        closeOnSelect: false,
+        showCheckAll: true,
+        showUncheckAll: true,
+        dynamicTitleMaxItems: 3,
+        maxHeight: '300px',
+    };
+
+    private myTexts: IMultiSelectTexts = {
+        checkAll: 'Check all',
+        uncheckAll: 'Uncheck all',
+        checked: 'checked',
+        checkedPlural: 'checked',
+        searchPlaceholder: 'Search...',
+        defaultTitle: 'Select',
+    };
 
   constructor(private route: ActivatedRoute,
     private _router: Router,

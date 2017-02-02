@@ -14,6 +14,16 @@ export class Facility {
     supporter_id: number;
 }
 
+export class User {
+    id: number;
+    name: string;
+    email: string;
+    phone_number: number;
+    access_level_id: number;
+    facility_id: Facility;
+    created_by_id: number;
+}
+
 export class Counties {
     id: number;
     name: string

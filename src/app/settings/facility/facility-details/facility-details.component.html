@@ -91,9 +91,8 @@
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <legend><b>Services Offered at the Facility</b></legend>
                 <div class="inline-group" style="padding-left: 20px">
-                  <label class="checkbox"><input type="checkbox" name="checkbox-inline" checked="checked">ART</label>
-                  <label class="checkbox"><input type="checkbox" name="checkbox-inline">PMTCT</label>
-                  <label class="checkbox"><input type="checkbox" name="checkbox-inline">PEP</label>
+                  <label>Service Types</label>
+                  <ss-multiselect-dropdown [options]="serviceTypes | async" [texts]="myTexts" [settings]="mySettings" name="service"></ss-multiselect-dropdown>                  
                 </div>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
