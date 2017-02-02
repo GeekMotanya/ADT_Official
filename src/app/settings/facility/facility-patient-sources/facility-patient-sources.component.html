@@ -35,7 +35,7 @@
                   <tr *ngFor="let source of sourcesList">
                     <td>{{source.name}}</td>
                     <td style="text-align: center">
-                      <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" attr.data-id="{{source.id}}">Edit</a>
+                      <a class="btn btn-primary btn-xs" data-toggle="modal" attr.data-target="#edit{{source.id}}">Edit</a>
                       <a class="btn btn-danger btn-xs" (click)="disable(source.id)">Disable</a>
                     </td>
                   </tr>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <!--Edit Modal-->
-            <div id="edit" class="modal fade" role="dialog" attr.data-id="{{source.id}}">
+            <div id="edit{{source.id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
