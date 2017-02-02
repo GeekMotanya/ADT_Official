@@ -19,8 +19,6 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
 
   patient = new Patient();
 
-  drug_table = new DrugsTable();
-
   // Datepicker properties
   date_options: Object = {
     dateFormat: 'mm/dd/yy',
@@ -76,8 +74,10 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
       patient_id: '',
       drugs: this.fb.array([this.buildRow()])
     });
+
     const regimenControl = this.dispenseForm.get('current_regimen');
     regimenControl.valueChanges.subscribe(value => this.setDrug(value)); // checks for changes in value
+
     let appointmentCtrl = this.dispenseForm.get('appointment_date');
     this.dispenseForm.get('days_to').valueChanges.subscribe(value => {
       if (value == '') {
@@ -96,6 +96,7 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    // Checks if the patient info has been asynchronously loaded
     this.dispenseForm.patchValue({
       ccc_number: this.patient.ccc_number,
       patient_name: this.patient.first_name,
@@ -103,6 +104,11 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
     })
   }
 
+  setDispenseDate(val) {
+    this.dispenseForm.patchValue({
+      visit_date: val
+    });
+  }
   populateTestData(value: number): void {
     this.dispenseForm.patchValue({
       days_to: value,
@@ -125,9 +131,21 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
       comment: '',
       missed_pills: '',
       facility_id: 1,
-      appointment_id: 1 // TODO: Remove
+      appointment_id: 1,
+      user_id: 1 // TODO: Remove
     });
   }
+
+  addRow() {
+    this.rows.push(this.buildRow());
+  }
+
+  removeRow(i: number) {
+    // remove address from the list
+    const control = <FormArray>this.dispenseForm.controls['drugs'];
+    control.removeAt(i);
+  }
+
   /**
    * Get users input, add the number of days and
    * set date picker to use the current date
@@ -140,7 +158,7 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
     this._datePipe.transform(this.setdate, 'MM/dd/y'); // using angular's built in date pipe to format date object.
   }
   /**
-   * Date difference
+   * Calculates the days to an appointment
    */
   dateDiff(todate) {
     let fromdate: any = new Date();
@@ -163,21 +181,15 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
     console.log(ctrl);
   }
 
+  /**
+   * Dynamically set the drugs based on regimen selection
+   */
+
   setDrug(value) {
     this._dispenseService.getRegimen(+[value]).subscribe(
       regimen => this.regimen = regimen,
       error => console.log(error)
     )
-  }
-
-  addRow() {
-    this.rows.push(this.buildRow());
-  }
-
-  removeRow(i: number) {
-    // remove address from the list
-    const control = <FormArray>this.dispenseForm.controls['drugs'];
-    control.removeAt(i);
   }
 
   save() {
@@ -187,11 +199,6 @@ export class PatientDispenseComponent implements OnInit, DoCheck {
     )
   }
 
-  setDispenseDate(val) {
-    this.dispenseForm.patchValue({
-      visit_date: val
-    });
-  }
 
   notification(value: string) {
     $.smallBox({

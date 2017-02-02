@@ -6,7 +6,7 @@ import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illn
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs/Observable';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
     selector: 'patient-form',
@@ -151,6 +151,7 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
      */
 
     setDateOfBirth(value: any) {
+        this.patient.birth_date = value; // set the input control date
         this.patient.getAge(value);
     }
 
@@ -223,14 +224,14 @@ export class SharedComponent implements OnInit, DoCheck, OnChanges {
     }
 
     notification(value: string) {
-    $.smallBox({
-      title: `You have successfully ${value} the patient`,
-      content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
-      color: "#296191",
-      iconSmall: "fa fa-thumbs-up bounce animated",
-      timeout: 4000
-    });
-  }
+        $.smallBox({
+            title: `You have successfully ${value} the patient`,
+            content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+            color: "#296191",
+            iconSmall: "fa fa-thumbs-up bounce animated",
+            timeout: 4000
+        });
+    }
 
     ngOnChanges() {
         this.form = this.formType;

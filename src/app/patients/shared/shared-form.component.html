@@ -366,7 +366,7 @@
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label><span style="color:red; font-weight:bold">*</span> Source of Patient</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.source_id" name="source_id">
-                                            <option *ngFor="let source of patientSources?.data" value="{{source.id}}">{{source.name}}</option>
+                                            <option *ngFor="let source of patientSources" value="{{source.id}}">{{source.name}}</option>
                                             <input type="hidden" value="{{source.name}}">
                                         </select>
                                     </div>
