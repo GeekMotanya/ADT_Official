@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Facility, Counties, Types, SubCounties, Services, Sources, Supporters, User } from './facility';
+import { Facility, Counties, Types, SubCounties, Services, Sources, Supporters, User, AccessLevel } from './facility';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -19,6 +19,7 @@ export class FacilityService {
     private _sourcesApi = this._apiUrl + 'lists/patientsources';
     private _supportersApi = this._apiUrl + 'lists/supporter';
     private _usersApi = this._apiUrl + 'users';
+    private _usertypesApi = this._apiUrl + 'lists/access_level';
 
     constructor(private _http: Http) { }
 
@@ -75,6 +76,12 @@ export class FacilityService {
             .catch(this.handleError);
     }
 
+    getAccessLevels() {
+        return this._http.get(this._usertypesApi)
+            .map((response: Response) => <AccessLevel[]>response.json())
+            .catch(this.handleError);
+    }
+
     // Put
 
     updateFacility(body: Object): Observable<Facility> {
@@ -87,12 +94,33 @@ export class FacilityService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 
-    updatePatientSource(body: Object): Observable<Sources[]> {
+    updatePatientSource(source: Sources): Observable<Sources[]> {
+        let bodyString = JSON.stringify(source);
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put(`${this._sourcesApi}/${source.id}`, bodyString, options)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    private headers = new Headers({ 'Content-Type': 'application/json' });
+
+    // updatePatientSource(source: Sources): Promise<Sources> {
+    //   const url = `${this._sourcesApi}/${source.id}`;
+    //   return this._http
+    //     .put(url, JSON.stringify(source), {headers: this.headers})
+    //     .toPromise()
+    //     .then(() => source)
+    //     .catch(this.handleError);
+    // }
+
+    updateSupporter(body: Object): Observable<Supporters[]> {
         let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.put(`${this._sourcesApi}/${body['id']}`, body, options)
+        return this._http.put(`${this._supportersApi}/${body['id']}`, body, options)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
@@ -138,6 +166,12 @@ export class FacilityService {
 
     disableSupporter(id: string): Observable<Supporters> {
         return this._http.delete(`${this._supportersApi}/${id}`)
+            .map(() => { })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    disableUser(id: string): Observable<User> {
+        return this._http.delete(`${this._usersApi}/${id}`)
             .map(() => { })
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
