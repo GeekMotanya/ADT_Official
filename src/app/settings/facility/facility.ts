@@ -19,8 +19,8 @@ export class User {
     name: string;
     email: string;
     phone_number: number;
-    access_level_id: number;
-    facility_id: Facility;
+    access_level_id: AccessLevel;
+    facility_id: number;
     created_by_id: number;
 }
 
@@ -50,6 +50,11 @@ export class Sources {
 }
 
 export class Supporters {
+    id: number;
+    name: string;
+}
+
+export class AccessLevel {
     id: number;
     name: string;
 }
