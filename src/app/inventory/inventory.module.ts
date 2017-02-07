@@ -8,6 +8,7 @@ import { SmartadminModule } from "../shared/smartadmin.module";
 import { SmartadminInputModule } from "../shared/forms/input/smartadmin-input.module";
 import { SmartadminDatatableModule } from "../shared/ui/datatable/smartadmin-datatable.module";
 import { PaginationModule } from 'ng2-bootstrap';
+import { UtilsModule } from '../shared/utils/utils.module'; // For field filter pipe.
 
 import { InventoryService } from './inventory.service';
 @NgModule({
@@ -22,7 +23,8 @@ import { InventoryService } from './inventory.service';
         SmartadminModule,
         SmartadminDatatableModule,
         SmartadminInputModule,
-        PaginationModule
+        PaginationModule,
+        UtilsModule
     ],
     providers: [InventoryService]
 })

@@ -58,7 +58,7 @@
                                                         <span class="input-group-addon">
                                                   <i class="glyphicon glyphicon-search"></i>
                                                 </span>
-                                                        <input type="search" class="form-control" [(ngModel)]="binding" placeholder="Search" aria-controls="datatable_fixed_column">
+                                                        <input type="search" class="form-control" [(ngModel)]="binding" placeholder="Search name" aria-controls="datatable_fixed_column">
                                                     </label>
                                                 </div>
                                             </div>
@@ -74,7 +74,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let batch of stock">
+                                                <tr *ngFor="let batch of stock | fieldFilter:'name':binding">
                                                     <td>{{batch.name}}</td>
                                                     <td>{{batch.pack_size}}</td>
                                                     <td>{{batch.stock_item['batch_number']}}</td>
@@ -120,7 +120,7 @@
                                                 <span class="input-group-addon">
                                                   <i class="glyphicon glyphicon-search"></i>
                                                 </span>
-                                                <input type="search" class="form-control" [(ngModel)]="binding" placeholder="Search" aria-controls="datatable_fixed_column">
+                                                <input type="search" class="form-control" [(ngModel)]="binding" placeholder="Search batch number" aria-controls="datatable_fixed_column">
                                             </label>
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let transaction of stock[0].stock_item">
+                                        <tr *ngFor="let transaction of stock[0].stock_item | fieldFilter:'batch_number':binding">
                                             <td>{{transaction.stock.ref_number}}</td>
                                             <td>{{transaction.stock.transaction_time}}</td>
                                             <td>{{transaction.stock.transaction_type_id}}</td>

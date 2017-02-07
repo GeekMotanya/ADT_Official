@@ -35,7 +35,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let drug of drugs.data">
+                                        <tr *ngFor="let drug of drugs.data | fieldFilter:'name':binding">
                                             <td>{{ drug.name }}</td>
                                             <td>{{ drug.generic.name}}</td>
                                             <td>{{ drug.quantity}}</td>
