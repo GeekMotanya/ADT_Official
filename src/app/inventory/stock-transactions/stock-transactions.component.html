@@ -1,98 +1,138 @@
 <div id="content">
-  <sa-widgets-grid>
-    <form>
-      <div class="col-sm-12">
-        <div class="col-xs-2 .col-md-2">
-          <div>
-            <sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false" [fullscreenbutton]="false"
-              [custombutton]="false" [sortable]="false" color="blueDark">
-              <header>
-                <h2>Transaction Details</h2>
-              </header>
-              <div class="table-responsive" style="padding:12px">
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>Transaction Date</th>
-                    </tr>
-                    <tr>
-                      <div class="input-group">
-                        <input type="text" name="mydate" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0'}"
-                          (selectDate)='getDate($event)'>
-                      </div>
-                    </tr>
-                    <tr>
-                      <th>Transaction Type</th>
-                    </tr>
-                    <tr>
-                      <select class="form-control" id="select-1">
-											<option selected>--Select Type--</option>											
-											<option value="1">Received From</option>
-											<option value="2">Balance Forward</option>
-											<option value="3">Returns From</option>
-										</select>
-                    </tr>
-                    <tr>
-                      <th>Ref./Order No</th>
-                    </tr>
-                    <tr>
-                      <input class="form-control" placeholder="Order No." type="text">
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </sa-widget>
-          </div>
-        </div>
-        <div class="col-xs-10 .col-md-10">
-          <sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false" [fullscreenbutton]="false"
-            [custombutton]="false" [sortable]="false" color="blueDark">
-            <header>
-              <h2>Drug Details</h2>
-            </header>
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Drug</th>
-                    <th>Unit</th>
-                    <th>Pack Size</th>
-                    <th>Batch No.</th>
-                    <th>Expiry Date</th>
-                    <th>Packs</th>
-                    <th>Qty</th>
-                    <th>Available Qty</th>
-                    <th>Pack Cost</th>
-                    <th>Total</th>
-                    <th>Comment</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Row 1</td>
-                    <td>Row 2</td>
-                    <td>Row 3</td>
-                    <td>Row 4</td>
-                    <td>Row 5</td>
-                    <td>Row 6</td>
-                    <td>Row 7</td>
-                    <td>Row 8</td>
-                    <td>Row 9</td>
-                    <td>Row 10</td>
-                    <td>Row 11</td>
-                    <td>Row 12</td>
-                  </tr>
-                </tbody>
-              </table>
+    <sa-widgets-grid>
+        <form (ngSubmit)="save()" novalidate [formGroup]="stockTransactionsForm">
+            <div class="row">
+                <div class="col-xs-2 col-md-2">
+                    <sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false" [fullscreenbutton]="false" [custombutton]="false" [sortable]="false" color="blueDark">
+                        <header>
+                            <h2>Transaction Details</h2>
+                        </header>
+                        <div class="table-responsive" style="padding:12px">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Transaction Date</th>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group">
+                                            <input type="text" formControlName="transaction_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0'}" (selectDate)='getDate($event)'>
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <th>Transaction Type</th>
+                                    </tr>
+                                    <tr>
+                                        <select formControlName="transaction_type" class="form-control" id="select-1">
+                                            <option selected>--Select Type--</option>
+                                            <option value="1">Received From</option>
+                                            <option value="2">Balance Forward</option>
+                                            <option value="3">Returns From</option>
+                                        </select>
+                                    </tr>
+                                    <tr>
+                                        <th>Ref./Order No</th>
+                                    </tr>
+                                    <tr>
+                                        <input type="text" formControlName="ref_no" placeholder="Ref No" class="form-control">
+                                    </tr>
+                                    <tr>
+                                        <th>Destination</th>
+                                    </tr>
+                                    <tr>
+                                        <select formControlName="destination" class="form-control" id="select-1">
+                                            <option selected>--Select Type--</option>
+                                            <option value="1">Received From</option>
+                                            <option value="2">Balance Forward</option>
+                                            <option value="3">Returns From</option>
+                                        </select>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </sa-widget>
+                </div>
+                <div class="col-xs-10 col-md-10">
+                    <sa-widget [colorbutton]="false" [editbutton]="false" [togglebutton]="false" [deletebutton]="false" [fullscreenbutton]="false" [custombutton]="false" [sortable]="false" color="blueDark">
+                        <header>
+                            <h2>Drug Details</h2>
+                        </header>
+                        <div class="form-group">
+                            <span>
+                  <button class="btn btn-primary" type="button" (click)="addRow()">
+                      Add Another Drug
+                  </button>
+              </span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Drug</th>
+                                        <th>Unit</th>
+                                        <th>Pack Size</th>
+                                        <th>Batch No.</th>
+                                        <th>Expiry Date</th>
+                                        <th>Packs</th>
+                                        <th>Qty</th>
+                                        <th>Available Qty</th>
+                                        <th>Pack Cost</th>
+                                        <th>Total</th>
+                                        <th>Comment</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody formArrayName="drugs" *ngFor="let row of rows.controls; let i=index">
+                                    <tr [formGroupName]="i">
+                                        <td id="complex_table">
+                                            <select id="input" class="form-control" formControlName="drug_id" id="">
+                                                <option value=""></option>
+                                            </select>
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="unit" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="pack_size" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="batch_number" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="expiry_date" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="packs" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="quantity" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="available_quantity" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="pack_cost" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="total" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <input id="input" class="form-control" formControlName="comment" type="text">
+                                        </td>
+                                        <td id="complex_table">
+                                            <button class="form-control" class="btn btn-danger" (click)="removeRow(i)">Remove</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </sa-widget>
+                    <div align="right">
+                        <input type="reset" class="btn btn-danger btn-size" id="reset" value="Reset Fields">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Submit </button>
+                    </div>
+                </div>
             </div>
-          </sa-widget>
-          <div align="right">
-            <input type="reset" class="btn btn-danger btn-size" id="reset" value="Reset Fields">
-            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Submit	</button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </sa-widgets-grid>
+        </form>
+
+    </sa-widgets-grid>
 </div>

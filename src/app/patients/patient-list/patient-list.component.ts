@@ -3,6 +3,7 @@ import { Patient } from '../patients';
 import { PatientsService } from '../patients.service';
 import { Observable } from 'rxjs/Observable';
 
+declare var $:any;
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
@@ -45,5 +46,16 @@ export class PatientListComponent implements OnInit, DoCheck {
                 (error) => { console.log("Error happened" + error) },
                 () => { console.log("the subscription is completed") }
             );
+    this.notification('disabled');
   }
+
+  notification(value: string) {
+        $.smallBox({
+            title: `You have successfully ${value} the patient`,
+            content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+            color: "#C46A69",
+            icon: "fa fa-trash-o swing animated",
+            timeout: 4000
+        });
+    }
 }

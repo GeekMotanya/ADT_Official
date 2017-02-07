@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BinCardComponent } from "./bin-card/bin-card.component";
 import { InventoryManagementComponent } from "./inventory-management/inventory-management.component";
 import { StockTransactionsComponent } from "./stock-transactions/stock-transactions.component";
@@ -19,6 +20,7 @@ import { InventoryService } from './inventory.service';
     ],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         routing,
         SmartadminModule,
         SmartadminDatatableModule,
