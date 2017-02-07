@@ -7,21 +7,23 @@ import { routing } from "./inventory.routing";
 import { SmartadminModule } from "../shared/smartadmin.module";
 import { SmartadminInputModule } from "../shared/forms/input/smartadmin-input.module";
 import { SmartadminDatatableModule } from "../shared/ui/datatable/smartadmin-datatable.module";
+import { PaginationModule } from 'ng2-bootstrap';
 
+import { InventoryService } from './inventory.service';
 @NgModule({
     declarations: [
         BinCardComponent,
         InventoryManagementComponent,
-        StockTransactionsComponent        
+        StockTransactionsComponent
     ],
     imports: [
         CommonModule,
         routing,
         SmartadminModule,
         SmartadminDatatableModule,
-        SmartadminInputModule        
+        SmartadminInputModule,
+        PaginationModule
     ],
-    providers: [],
-    entryComponents: []
+    providers: [InventoryService]
 })
 export class InventoryModule { }
