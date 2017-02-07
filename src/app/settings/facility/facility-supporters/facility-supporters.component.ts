@@ -22,7 +22,7 @@ export class FacilitySupportersComponent implements OnInit {
 
   constructor(private _facilityService: FacilityService) { }
 
-  sourcesForm: NgForm;
+  supportersForm: NgForm;
   @ViewChild('supportersForm')
   editForm: NgForm;
   @ViewChild('editForm') currentForm: NgForm;
@@ -48,11 +48,10 @@ export class FacilitySupportersComponent implements OnInit {
 
   // Update Existing
   onUpdate(val): void {
-    this._facilityService.updatePatientSource(val).subscribe(
-      // (response) => this.onUpdateComplete(response),
-      () => jQuery("#newSupporter").modal("hide"),
-      error => console.log(error),
-      () => { console.log("the subscription is complete") }
+    this._facilityService.updateSupporter(val).subscribe(
+      (response) => this.onUpdateComplete(response),
+      error => console.log(error)
+      // () => { console.log("the subscription is complete") }
     );
   }
 
@@ -77,7 +76,7 @@ export class FacilitySupportersComponent implements OnInit {
 
   onUpdateComplete(val) {
     this.editForm.reset();
-    this._facilityService.getSources().subscribe(data => this.supportersList = data);
+    this._facilityService.getSupporters().subscribe(data => this.supportersList = data);
     this.successNotification('updated');
   }
   
@@ -92,7 +91,7 @@ export class FacilitySupportersComponent implements OnInit {
 
   successNotification(value: string) {
     $.smallBox({
-      title: `You have successfully ${value} the Patient Source`,
+      title: `You have successfully ${value} the Supporter`,
       content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
       color: "#296191",
       iconSmall: "fa fa-thumbs-up bounce animated",

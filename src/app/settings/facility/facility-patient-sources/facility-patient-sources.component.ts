@@ -22,8 +22,6 @@ export class FacilityPatientSourcesComponent implements OnInit {
 
   constructor(private _facilityService: FacilityService) { }
 
-  sourcesForm: NgForm;
-  @ViewChild('sourcesForm')
   editForm: NgForm;
   @ViewChild('editForm') currentForm: NgForm;
 
@@ -31,19 +29,12 @@ export class FacilityPatientSourcesComponent implements OnInit {
     this._facilityService.getSources().subscribe(data => this.sourcesList = data);
   }
 
+  // Save
+
   onSave(): void {
     this._facilityService.addPatientSource(this.source).subscribe(
       () => this.onSaveComplete(),
       error => console.log(error)
-    );
-  }
-
-  onUpdate(val): void {
-    this._facilityService.updatePatientSource(this.source).subscribe(
-      // (response) => this.onUpdateComplete(response),
-      // () => jQuery("#newPatientSource").modal("hide"),
-      error => console.log(error),
-      () => { console.log("the subscription is completed") }
     );
   }
 
@@ -75,11 +66,22 @@ export class FacilityPatientSourcesComponent implements OnInit {
     console.log(form);
   }
 
+  onUpdate(val): void {
+    this._facilityService.updatePatientSource(val).subscribe(
+      (response) => this.onUpdateComplete(response),
+      // () => jQuery("#newPatientSource").modal("hide"),
+      error => console.log(error),
+      () => { console.log("the subscription is completed") }
+    );
+  }
+
   onUpdateComplete(val) {
     this.editForm.reset();
     this._facilityService.getSources().subscribe(data => this.sourcesList = data);
     this.successNotification('updated');
   }
+
+  // Delete
 
   disable(val) {
     this._facilityService.disableSource(val).subscribe(
@@ -88,6 +90,8 @@ export class FacilityPatientSourcesComponent implements OnInit {
       () => this.disableNotification()
     );
   }
+
+  // Notifications
 
   successNotification(value: string) {
     $.smallBox({
@@ -99,7 +103,7 @@ export class FacilityPatientSourcesComponent implements OnInit {
     });
   }
 
-  disableNotification(){
+  disableNotification() {
     $.smallBox({
       title: "You have successfully disabled the Patient Source",
       // content: "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
@@ -107,12 +111,6 @@ export class FacilityPatientSourcesComponent implements OnInit {
       timeout: 4000,
       icon: "fa fa-trash-o swing animated",
       number: "2"
-    });    
+    });
   }
-
-  get diagnostic() {
-    return JSON.stringify(this.sourcesList);
-  }
-
-
 }

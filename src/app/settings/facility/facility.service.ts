@@ -93,27 +93,26 @@ export class FacilityService {
             .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
-
-    updatePatientSource(source: Sources): Observable<Sources[]> {
-        let bodyString = JSON.stringify(source);
+    
+    updateFacilityUser(body: Object): Observable<User[]> {
+        let bodyString = JSON.stringify(body);
         let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
         let options = new RequestOptions({ headers: headers });
 
-        return this._http.put(`${this._sourcesApi}/${source.id}`, bodyString, options)
+        return this._http.put(`${this._usersApi}/${body['id']}`, bodyString, options)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    private headers = new Headers({ 'Content-Type': 'application/json' });
+    updatePatientSource(body: Object): Observable<Sources[]> {
+        let bodyString = JSON.stringify(body);
+        let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+        let options = new RequestOptions({ headers: headers });
 
-    // updatePatientSource(source: Sources): Promise<Sources> {
-    //   const url = `${this._sourcesApi}/${source.id}`;
-    //   return this._http
-    //     .put(url, JSON.stringify(source), {headers: this.headers})
-    //     .toPromise()
-    //     .then(() => source)
-    //     .catch(this.handleError);
-    // }
+        return this._http.put(`${this._sourcesApi}/${body['id']}`, bodyString, options)
+            .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }   
 
     updateSupporter(body: Object): Observable<Supporters[]> {
         let bodyString = JSON.stringify(body);
