@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User, Facility, AccessLevel } from '../facility';
 import { FacilityService } from '../facility.service';
@@ -21,6 +21,9 @@ export class FacilityUsersComponent implements OnInit {
   private accessLevelList: Observable<String[]>;
   private facilityTypes: Observable<String[]>;
   private facilityDetails: Observable<String[]>
+
+  editForm: NgForm;
+  @ViewChild('editForm') currentForm: NgForm;
 
   constructor(private _facilityService: FacilityService) { }
 
@@ -48,6 +51,43 @@ export class FacilityUsersComponent implements OnInit {
     this._facilityService.getFacilityUsers().subscribe(data => this.usersList = data);
   }
 
+  // Update
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    if (this.currentForm === this.editForm) { return; }
+    this.editForm = this.currentForm;
+    if (this.editForm) {
+      this.editForm.valueChanges
+        .subscribe(data => this.onValueChanged(data));
+    }
+  }
+
+  onValueChanged(data?: any) {
+    if (!this.editForm) { return; }
+    const form = this.editForm.form;
+    console.log(form);
+  }
+
+  onUpdate(val): void {
+    this._facilityService.updateFacilityUser(val).subscribe(
+      (response) => this.onUpdateComplete(response),
+      error => console.log(error),
+      () => { console.log("the subscription is completed") }
+    );
+  }
+
+  onUpdateComplete(val) {
+    this.editForm.reset();
+    this._facilityService.getFacilityUsers().subscribe(data => this.usersList = data);
+    this.successNotification('updated');
+  }
+
+
+
   // Delete
   disable(val) {
     this._facilityService.disableUser(val).subscribe(
@@ -56,6 +96,8 @@ export class FacilityUsersComponent implements OnInit {
       () => this.disableNotification()
     );
   }
+
+  // Notifications
 
   successNotification(value: string) {
     $.smallBox({
