@@ -3,6 +3,9 @@ import { PatientAddComponent } from './patient-add/patient-add.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
 import { PatientEditComponent } from './patient-edit/patient-edit.component';
+import { PatientDispenseComponent } from './patient-dispense/patient-dispense.component';
+import { LostFollowupComponent } from './lost-followup/lost-followup.component';
+import { ErrorsComponent } from './errors/errors.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +27,21 @@ export const routes: Routes = [
         path: 'edit/:id',
         component: PatientEditComponent,
         data: { pageTitle: 'Edit Patient' }
+    },
+    {
+        path: 'dispense/:id',
+        component: PatientDispenseComponent,
+        data: { pageTitle: 'Dispense'}
+    },
+    {
+        path: 'lost-followup',
+        component: LostFollowupComponent,
+        data: { pageTitle: 'Lost to Followup' }
+    },
+    {
+        path: 'errors',
+        component: ErrorsComponent,
+        data: { pageTitle: 'Errors' }
     }
 ];
 

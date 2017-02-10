@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Sources } from '../facility';
+import { FacilityService } from '../facility.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-facility-patient-sources',
@@ -7,72 +13,104 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacilityPatientSourcesComponent implements OnInit {
 
-  constructor() { }
+  errorMessage: string;
+  sourcesList: Sources[];
+  source = new Sources();
+  @Input() formType: string;
+  jQuery: any;
+  form: string;
 
-  tableOptions: Object = {
-    colReorder: true,
-    ajax: 'assets/api/tables/facility.dummy.json',
-    columns: [{ data: 'source_name' }],
-    "columnDefs": [
-      {
-        // The `data` parameter refers to the data for the cell (defined by the
-        // `data` option, which defaults to the column being worked with, in
-        // this case `data: 0`.
-        "render": function (data, type, row) {
-          return `
-               <div>
-               <button class="btn btn-primary" data-toggle="modal" data-target="#edit"> Edit	</button>  
-               <button class="btn btn-danger" data-toggle="modal" data-target="#disable"> Disable	</button>
-               <div id="edit" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Edit</h4>
-                    </div>
-                    <div class="modal-body">
-                      <form>
-                        <label>Name</label>
-                        <p><input type="text" class="form-control" style="width:100%"></p>
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Update	</button>
-                        <button class="btn btn-primary" data-dismiss="modal"> Cancel	</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="disable" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title">Disable</h4>
-                    </div>
-                    <div class="modal-body">
-                      <form>
-                        <h3>Are you sure?</h3>
-                        <div style="text-align: right">
-                        <button class="btn btn-primary"> Disable	</button>
-                        <button class="btn btn-danger" data-dismiss="modal"> Cancel	</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>                            
-              </div>
-              `
-          // return '<a class="btn btn-primary btn-xs" href="patients/dispense/' + row['id'] + '">Dispense</a> <a class="btn btn-primary btn-xs" href="patients/view/' + row['id'] + '">Detail</a>'
-        },
-        // NOTE: Targeting the [actions] column.
-        "targets": 1
-      },
-      { "targets": 0 }
-    ],
-    responsive: true
-  }
+  constructor(private _facilityService: FacilityService) { }
+
+  editForm: NgForm;
+  @ViewChild('editForm') currentForm: NgForm;
 
   ngOnInit() {
+    this._facilityService.getSources().subscribe(data => this.sourcesList = data);
   }
 
+  // Save
+
+  onSave(): void {
+    this._facilityService.addPatientSource(this.source).subscribe(
+      () => this.onSaveComplete(),
+      error => console.log(error)
+    );
+  }
+
+  onSaveComplete() {
+    console.log('Created a new patient source...');
+    this.successNotification('created');
+    jQuery("#newPatientSource").modal("hide");
+    this._facilityService.getSources().subscribe(data => this.sourcesList = data);
+  }
+
+  // Update
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    if (this.currentForm === this.editForm) { return; }
+    this.editForm = this.currentForm;
+    if (this.editForm) {
+      this.editForm.valueChanges
+        .subscribe(data => this.onValueChanged(data));
+    }
+  }
+
+  onValueChanged(data?: any) {
+    if (!this.editForm) { return; }
+    const form = this.editForm.form;
+    console.log(form);
+  }
+
+  onUpdate(val): void {
+    this._facilityService.updatePatientSource(val).subscribe(
+      (response) => this.onUpdateComplete(response),
+      // () => jQuery("#newPatientSource").modal("hide"),
+      error => console.log(error),
+      () => { console.log("the subscription is completed") }
+    );
+  }
+
+  onUpdateComplete(val) {
+    this.editForm.reset();
+    this._facilityService.getSources().subscribe(data => this.sourcesList = data);
+    this.successNotification('updated');
+  }
+
+  // Delete
+
+  disable(val) {
+    this._facilityService.disableSource(val).subscribe(
+      () => this._facilityService.getSources().subscribe(data => this.sourcesList = data),
+      (error) => { console.log("Error happened" + error) },
+      () => this.disableNotification()
+    );
+  }
+
+  // Notifications
+
+  successNotification(value: string) {
+    $.smallBox({
+      title: `You have successfully ${value} the Patient Source`,
+      content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+      color: "#296191",
+      iconSmall: "fa fa-thumbs-up bounce animated",
+      timeout: 4000
+    });
+  }
+
+  disableNotification() {
+    $.smallBox({
+      title: "You have successfully disabled the Patient Source",
+      // content: "Lorem ipsum dolor sit amet, test consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      color: "#C46A69",
+      timeout: 4000,
+      icon: "fa fa-trash-o swing animated",
+      number: "2"
+    });
+  }
 }

@@ -7,7 +7,7 @@ import { FacilityUsersComponent } from "./facility-users/facility-users.componen
 
 export const routes: Routes = [
     {
-        path: 'facility-details',
+        path: 'facility-details/:id',
         component: FacilityDetailsComponent,
         data: { pageTitle: 'Facility Details' }
     },

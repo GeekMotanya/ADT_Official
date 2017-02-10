@@ -71,8 +71,7 @@
                                         <div class="form-group">
                                             <label><span style="color:red; font-weight:bold">*</span> Date of Birth:</label>
                                             <div class="input-group">
-                                                <input type="text" #dob required name="birth_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0', maxDate: 'new Date()'}" (selectDate)='setDateOfBirth($event)' [(ngModel)]="patient.birth_date">
-                                                <!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                                                <input type="text" required name="birth_date" placeholder="Select a date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'mm/dd/yy' , changeMonth: true, changeYear: true, yearRange : 'c-65:c+0', maxDate: 'new Date()'}" (selectDate)='setDateOfBirth($event)' [(ngModel)]="patient.birth_date">
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +79,7 @@
                                     <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <label>Place of birth</label>
                                         <select class="form-control" [(ngModel)]="patient.place_of_birth" name="place_of_birth">
-                                            <!--<option *ngFor="let location of locations | async " value="{{location.id}}">{{location.name}}</option>-->
+                                            <!--<option *ngFor="let location of birth_place | async " value="{{location.id}}">{{location.name}}</option>-->
                                             <option value="Mombasa">Mombasa</option>
                                         </select>
                                     </div>
@@ -92,21 +91,21 @@
                                         <label>Age (Months)</label>
                                         <input class="form-control" placeholder="Age (Months)" type="text" [(ngModel)]="patient.age_in_months" name="ageMonths" disabled="disabled">
                                     </div>
-                                    <div *ngIf="patient.gender !== 'Female'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div *ngIf="patient.gender !== 'female'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label><span style="color:red; font-weight:bold">*</span> Gender</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.gender" name="gender">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
                                     </div>
-                                    <div *ngIf="patient.gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div *ngIf="patient.gender === 'female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <label> <span style="color:red; font-weight:bold">*</span> Gender</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.gender" name="gender">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
                                     </div>
-                                    <div *ngIf="patient.gender === 'Female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div *ngIf="patient.gender === 'female'" class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <label>Pregnant?</label>
                                         <select class="form-control" id="select-1" [(ngModel)]="patient.is_pregnant" name="is_pregnant">
                                             <option value="1">Yes</option>
@@ -312,7 +311,7 @@
                                                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                     <label>End of phase:</label>
                                                     <div class="input-group">
-                                                        <input type="text" name="enrollment_date" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")'>
+                                                        <input type="text" name="tb_end" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")'>
                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -322,7 +321,7 @@
                                                     <div class="form-group">
                                                         <label>Start of phase:</label>
                                                         <div class="input-group">
-                                                            <input type="text" name="enrollment_date" placeholder="Start phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"tb_start")'>
+                                                            <input type="text" name="tb_start" placeholder="Start phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"tb_start")'>
                                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                         </div>
                                                     </div>
@@ -330,7 +329,7 @@
                                                 <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                                     <label>End of phase:</label>
                                                     <div class="input-group">
-                                                        <input type="text" name="enrollment_date" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")'>
+                                                        <input type="text" name="tb_end" placeholder="End phase" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event,"tb_end")'>
                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -360,14 +359,14 @@
                                     <div *ngIf="edit" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label>Date of status change:</label>
                                         <div class="input-group">
-                                            <input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'>
+                                            <input type="text" name="status_change" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "status_change")'>
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label><span style="color:red; font-weight:bold">*</span> Source of Patient</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.source_id" name="source_id">
-                                            <option *ngFor="let source of patientSources | async" value="{{source.id}}">{{source.name}}</option>
+                                            <option *ngFor="let source of patientSources" value="{{source.id}}">{{source.name}}</option>
                                             <input type="hidden" value="{{source.name}}">
                                         </select>
                                     </div>
@@ -375,23 +374,15 @@
                                         <label><span style="color:red; font-weight:bold">*</span> Type of Service</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.service_id" name="service_id" (click)="setService(patient.service_id)">
                                             <option *ngFor="let service of patientServices" value="{{service.id}}">{{service.name}}</option>
-                                            <!--<option value="0">ART</option>
-                                            <option value="1">PMTCT</option>
-                                            <option value="2">PEP</option>
-                                            <option value="3">PreP</option>
-                                            <option value="4">OI Only</option>-->
                                         </select>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div *ngIf="regimen" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label>Start Regimen</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.regimen" name="regimen">
-                                            <option selected>--Select--</option>
-                                            <option value="1">AF1A | AZT + 3TC + NVP</option>
-                                            <option value="2">AF1A | AZT + 3TC + NVP</option>
-                                            <option value="3">AF1A | AZT + 3TC + NVP</option>
+                                            <option *ngFor="let regimens of regimen.regimen" value="{{regimens.id}}">{{regimens.name}}</option>
                                         </select>
                                     </div>
-                                    <div *ngIf="patient.service_type == 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div *ngIf="regimen && regimen.name == 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label>Pep reason</label>
                                         <select required class="form-control" id="select-1" [(ngModel)]="patient.pep_reason" name="regimen">
                                             <option selected>--Select--</option>
@@ -404,7 +395,7 @@
                                         <label>Start Regimen Date</label>
                                         <input type="text" name="regimen_date" placeholder="Regimen start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"regimen")'>
                                     </div>
-                                    <div *ngIf="patient.service_type != 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div *ngIf="regimen && regimen.name != 'PEP'" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <label>WHO Stage</label>
                                         <select class="form-control" id="select-1" [(ngModel)]="patient.who_stage_id" name="who_stage_id">
                                             <option *ngFor="let who_stage of patientWhostage | async" value="{{who_stage.id}}">{{who_stage.name}}</option>
@@ -419,7 +410,7 @@
                                             <div class="form-group">
                                                 <label>Isoniazid start date:</label>
                                                 <div class="input-group">
-                                                    <input type="text" name="enrollment_date" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'>
+                                                    <input type="text" name="isoniazid_start" placeholder="Start date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy', maxDate: 'new Date()' }" (selectDate)='setDate($event,"isoniazid_start")'>
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                 </div>
                                             </div>
@@ -427,7 +418,7 @@
                                         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                             <label>Isoniazid end date:</label>
                                             <div class="input-group">
-                                                <input type="text" name="enrollment_date" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'>
+                                                <input type="text" name="isoniazid_end" placeholder="End date" class="form-control datepicker" [saUiDatepicker]="{ dateFormat: 'dd/mm/yy' }" (selectDate)='setDate($event, "isoniazid_end")'>
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>

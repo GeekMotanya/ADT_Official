@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class PatientsService {
 
     // To be placed in a config file
-    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/ADT_CORE/v0.1/';
+    private _apiUrl = 'http://192.168.133.10/adt-core/lib/public/api/';
 
     private _addPatientRoute = this._apiUrl + 'patients';
     private _illnessApi = this._apiUrl + 'lists/illnesses';
@@ -23,13 +23,21 @@ export class PatientsService {
     private _prophylaxisApi = this._apiUrl + 'lists/prophylaxis';
     private _whoStageApi = this._apiUrl + 'lists/whostage';
     private _pepReasonApi = this._apiUrl + 'lists/pep';
-    private _locationsApi = this._apiUrl + '/lists/sub_county';
-    private _familyPlanning = this._apiUrl + '/lists/familyplanning';
+    private _locationsApi = this._apiUrl + 'lists/counties';
+    private _familyPlanning = this._apiUrl + 'lists/familyplanning';
+    private _patientsList = this._apiUrl + 'patients?page=';
+
     constructor(private _http: Http) { }
 
     /**
      * GET Section
      */
+    getPaginatedPatients(id: number) {
+        return this._http.get(this._patientsList + id)
+            .map((response: Response) => <Patient[]>response.json())
+            // .do(data => console.log('All: ' + JSON.stringify(data)))z
+            .catch(this.handleError);
+    }
 
     getFamilyPlan() {
         return this._http.get(this._servicesApi)
@@ -53,17 +61,26 @@ export class PatientsService {
     }
 
     getLocation() {
-        return this._http.get(this._servicesApi)
+        return this._http.get(this._locationsApi)
             .map((response: Response) => <Locations[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    getService() {
+    getServices() {
         return this._http.get(this._servicesApi)
             .map((response: Response) => <Service[]>response.json())
             // .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
+    }
+
+    // Loops through the lists of services to get individual service properties
+    // such as different regimens
+
+    getService(id: number): Observable<any> {
+        return this.getServices()
+            .map((service: Service[]) => service.find(p => p.id === id))
+            .do(data => console.log('Service: ' + JSON.stringify(data)));
     }
 
     getRegimen() {
@@ -113,8 +130,8 @@ export class PatientsService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this._http.post(this._addPatientRoute, body, options) // ...using post request
-            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+            .map(() => body) // ...and calling .json() on the response to return data
+            .catch(this.handleError); //...errors if any
     }
 
     /**
@@ -126,15 +143,29 @@ export class PatientsService {
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
         return this._http.put(`${this._addPatientRoute}/${body['id']}`, body, options) // ...using put request
-            .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+            .map(() => body)
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
+    }
+    /**
+     * PUT Section: Update of patients takes place.
+     */
+    disablePatient(id:string): Observable<Patient> {
+        return this._http.delete(`${this._addPatientRoute}/${id}`) // ...using put request
+            .map(() => { })
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if a
     }
 
-    private handleError(error: Response) {
-        // in a real world app, we may send the server to some remote logging infrastructure
-        // instead of just logging it to the console
-        let msg = `Status code ${error.status} on url ${error.url}`;
-        console.error(msg);
-        return Observable.throw(msg);
+    private handleError(error: Response | any) {
+        // In a real world app, we might use a remote logging infrastructure
+        let errMsg: string;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        } else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Promise.reject(errMsg);
     }
 }

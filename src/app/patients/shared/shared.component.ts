@@ -1,17 +1,24 @@
 import { Component, OnInit, Input, DoCheck, ViewChild, AfterViewChecked, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PatientsService } from '../patients.service';
 import { Patient, Service, Status, Regimen, Prophylaxis, Who_stage, Source, Illness, Allergies, FamilyPlanning, Locations } from '../patients';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import { Observable } from 'rxjs/Observable';
 
+declare var $: any;
+
 @Component({
     selector: 'patient-form',
     templateUrl: './shared-form.component.html'
 })
-export class SharedComponent implements OnInit, DoCheck {
+
+// TODO: Handle error catching in all subscriptions
+
+export class SharedComponent implements OnInit, DoCheck, OnChanges {
 
     @Input() formType: string;
+    form: string;
 
     // Define properties first.
     @Input() patient = new Patient;
@@ -23,6 +30,7 @@ export class SharedComponent implements OnInit, DoCheck {
     prophylaxis = new Prophylaxis;
     errorMessage: string;
     patientServices: Service[];
+    patientSources: Source[];
     patientRegimen: Observable<Regimen[]>;
     patientWhostage: Observable<Who_stage[]>;
     patientProphylaxis: Observable<IMultiSelectOption[]>;
@@ -34,8 +42,6 @@ export class SharedComponent implements OnInit, DoCheck {
     private chronicIllness: Observable<IMultiSelectOption[]>;
 
     private allergiesList: Observable<IMultiSelectOption[]>;
-
-    private patientSources: Observable<string[]>;
 
     private mySettings: IMultiSelectSettings = {
         pullRight: false,
@@ -60,30 +66,29 @@ export class SharedComponent implements OnInit, DoCheck {
     };
 
     // Methods section: The constructor comes first!
-    constructor(private _patientService: PatientsService) { }
+    constructor(private _patientService: PatientsService, private router: Router) { }
 
     ngOnInit(): void {
         this.birth_place = this._patientService.getLocation();
         this.familyPlanning = this._patientService.getFamilyPlan();
         this.chronicIllness = this._patientService.getIllness();
         this.allergiesList = this._patientService.getAllergies();
-        this.patientSources = this._patientService.getSource();
-        this._patientService.getService().subscribe(service => { this.patientServices = service });
+        this._patientService.getSource().subscribe(source => this.patientSources = source);
+        this._patientService.getServices().subscribe(service => { this.patientServices = service });
         this.patientRegimen = this._patientService.getRegimen();
         this.patientWhostage = this._patientService.getWho_stage();
         this.patientProphylaxis = this._patientService.getProphylaxis();
     }
     ngDoCheck(): void {
         this.patient.bsa = Math.sqrt((this.patient.current_weight * this.patient.current_height) / 3600);
-        // console.log(this.illness.data);
     }
 
     /**
      * Validation for template driven forms
-     * Visit angular.i0 -> 
+     * Visit angular.io -> 
      * Forms Validation Cookbook Tutorial
      */
-     patientForm: NgForm;
+    patientForm: NgForm;
     // Queries for the form-> patientForm
     @ViewChild('patientForm') currentForm: NgForm;
 
@@ -146,6 +151,7 @@ export class SharedComponent implements OnInit, DoCheck {
      */
 
     setDateOfBirth(value: any) {
+        this.patient.birth_date = value; // set the input control date
         this.patient.getAge(value);
     }
 
@@ -180,8 +186,9 @@ export class SharedComponent implements OnInit, DoCheck {
     }
 
     setService(value) {
-        console.log(value);
-        // console.log(this.patientServices.indexOf(value));
+        // console.log(value);
+        // console.log(this.patientServices.find(value));
+        this._patientService.getService(+[value]).subscribe(regimen => this.regimen = regimen);
     }
 
     /**
@@ -190,18 +197,46 @@ export class SharedComponent implements OnInit, DoCheck {
     onSubmit(): void {
         if (this.formType == 'addPatient') {
             this._patientService.addPatient(this.patient).subscribe(
-                p => { console.log(`I have posted: ` + p) },
-                error => this.errorMessage = <any>error
+                () => this.onSaveComplete(),
+                (error) => { console.log("Error happened" + error) }
             );
         }
         else {
-            console.log(this.patient);
             this._patientService.updatePatient(this.patient).subscribe(
-                p => { console.log(`I have put: ` + p) },
-                error => this.errorMessage = <any>error
+                (response) => this.onUpdateComplete(response),
+                (error) => { console.log("Error happened" + error) },
+                () => { console.log("the subscription is completed") }
             );
         }
     }
+
+    onSaveComplete() {
+        console.log('Created a new patient...');
+        this.patientForm.reset();
+        this.notification('created');
+        this.router.navigateByUrl('/patients/list');
+    }
+
+    onUpdateComplete(val) {
+        this.patientForm.reset();
+        this.notification('updated');
+        this.router.navigateByUrl('/patients/list');
+    }
+
+    notification(value: string) {
+        $.smallBox({
+            title: `You have successfully ${value} the patient`,
+            content: "<i class='fa fa-clock-o'></i> <i>2 seconds ago...</i>",
+            color: "#296191",
+            iconSmall: "fa fa-thumbs-up bounce animated",
+            timeout: 4000
+        });
+    }
+
+    ngOnChanges() {
+        this.form = this.formType;
+    }
+
     onChange(value: any): void {
         console.log(value);
     }

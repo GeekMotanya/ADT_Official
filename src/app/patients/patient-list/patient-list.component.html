@@ -1,5 +1,5 @@
-<div id="content">
-
+<!-- Only display after patients list has been pulled from server-->
+<div id="content" *ngIf="patients">
     <sa-widgets-grid>
         <div class="row">
             <article class="col-sm-12">
@@ -48,7 +48,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let patient of patients | patientsFilter:'first_name':binding">
+                                        <tr *ngFor="let patient of patients.data | patientsFilter:'first_name':binding">
                                             <td>{{patient.ccc_number}}</td>
                                             <td>{{patient.first_name}}</td>
                                             <td>{{patient.phone_number}}</td>
@@ -59,20 +59,42 @@
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/dispense',patient.id]">Dispense</a>
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/detail',patient.id]">Detail</a>
                                                 <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/edit',patient.id]">Edit</a>
-                                                <a class="btn btn-primary btn-xs" href="" [routerLink]="['/patients/disable',patient.id]">Disable</a>
+                                                <!-- For the modal to be dynamic: The following ought to be considered: data-target & id of the modal -->
+                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" attr.data-target="#confirmDelete{{patient.id}}">
+                                                    Disable
+                                                </button>
+                                                <!--<button class="btn btn-primary btn-xs" (click)="disable(patient.id)">Disable</button>-->
                                             </td>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="confirmDelete{{patient.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you would like to disable {{patient.first_name}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                            <button class="btn btn-primary" (click)="disable(patient.id)" data-dismiss="modal"> Yes I am</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="dt-toolbar-footer">
-                                    <div class="col-sm-6 col-xs-12 hidden-xs">
-                                        <div aria-live="polite" class="dataTables_info" id="dt_basic_info" role="status">
-                                            Showing 41 to 50 of 100 entries
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite">
+                                            Showing {{patients.from}} to {{patients.to}} of {{patients.total}} entries
                                         </div>
-                                        <div class="col-sm-6 col-xs-12 hidden-xs">
-                                            <div class="">
-                                                <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="10" [totalItems]="17" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
+                                            <pagination class="dataTables_paginate paging_simple_numbers" [itemsPerPage]="patients.per_page" [totalItems]="patients.total" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
                                         </div>
                                     </div>
                                 </div>
